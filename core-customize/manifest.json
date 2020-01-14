@@ -45,26 +45,16 @@
             ]
         },
         {
-            "name": "zddsopstorefront",
+            "name": "accstorefront",
             "webapps": [
                 {
                     "name": "zddsopstorefront",
                     "contextPath": "/zddsopstorefront"
-                }
-            ]
-        },
-        {
-            "name": "zddsstorefront",
-            "webapps": [
+                },
                 {
                     "name": "zddsstorefront",
                     "contextPath": "/zddsstorefront"
-                }
-            ]
-        },
-        {
-            "name": "zddsb2cstorefront",
-            "webapps": [
+                },
                 {
                     "name": "zddsb2cstorefront",
                     "contextPath": "/zddsb2cstorefront"
