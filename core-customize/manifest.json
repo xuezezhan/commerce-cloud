@@ -30,14 +30,6 @@
                     "contextPath": "/medias"
                 },
                 {
-                    "name": "zddsstorefront",
-                    "contextPath": "/zddsstorefront"
-                },
-                {
-                    "name": "zddsb2cstorefront",
-                    "contextPath": "/zddsb2cstorefront"
-                },
-                {
                     "name": "zddsopstorefront",
                     "contextPath": "/zddsopstorefront"
                 }
