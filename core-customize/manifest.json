@@ -1,12 +1,18 @@
 {
     "commerceSuiteVersion": "1905.0",
-    "extensions": [
-        "modeltacceleratorservices",
-        "electronicsstore",
-        "yacceleratorstorefront",
-        "backoffice"
-    ],
-         "aspects": [
+    "extensions": [],
+    "useConfig": {
+        "properties": [
+            {
+                "location": "hybris/config/local.properties"
+            }
+        ],
+        "extensions": {
+            "location": "hybris/config/localextensions.xml"
+        }
+    },
+
+    "aspects": [
         {
             "name": "backoffice",
             "webapps": [
@@ -24,18 +30,21 @@
                     "contextPath": "/medias"
                 },
                 {
-                    "name": "yacceleratorstorefront",
-                    "contextPath": "/yacceleratorstorefront"
+                    "name": "zddsstorefront",
+                    "contextPath": "/zddsstorefront"
                 },
                 {
-                    "name": "acceleratorservices",
-                    "contextPath": "/acceleratorservices"
+                    "name": "zddsb2cstorefront",
+                    "contextPath": "/zddsb2cstorefront"
+                },
+                {
+                    "name": "zddsopstorefront",
+                    "contextPath": "/zddsopstorefront"
                 }
             ]
         },
         {
             "name": "backgroundProcessing",
-            "properties": [],
             "webapps": [
                 {
                     "name": "hac",
@@ -44,6 +53,19 @@
                 {
                     "name": "mediaweb",
                     "contextPath": "/medias"
+                }
+            ]
+        },
+	{
+            "name": "api",
+            "webapps": [
+                {
+                    "name": "zddswebservices",
+                    "contextPath": "/zddswebservices"
+                },
+                {
+                    "name": "oauth2",
+                    "contextPath": "/authorizationserver"
                 }
             ]
         }
