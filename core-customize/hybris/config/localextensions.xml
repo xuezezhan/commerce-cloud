@@ -103,8 +103,6 @@
 	<extension name='zddstest' />
 	<extension name='zddsinitialdata' />
 	<extension name='zddsbackoffice' />
-	<extension name='zddsstorefront' />
-	<extension name='zddsb2cstorefront' />
 	<extension name='zddsopstorefront' />
     <extension name='zddswebservices' />
 
