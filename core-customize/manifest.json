@@ -18,17 +18,13 @@
             "webapps": [
                 {
                     "name": "backoffice",
-                    "contextPath": "/backoffice"
+                    "contextPath": ""
                 }
             ]
         },
         {
             "name": "accstorefront",
             "webapps": [
-                {
-                    "name": "mediaweb",
-                    "contextPath": "/medias"
-                },
                 {
                     "name": "zddsopstorefront",
                     "contextPath": "/zddsopstorefront"
@@ -41,10 +37,6 @@
                 {
                     "name": "hac",
                     "contextPath": ""
-                },
-                {
-                    "name": "mediaweb",
-                    "contextPath": "/medias"
                 }
             ]
         },
