@@ -52,7 +52,7 @@
                     "contextPath": "/zddsopstorefront"
                 }
             ]
-        },,
+        },
         {
             "name": "zddsstorefront",
             "webapps": [
