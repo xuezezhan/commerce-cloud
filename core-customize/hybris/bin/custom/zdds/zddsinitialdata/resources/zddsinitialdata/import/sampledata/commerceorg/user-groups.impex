@@ -1,0 +1,64 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import Two Sample B2B Organizations
+#
+
+
+$defaultPassword=12341234
+INSERT_UPDATE UserGroup;uid[unique=true];groups(uid);locname[lang=en];
+
+INSERT_UPDATE Employee;uid[unique=true];name;groups(uid)[mode=append];password[default=$defaultPassword];
+
+###############################
+# Rustic Hardware ORGANIZATION (Hierarchy)
+
+INSERT_UPDATE B2BCreditLimit;code[unique=true];alertRateType(code,itemtype(code));alertThreshold;amount;currency(isocode);dateRange(code,itemtype(code));datePeriod[dateformat=dd.MM.yyyy hh:mm:ss];
+
+INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);creditLimit(code);approvalProcessCode;
+
+INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;country(isocode);billingAddress;contactAddress;shippingAddress;unloadingAddress;firstname;lastname;email;title(code);&addId;owner(&B2BUnitID)[unique=true];
+
+INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit(uid));
+
+INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='USD'];password[default=$defaultPassword];
+
+INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='USD']
+
+INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];;
+
+INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode)[default='USD'];
+
+INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);threshold;currency(isocode);range(code,itemtype(code));
+
+INSERT_UPDATE B2BBudgetExceededPermission;code[unique=true];Unit(uid);
+
+UPDATE B2BUnit;uid[unique=true];approvers(uid);
+
+UPDATE B2BCustomer;originalUid[unique=true];uid[unique=true];permissions(code,Unit(uid));
+
+###############################
+#  Pronto Hardware ORGANIZATION (KIS)
+
+INSERT_UPDATE B2BCreditLimit;code[unique=true];alertRateType(code,itemtype(code));alertThreshold;amount;currency(isocode);dateRange(code,itemtype(code));datePeriod[dateformat=dd.MM.yyyy hh:mm:ss];
+
+INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);accountManagerGroups(uid);creditLimit(code);approvalProcessCode;
+
+INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;country(isocode);billingAddress;contactAddress;shippingAddress;unloadingAddress;firstname;lastname;email;title(code);&addId;owner(&B2BUnitID)[unique=true];
+
+INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit(uid));
+
+INSERT_UPDATE B2BCustomer;description;uid[unique=true];email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='USD'];password[default=$defaultPassword]
+
+INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];
+
+INSERT_UPDATE B2BCostCenter;code[unique=true];Unit(uid);currency(isocode);budgets(code);name[lang=en];
+
+INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode);
+
+INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);threshold;currency(isocode);range(code,itemtype(code));
+
+UPDATE B2BUnit;uid[unique=true];creditLimit(code);accountManager(uid);approvers(uid)
+
+UPDATE B2BCustomer;uid[unique=true];permissions(code,unit(uid));

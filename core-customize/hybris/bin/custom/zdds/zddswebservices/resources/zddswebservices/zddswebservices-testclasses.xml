@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><testclasses><zddswebservices><testclass>com.zdds.webservices.jaxb.XMLExternalEntityExpansionTest</testclass><testclass>com.zdds.webservices.test.webservices.SampleWebServicesTest</testclass><testclass>com.zdds.webservices.initializer.HybrisPropertiesWebApplicationContextInitializerTest</testclass></zddswebservices></testclasses>

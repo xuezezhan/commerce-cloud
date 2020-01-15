@@ -1,0 +1,17 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$storeUid=zddsb2b
+$defaultCurrency=CNY
+$defaultLanguage=zh
+$googleHost=setthethirdpartyhost
+$googleUserName=setgoogleusername
+$googlePassword=setgooglepassword
+
+
+INSERT ExportDataCronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);language(isocode);currency(isocode);user(uid);thirdPartyHost;thirdPartyUsername;thirdPartyPassword;dataGenerationPipeline;sessionLanguage(isocode)
+
+INSERT CronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);
+
+
+INSERT_UPDATE Trigger;active;second;minute;hour;day;month;year;cronExpression;cronJob(code)[unique=true];relative

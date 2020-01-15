@@ -1,0 +1,17 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# 
+# Import the Product Catalog and Classification Catalog
+#
+# Localization en
+#
+
+$lang=en
+
+$productCatalog=zddsb2bProductCatalog
+$classificationCatalog=zddsb2bClassification
+
+UPDATE Catalog;id[unique=true];name[lang=$lang]
+;$classificationCatalog;"zddsb2b Classification";
+;$productCatalog;"zddsb2b Product Catalog";

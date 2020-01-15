@@ -1,0 +1,86 @@
+## -----------------------------------------------------------------------
+## Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+## -----------------------------------------------------------------------
+## ImpEx for Importing Product Classifications into Powertools Store
+#
+## Common (across all languages) data starts here
+#
+##% impex.setLocale(Locale.ENGLISH);
+#
+## Macros / Replacement Parameter definitions
+#$productCatalog=zddsb2bProductCatalog
+#$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+#$clAttrModifiers=system='zddsb2bClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=EN
+#
+## Insert Product Classifications
+#
+## Classification: Technical details (4591)
+#$feature1=@Source data-sheet, 6617[$clAttrModifiers];  # Source data-sheet
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$feature12;$feature13;$feature14;$feature15;$feature16;$feature17;$feature18;$feature19;$feature20;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$feature12;$feature13;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$catalogVersion;
+#
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$feature12;$feature13;$catalogVersion;
+#
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$catalogVersion;
+#
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$feature12;$feature13;$feature14;$feature15;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$catalogVersion;
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+#
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$catalogVersion;
+#
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$catalogVersion;
+#
+#
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$feature12;$feature13;$feature14;$feature15;$feature16;$feature17;$feature18;$feature19;$feature20;$feature21;$feature22;$feature23;$feature24;$feature25;$feature26;$feature27;$feature28;$catalogVersion;
+#INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$catalogVersion;
+#
+#UPDATE Product;code[unique=true];$feature2;$catalogVersion;
+#
+#UPDATE Product;code[unique=true];$feature2;$feature10;$catalogVersion;
+#
+#UPDATE Product;code[unique=true];$feature12;$catalogVersion;
+#
+#UPDATE Product;code[unique=true];$feature2;$catalogVersion;
+#
+#UPDATE Product;code[unique=true];$feature1;$catalogVersion;

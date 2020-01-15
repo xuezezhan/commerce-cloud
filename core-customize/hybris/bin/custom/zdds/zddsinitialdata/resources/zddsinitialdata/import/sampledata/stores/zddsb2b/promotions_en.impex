@@ -1,0 +1,28 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Promotions for zddsb2b Store
+
+# Language
+$lang=en
+
+#3% off orders over $500
+UPDATE OrderThresholdDiscountPercentagePromotion;enabled[default=true][unique=true];code[unique=true];messageCouldHaveFired[lang=$lang];
+
+
+#Buy 2 Power Drills, Get 1 Free
+UPDATE AcceleratorProductBOGOFPromotion;enabled[default=true][unique=true];code[unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];
+
+
+#Buy this great power tool package by Black & Decker for $255! Save $39!
+UPDATE ProductBundlePromotion;enabled[default=true][unique=true];code[unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];
+
+
+#10% off on Sanders
+UPDATE ProductPercentageDiscountPromotion;enabled[default=true][unique=true];code[unique=true];messageFired[lang=$lang];
+
+
+#Discount on the cart using a coupon (promotion voucher)
+UPDATE PromotionVoucher;voucherCode[unique=true];description[lang=$lang];
+
+

@@ -90,19 +90,20 @@
 	<extension name='b2bacceleratoraddon' />
 	<extension name='commerceorgaddon' />
 
-    <!--基础站点工程-->
-    <extension name='electronicsstore' />
-    <extension name='apparelstore' />
-    <extension name='powertoolsstore' />
-
-    <!--客制化工程-->
+    <!--选择注释工程-->
+    <!--<extension name='electronicsstore' />-->
+    <!--<extension name='apparelstore' />-->
+    <!--<extension name='powertoolsstore' />-->
+    <!--<extension name='zddstest' />-->
+    <!--选择注释工程-->
 	<extension name='zddsfulfilmentprocess' />
 	<extension name='zddscore' />
 	<extension name='zddsfacades' />
     <extension name='zddsopfacades' />
-	<extension name='zddstest' />
 	<extension name='zddsinitialdata' />
 	<extension name='zddsbackoffice' />
+	<extension name='zddsstorefront' />
+	<extension name='zddsb2cstorefront' />
 	<extension name='zddsopstorefront' />
     <extension name='zddswebservices' />
 

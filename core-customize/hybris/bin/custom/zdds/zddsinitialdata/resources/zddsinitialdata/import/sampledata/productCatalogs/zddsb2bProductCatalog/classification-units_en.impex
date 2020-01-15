@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Units into Powertools Store
+
+# Macros / Replacement Parameter definitions
+$systemVersion=systemVersion(catalog(id[default='zddsb2bClassification']),version[default='1.0'])[unique=true]
+
+#
+# Localization en
+#
+$lang=en
+
+UPDATE ClassificationAttributeUnit;code[unique=true];$systemVersion;name[lang=$lang]
