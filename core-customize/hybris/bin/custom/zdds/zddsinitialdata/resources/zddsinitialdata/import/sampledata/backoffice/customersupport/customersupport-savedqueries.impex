@@ -1,7 +1,0 @@
-# -----------------------------------------------------------------------
-# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
-# -----------------------------------------------------------------------
-INSERT_UPDATE BackofficeSavedQuery;typeCode[unique=true];name[lang=en,unique=true];globalOperatorCode;queryOwner(uid)[unique=true];sortAsc;&savedQueryRef;
-
-
-INSERT_UPDATE BackofficeSearchCondition;value[unique=true];attribute;selected;operatorCode;valueReference(Employee.uid)[mode=replace,unique=true];savedQuery(&savedQueryRef)[unique=true];
