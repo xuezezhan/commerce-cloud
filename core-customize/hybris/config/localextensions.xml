@@ -90,12 +90,7 @@
 	<extension name='b2bacceleratoraddon' />
 	<extension name='commerceorgaddon' />
 
-    <!--选择注释工程-->
-    <!--<extension name='electronicsstore' />-->
-    <!--<extension name='apparelstore' />-->
-    <!--<extension name='powertoolsstore' />-->
-    <!--<extension name='zddstest' />-->
-    <!--选择注释工程-->
+    
 	<extension name='zddsfulfilmentprocess' />
 	<extension name='zddscore' />
 	<extension name='zddsfacades' />
