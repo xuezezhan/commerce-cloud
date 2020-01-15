@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into Powertools Store 
+
+
+# Macros / Replacement Parameter definitions
+$productCatalog=zddsb2bProductCatalog
+$productCatalogName=zddsb2b Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+$lang=en
+
+UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang]

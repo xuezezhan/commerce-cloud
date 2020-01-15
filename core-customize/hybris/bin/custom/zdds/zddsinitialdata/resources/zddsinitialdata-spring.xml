@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+	<!-- System Setup -->
+
+	<bean id="zddsInitialDataSystemSetup"
+	      class="com.zdds.initialdata.setup.ZDDSInitialDataSystemSetup"
+	      parent="abstractCoreSystemSetup">
+		<property name="zddsSampleDataImportService" ref="zddsSampleDataImportService"/>
+		<property name="zddsCoreDataImportService" ref="zddsCoreDataImportService"/>
+	</bean>
+
+
+
+	<!-- Added By LiYaTing Start-->
+	<bean id="zddsSampleDataImportService" class="com.zdds.initialdata.services.dataimport.impl.ZDDSSampleDataImportService"
+		  parent="sampleDataImportService">
+	</bean>
+	<bean id="zddsCoreDataImportService" class="com.zdds.initialdata.services.dataimport.impl.ZDDSCoreDataImportService"
+		  parent="coreDataImportService">
+	</bean>
+
+	<!-- Solr field value providers -->
+	<bean id="zddsCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="zddsCategorySource"/>
+	</bean>
+	<bean id="zddsBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="zddsBrandCategorySource"/>
+	</bean>
+	<bean id="zddsVariantCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="zddsVariantCategorySource"/>
+	</bean>
+
+
+	<bean id="zddsCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="zddsCategorySource"/>
+	</bean>
+
+	<bean id="zddsBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="zddsBrandCategorySource"/>
+	</bean>
+
+	<bean id="zddsCategorySource" parent="variantCategorySource">
+		<property name="rootCategory" value="1"/> <!-- '1' is the root icecat category -->
+	</bean>
+	<bean id="zddsVariantCategorySource" parent="variantCategorySource"/>
+
+	<bean id="zddsBrandCategorySource" parent="defaultCategorySource">
+		<property name="rootCategory" value="brands"/> <!-- 'brands' is the root of the brands hierarchy -->
+	</bean>
+	<!-- Solr field value providers -->
+
+	<!-- Added By LiYaTing End-->
+
+</beans>

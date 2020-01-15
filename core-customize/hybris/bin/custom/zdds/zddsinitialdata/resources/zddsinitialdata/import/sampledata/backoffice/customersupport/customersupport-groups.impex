@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Update Customer Support Agent and Manager to include csagent groups
+#
+INSERT_UPDATE CsAgentGroup;UID[unique=true];locname[lang=en];groups(uid)[mode=append];description

@@ -1,0 +1,32 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for zddsb2b Points of Service
+
+$storeUid=zddsb2b
+$productCatalog=zddsb2bProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$storeImage=storeImage(qualifier, $catalogVersion)
+
+#
+# Localization en
+#
+$lang=en
+
+$oklahomaHours=oklahoma-standard-hours
+$indianaHours=indiana-standard-hours
+$floridaHours=florida-standard-hours
+$californiaHours=california-standard-hours
+$washingtonHours=washington-standard-hours
+
+UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true,default=$oklahomaHours];date[unique=true,dateformat=dd.MM.yyyy];name[lang=en];message[lang=en]
+
+UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true,default=$indianaHours];date[unique=true,dateformat=dd.MM.yyyy];name[lang=en];message[lang=en]
+
+UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true,default=$floridaHours];date[unique=true,dateformat=dd.MM.yyyy];name[lang=en];message[lang=en]
+
+UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true,default=$californiaHours];date[unique=true,dateformat=dd.MM.yyyy];name[lang=en];message[lang=en]
+
+UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true,default=$washingtonHours];date[unique=true,dateformat=dd.MM.yyyy];name[lang=en];message[lang=en]
+
+UPDATE PointOfService;name[unique=true];displayName;

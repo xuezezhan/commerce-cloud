@@ -1,0 +1,165 @@
+* {	margin: 0;padding: 0;}
+html,body {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+/*背景容器*/
+.omsbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../images/BJ.jpg) no-repeat center center;
+    background-size: cover;
+}
+/*居中登陆框*/
+.landbox {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 414px;
+    height: 560px;
+    background-color: #fff;
+}
+/*logo*/
+.logo {
+    text-align: center;
+    margin-top: 65px;
+    margin-bottom: 50px;
+}
+.logo p {
+    font-size: 24px;
+    margin-top: 10px;
+}
+/*账号密码*/
+.account,.account1 {
+    width: 288px;
+    margin: 0 auto;
+    text-align: center;
+}
+.account label,.account1 label{
+    display: block;
+    box-sizing: border-box;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #898989;
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.account label:nth-child(1){margin-bottom: 40px;}
+.account label:nth-child(2){margin-bottom: 20px;}
+
+.account label>span{float: left;user-select: none;}
+.account label>input:focus,.account1 label>input:focus{outline: none;}
+.account label>input{
+    box-sizing: border-box;
+    float: left;
+    border: none;
+    outline: none;
+    width: 225px;
+    height: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 20px;
+    text-indent: -50px;
+    color: #999;
+}
+
+.omstis {
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+.omsbtn {
+    width: 289px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 30px;
+    background-color: #4975ee;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-indent: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.omsbtn:hover,.modbtn:hover,.back:hover {background-color: rgba(73,117,238,0.8);}
+
+.register {
+    margin-top: 65px;
+    padding: 0 33px;
+}
+.register>span {cursor: pointer;}
+.register>span {
+    float: right;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/*修改密码弹出框*/
+.modify {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: none;
+}
+.account1 label {margin-bottom: 20px;}
+.account1 label>input {
+    box-sizing: border-box;
+    float: left;
+    border: none;
+    outline: none;
+    width: 185px;
+    height: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 20px;
+    text-indent: -50px;
+    color: #999;
+}
+.account1 label>span{
+    float: left;
+    width: 72px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-align: justify;
+}
+.account1 p {color: #d21e2f;margin-bottom: 20px;}
+.modbtn,.back {
+    float: right;
+    display: inline-block;
+    width: 88px;
+    height: 36px;
+    background-color: #4975EE;
+    text-align: center;
+    line-height: 36px;
+    color: #fff;
+    cursor: pointer;
+}
+.back {margin-left: 10px; text-decoration: none;}
+.modifybtn:hover{color: #D21E2F;}
