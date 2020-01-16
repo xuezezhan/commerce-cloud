@@ -54,6 +54,28 @@
         },
         {
             "name": "accstorefront",
+	    "properties": [
+                {
+                    "key": "spring.session.enabled",
+                    "value": "true"
+                },
+                {
+                    "key": "spring.session.zddsstorefront.save",
+                    "value":"async"
+                },
+                {
+                    "key": "spring.session.zddsstorefront.cookie.name",
+                    "value": "JSESSIONID"
+                },
+                {
+                    "key": "spring.session.zddsstorefront.cookie.path",
+                    "value": "/"
+                },
+                {
+                    "key":"storefrontContextRoot",
+                    "value":""
+                }
+            ],
             "webapps": [
                 {
                     "name": "zddsstorefront",
