@@ -18,6 +18,10 @@
             "webapps": [
                 {
                     "name": "backoffice",
+                    "contextPath": "/backoffice"
+                },
+                {
+                    "name": "zddsopstorefront",
                     "contextPath": ""
                 }
             ]
@@ -27,6 +31,10 @@
             "webapps": [
                 {
                     "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "zddsb2cstorefront",
                     "contextPath": ""
                 }
             ]
@@ -36,7 +44,7 @@
             "webapps": [
                 {
                     "name": "zddswebservices",
-                    "contextPath": "/zddswebservices"
+                    "contextPath": ""
                 },
                 {
                     "name": "oauth2",
@@ -48,16 +56,8 @@
             "name": "accstorefront",
             "webapps": [
                 {
-                    "name": "zddsopstorefront",
-                    "contextPath": "/zddsopstorefront"
-                },
-                {
                     "name": "zddsstorefront",
-                    "contextPath": "/zddsstorefront"
-                },
-                {
-                    "name": "zddsb2cstorefront",
-                    "contextPath": "/zddsb2cstorefront"
+                    "contextPath": ""
                 }
             ]
         }
