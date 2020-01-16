@@ -54,36 +54,6 @@
         },
         {
             "name": "accstorefront",
-	    "properties": [
-                {
-                    "key": "spring.session.enabled",
-                    "value": "true"
-                },
-                {
-                    "key": "spring.session.zddsstorefront.save",
-                    "value":"async"
-                },
-                {
-                    "key": "spring.session.zddsstorefront.cookie.name",
-                    "value": "JSESSIONID"
-                },
-                {
-                    "key": "spring.session.zddsstorefront.cookie.path",
-                    "value": "/"
-                },
-                {
-                    "key":"storefrontContextRoot",
-                    "value":""
-                },
-                {
-                    "key":"website.zddsb2b.http",
-                    "value":"http://accstorefront.cx2k-custstate1-d1-public.model-t.ccv2prod.sapcloud.cn"
-                },
-                {
-                    "key":"website.zddsb2b.https",
-                    "value":"https://accstorefront.cx2k-custstate1-d1-public.model-t.ccv2prod.sapcloud.cn"
-                }
-            ],
             "webapps": [
                 {
                     "name": "zddsstorefront",
