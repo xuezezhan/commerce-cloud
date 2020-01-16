@@ -74,6 +74,14 @@
                 {
                     "key":"storefrontContextRoot",
                     "value":""
+                },
+                {
+                    "key":"website.zddsb2b.http",
+                    "value":"http://accstorefront.cx2k-custstate1-d1-public.model-t.ccv2prod.sapcloud.cn"
+                },
+                {
+                    "key":"website.zddsb2b.https",
+                    "value":"https://accstorefront.cx2k-custstate1-d1-public.model-t.ccv2prod.sapcloud.cn"
                 }
             ],
             "webapps": [
