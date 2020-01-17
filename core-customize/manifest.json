@@ -34,7 +34,7 @@
                     "contextPath": "/hac"
                 },
                 {
-                    "name": "zddsb2cstorefront",
+                    "name": "zddsstorefront",
                     "contextPath": ""
                 }
             ]
@@ -56,7 +56,7 @@
             "name": "accstorefront",
             "webapps": [
                 {
-                    "name": "zddsstorefront",
+                    "name": "zddsb2cstorefront",
                     "contextPath": ""
                 }
             ]
