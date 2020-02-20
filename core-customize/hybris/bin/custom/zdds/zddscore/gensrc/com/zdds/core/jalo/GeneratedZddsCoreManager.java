@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年1月15日 上午11:35:57                       ---
+ * --- Generated at 2020年2月20日 下午9:34:00                        ---
  * ----------------------------------------------------------------
  */
 package com.zdds.core.jalo;
@@ -10,6 +10,7 @@ import com.zdds.core.constants.ZddsCoreConstants;
 import com.zdds.core.jalo.ApparelProduct;
 import com.zdds.core.jalo.ApparelSizeVariantProduct;
 import com.zdds.core.jalo.ApparelStyleVariantProduct;
+import com.zdds.core.jalo.Department;
 import com.zdds.core.jalo.ElectronicsColorVariantProduct;
 import de.hybris.platform.jalo.Item;
 import de.hybris.platform.jalo.Item.AttributeMode;
@@ -122,6 +123,32 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public ApparelStyleVariantProduct createApparelStyleVariantProduct(final Map attributeValues)
 	{
 		return createApparelStyleVariantProduct( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public Department createDepartment(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( ZddsCoreConstants.TC.DEPARTMENT );
+			return (Department)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating Department : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public Department createDepartment(final Map attributeValues)
+	{
+		return createDepartment( getSession().getSessionContext(), attributeValues );
 	}
 	
 	public ElectronicsColorVariantProduct createElectronicsColorVariantProduct(final SessionContext ctx, final Map attributeValues)

@@ -3,7 +3,6 @@
  */
 package com.zdds.storefront.security;
 
-import de.hybris.platform.acceleratorstorefrontcommons.security.AbstractAcceleratorAuthenticationProvider;
 import de.hybris.platform.core.Constants;
 
 import org.apache.commons.lang.StringUtils;
@@ -26,7 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  * any login as admin disables SearchRestrictions and therefore no page can be viewed correctly
  */
-public class AcceleratorAuthenticationProvider extends AbstractAcceleratorAuthenticationProvider
+public class AcceleratorAuthenticationProvider extends ZddsAbstractAcceleratorAuthenticationProvider
 {
 	private static final String ROLE_ADMIN_GROUP = "ROLE_" + Constants.USER.ADMIN_USERGROUP.toUpperCase();
 

@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年1月15日 上午11:35:57                       ---
+ * --- Generated at 2020年2月20日 下午9:34:00                        ---
  * ----------------------------------------------------------------
  */
 package com.zdds.facades.constants;
@@ -14,6 +14,22 @@ package com.zdds.facades.constants;
 public class GeneratedZddsopfacadesConstants
 {
 	public static final String EXTENSIONNAME = "zddsopfacades";
+	public static class TC
+	{
+		public static final String MENUGROUP = "MenuGroup".intern();
+		public static final String OPERATIONMENU = "OperationMenu".intern();
+	}
+	public static class Attributes
+	{
+		public static class Employee
+		{
+			public static final String MENUS = "menus".intern();
+		}
+	}
+	public static class Relations
+	{
+		public static final String MENUTOEMPLOYEE = "MenuToEmployee".intern();
+	}
 	
 	protected GeneratedZddsopfacadesConstants()
 	{

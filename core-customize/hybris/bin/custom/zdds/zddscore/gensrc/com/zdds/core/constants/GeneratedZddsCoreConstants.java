@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年1月15日 上午11:35:57                       ---
+ * --- Generated at 2020年2月20日 下午9:34:00                        ---
  * ----------------------------------------------------------------
  */
 package com.zdds.core.constants;
@@ -19,6 +19,7 @@ public class GeneratedZddsCoreConstants
 		public static final String APPARELPRODUCT = "ApparelProduct".intern();
 		public static final String APPARELSIZEVARIANTPRODUCT = "ApparelSizeVariantProduct".intern();
 		public static final String APPARELSTYLEVARIANTPRODUCT = "ApparelStyleVariantProduct".intern();
+		public static final String DEPARTMENT = "Department".intern();
 		public static final String ELECTRONICSCOLORVARIANTPRODUCT = "ElectronicsColorVariantProduct".intern();
 		public static final String SWATCHCOLORENUM = "SwatchColorEnum".intern();
 	}
@@ -43,6 +44,10 @@ public class GeneratedZddsCoreConstants
 			public static final String WHITE = "WHITE".intern();
 			public static final String YELLOW = "YELLOW".intern();
 		}
+	}
+	public static class Relations
+	{
+		public static final String DEPARTMENT2DEPARTMENT = "Department2Department".intern();
 	}
 	
 	protected GeneratedZddsCoreConstants()

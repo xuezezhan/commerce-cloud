@@ -11,5 +11,8 @@
   		<property name="location" value="/zddsbackoffice-backoffice-labels/"/>
   		<property name="name" value="labels"/>
   	</bean>
+  	
+  	
+    <bean id="superDepartmentNameRenderer" class="com.zdds.backoffice.renderers.SuperDepartmentNameRenderer"/>
 
 </beans>

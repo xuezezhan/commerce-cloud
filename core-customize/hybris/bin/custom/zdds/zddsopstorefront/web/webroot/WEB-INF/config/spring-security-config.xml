@@ -2,6 +2,13 @@
 <!--
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
+
+
+
+
+
+
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:security="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -21,38 +28,38 @@
 	<security:http pattern="/_ui/**" security="none" />
 
 	<!--Security config for checkout - it has its own login page-->
-	<security:http pattern="/checkout/**">
-        <security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
-		<security:access-denied-handler error-page="/login"/>
-		<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />
-		<security:intercept-url pattern="/**" requires-channel="https" />
-		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher"/>
-		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
+	<!--<security:http pattern="/checkout/**">-->
+        <!--<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />-->
+		<!--<security:access-denied-handler error-page="/login"/>-->
+		<!--<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />-->
+		<!--<security:intercept-url pattern="/**" requires-channel="https" />-->
+		<!--<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher"/>-->
+		<!--<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />-->
 
-		<security:form-login
-				login-page="/login/checkout"
-				authentication-failure-handler-ref="loginCheckoutAuthenticationFailureHandler"
-				authentication-success-handler-ref="loginCheckoutGuidAuthenticationSuccessHandler"
-				username-parameter="j_username" 
-				password-parameter="j_password"
-				login-processing-url="/checkout/j_spring_security_check"
-				 />
+		<!--<security:form-login-->
+				<!--login-page="/login/checkout"-->
+				<!--authentication-failure-handler-ref="loginCheckoutAuthenticationFailureHandler"-->
+				<!--authentication-success-handler-ref="loginCheckoutGuidAuthenticationSuccessHandler"-->
+				<!--username-parameter="j_username" -->
+				<!--password-parameter="j_password"-->
+				<!--login-processing-url="/checkout/j_spring_security_check"-->
+				 <!--/>-->
 
-		<security:port-mappings>
-			<security:port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
-			                       https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}" />
-			<security:port-mapping http="80" https="443" />
-			<!--security:port-mapping http="#{configurationService.configuration.getProperty('proxy.http.port')}"
-				https="#{configurationService.configuration.getProperty('proxy.ssl.port')}" /-->
-		</security:port-mappings>
+		<!--<security:port-mappings>-->
+			<!--<security:port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"-->
+			                       <!--https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}" />-->
+			<!--<security:port-mapping http="80" https="443" />-->
+			<!--&lt;!&ndash;security:port-mapping http="#{configurationService.configuration.getProperty('proxy.http.port')}"-->
+				<!--https="#{configurationService.configuration.getProperty('proxy.ssl.port')}" /&ndash;&gt;-->
+		<!--</security:port-mappings>-->
 
-		<security:request-cache ref="httpSessionRequestCache" />
-		
-		<security:headers>
-			<security:frame-options disabled="true"/>
-		</security:headers>
+		<!--<security:request-cache ref="httpSessionRequestCache" />-->
+		<!---->
+		<!--<security:headers>-->
+			<!--<security:frame-options disabled="true"/>-->
+		<!--</security:headers>-->
 
-	</security:http>
+	<!--</security:http>-->
 
 	<!-- Ignores url(s) that match paths specified in the set -->
 	<bean id="excludeUrlRequestMatcher" class="com.zdds.storefront.security.ExcludeUrlRequestMatcher">
@@ -71,20 +78,21 @@
 	<security:http request-matcher-ref="excludeUrlRequestMatcher">
 		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
 		<security:access-denied-handler error-page="/login"/>
-		<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />
-		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
-		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
+		<security:session-management session-authentication-strategy-ref="fixation"/>
+		<security:csrf disabled="true"/>
+		<!--<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />-->
+		<!--<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />-->
 
 		<!-- RememberMe -->
-		<security:remember-me key="zddsopstorefront" services-ref="rememberMeServices" />
+		<!--<security:remember-me key="zddsopstorefront" services-ref="rememberMeServices" />-->
 
-		<!-- SSL / AUTHENTICATED pages -->
-		<security:intercept-url pattern="/my-account/addressform" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />
-		<security:intercept-url pattern="/checkout/multi/billingaddressform" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />
-		<security:intercept-url pattern="/my-account*" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
-		<security:intercept-url pattern="/my-account/order/*/getReadOnlyProductVariantMatrix" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />
-		<security:intercept-url pattern="/my-account/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
-		<security:intercept-url pattern="/quote/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
+		<!--&lt;!&ndash; SSL / AUTHENTICATED pages &ndash;&gt;-->
+		<!--<security:intercept-url pattern="/my-account/addressform" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />-->
+		<!--<security:intercept-url pattern="/checkout/multi/billingaddressform" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />-->
+		<!--<security:intercept-url pattern="/my-account*" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />-->
+		<!--<security:intercept-url pattern="/my-account/order/*/getReadOnlyProductVariantMatrix" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />-->
+		<!--<security:intercept-url pattern="/my-account/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />-->
+		<!--<security:intercept-url pattern="/quote/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />-->
 
 		<security:intercept-url pattern="/**" requires-channel="https" /> <!-- Everything should be secure -->
 
@@ -97,6 +105,7 @@
 				login-processing-url="/j_spring_security_check"
 				  />
 
+		<security:logout logout-url="/logout" success-handler-ref="logoutSuccessHandler" />
 		<security:port-mappings>
 			<security:port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
 			                       https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}" />
@@ -146,7 +155,7 @@
 	<alias name="defaultGuidCookieGenerator" alias="guidCookieGenerator"/>
 	<bean id="defaultGuidCookieGenerator" class="com.zdds.storefront.security.cookie.EnhancedCookieGenerator" >
 		<property name="cookieSecure" value="true" />
-		<property name="cookieName" value="acceleratorSecureGUID" />
+		<property name="cookieName" value="zddsopstorefrontSecureGUID" />
 		<property name="httpOnly" value="true"/>
 	</bean>
 
@@ -181,83 +190,89 @@
 	<!-- Login Success Handlers -->
 
 	<bean id="loginGuidAuthenticationSuccessHandler" class="com.zdds.storefront.security.GUIDAuthenticationSuccessHandler" >
-		<property name="authenticationSuccessHandler" ref="loginAuthenticationSuccessHandler" />
+		<property name="authenticationSuccessHandler" ref="zddsLoginAuthenticationSuccessHandler" />
 		<property name="guidCookieStrategy" ref="guidCookieStrategy" />
 	</bean>
 
-	<alias name="defaultLoginAuthenticationSuccessHandler" alias="loginAuthenticationSuccessHandler"/>
-	<bean id="defaultLoginAuthenticationSuccessHandler" class="de.hybris.platform.acceleratorstorefrontcommons.security.StorefrontAuthenticationSuccessHandler" >
-		<property name="customerFacade" ref="customerFacade" />
-		<property name="defaultTargetUrl" value="#{'responsive' == '${commerceservices.default.desktop.ui.experience}' ? '/' : '/my-account'}"/>
+	<bean id="zddsLoginAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/frontendhome"/>
 		<property name="useReferer" value="true"/>
 		<property name="requestCache" ref="httpSessionRequestCache" />
-		<property name="uiExperienceService" ref="uiExperienceService"/>
-		<property name="cartFacade" ref="cartFacade"/>
-		<property name="customerConsentDataStrategy" ref="customerConsentDataStrategy"/>
-		<property name="cartRestorationStrategy" ref="cartRestorationStrategy"/>
-		<property name="forceDefaultTargetForUiExperienceLevel">
-			<map key-type="de.hybris.platform.commerceservices.enums.UiExperienceLevel" value-type="java.lang.Boolean">
-				<entry key="DESKTOP" value="false"/>
-				<entry key="MOBILE" value="false"/>
-			</map>
-		</property>
-        <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
-		<property name="restrictedPages">
-			<list>
-				<value>/login</value>
-			</list>
-		</property>
-		<property name="listRedirectUrlsForceDefaultTarget">
-			<list></list>
-		</property>
+		<property name="alwaysUseDefaultTargetUrl" value="true" />
 	</bean>
+	<!--<alias name="defaultLoginAuthenticationSuccessHandler" alias="loginAuthenticationSuccessHandler"/>-->
+	<!--<bean id="defaultLoginAuthenticationSuccessHandler" class="de.hybris.platform.acceleratorstorefrontcommons.security.StorefrontAuthenticationSuccessHandler" >-->
+		<!--<property name="customerFacade" ref="customerFacade" />-->
+		<!--<property name="defaultTargetUrl" value="#{'responsive' == '${commerceservices.default.desktop.ui.experience}' ? '/' : '/my-account'}"/>-->
+		<!--<property name="useReferer" value="true"/>-->
+		<!--<property name="requestCache" ref="httpSessionRequestCache" />-->
+		<!--<property name="uiExperienceService" ref="uiExperienceService"/>-->
+		<!--<property name="cartFacade" ref="cartFacade"/>-->
+		<!--<property name="customerConsentDataStrategy" ref="customerConsentDataStrategy"/>-->
+		<!--<property name="cartRestorationStrategy" ref="cartRestorationStrategy"/>-->
+		<!--<property name="forceDefaultTargetForUiExperienceLevel">-->
+			<!--<map key-type="de.hybris.platform.commerceservices.enums.UiExperienceLevel" value-type="java.lang.Boolean">-->
+				<!--<entry key="DESKTOP" value="false"/>-->
+				<!--<entry key="MOBILE" value="false"/>-->
+			<!--</map>-->
+		<!--</property>-->
+        <!--<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />-->
+		<!--<property name="restrictedPages">-->
+			<!--<list>-->
+				<!--<value>/login</value>-->
+			<!--</list>-->
+		<!--</property>-->
+		<!--<property name="listRedirectUrlsForceDefaultTarget">-->
+			<!--<list></list>-->
+		<!--</property>-->
+	<!--</bean>-->
 
-	<bean id="loginCheckoutGuidAuthenticationSuccessHandler" class="com.zdds.storefront.security.GUIDAuthenticationSuccessHandler" >
-		<property name="authenticationSuccessHandler" ref="loginCheckoutAuthenticationSuccessHandler" />
-		<property name="guidCookieStrategy" ref="guidCookieStrategy" />
-	</bean>
+	<!--<bean id="loginCheckoutGuidAuthenticationSuccessHandler" class="com.zdds.storefront.security.GUIDAuthenticationSuccessHandler" >-->
+		<!--<property name="authenticationSuccessHandler" ref="loginCheckoutAuthenticationSuccessHandler" />-->
+		<!--<property name="guidCookieStrategy" ref="guidCookieStrategy" />-->
+	<!--</bean>-->
 
-	<alias name="defaultLoginCheckoutAuthenticationSuccessHandler" alias="loginCheckoutAuthenticationSuccessHandler"/>
-	<bean id="defaultLoginCheckoutAuthenticationSuccessHandler" class="de.hybris.platform.acceleratorstorefrontcommons.security.StorefrontAuthenticationSuccessHandler" >
-		<property name="customerFacade" ref="customerFacade" />
-		<property name="defaultTargetUrl" value="/checkout"/>
-		<property name="uiExperienceService" ref="uiExperienceService"/>
-		<property name="cartFacade" ref="cartFacade"/>
-		<property name="customerConsentDataStrategy" ref="customerConsentDataStrategy"/>
-		<property name="cartRestorationStrategy" ref="cartRestorationStrategy"/>
-		<property name="forceDefaultTargetForUiExperienceLevel">
-			<map key-type="de.hybris.platform.commerceservices.enums.UiExperienceLevel" value-type="java.lang.Boolean">
-				<entry key="DESKTOP" value="true"/>
-				<entry key="MOBILE" value="true"/>
-			</map>
-		</property>
-		<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
-		<property name="redirectStrategy" ref="commerceRedirectStrategy"/>
-		<property name="restrictedPages">
-			<list>
-				<value>/login/checkout</value>
-			</list>
-		</property>
-		<property name="listRedirectUrlsForceDefaultTarget">
-			<list></list>
-		</property>
-	</bean>
+	<!--<alias name="defaultLoginCheckoutAuthenticationSuccessHandler" alias="loginCheckoutAuthenticationSuccessHandler"/>-->
+	<!--<bean id="defaultLoginCheckoutAuthenticationSuccessHandler" class="de.hybris.platform.acceleratorstorefrontcommons.security.StorefrontAuthenticationSuccessHandler" >-->
+		<!--<property name="customerFacade" ref="customerFacade" />-->
+		<!--<property name="defaultTargetUrl" value="/checkout"/>-->
+		<!--<property name="uiExperienceService" ref="uiExperienceService"/>-->
+		<!--<property name="cartFacade" ref="cartFacade"/>-->
+		<!--<property name="customerConsentDataStrategy" ref="customerConsentDataStrategy"/>-->
+		<!--<property name="cartRestorationStrategy" ref="cartRestorationStrategy"/>-->
+		<!--<property name="forceDefaultTargetForUiExperienceLevel">-->
+			<!--<map key-type="de.hybris.platform.commerceservices.enums.UiExperienceLevel" value-type="java.lang.Boolean">-->
+				<!--<entry key="DESKTOP" value="true"/>-->
+				<!--<entry key="MOBILE" value="true"/>-->
+			<!--</map>-->
+		<!--</property>-->
+		<!--<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />-->
+		<!--<property name="redirectStrategy" ref="commerceRedirectStrategy"/>-->
+		<!--<property name="restrictedPages">-->
+			<!--<list>-->
+				<!--<value>/login/checkout</value>-->
+			<!--</list>-->
+		<!--</property>-->
+		<!--<property name="listRedirectUrlsForceDefaultTarget">-->
+			<!--<list></list>-->
+		<!--</property>-->
+	<!--</bean>-->
 
-	<alias name="defaultCommerceRedirectStrategy" alias="commerceRedirectStrategy"/>
-	<bean name="defaultCommerceRedirectStrategy" class="com.zdds.storefront.security.impl.DefaultCommerceRedirectStrategy" parent="redirectStrategy">
-		<property name="checkoutFlowFacade" ref="checkoutFlowFacade"/>
-		<property name="expressTargetUrl" value="/checkout/multi/express"/>
-   </bean>
+	<!--<alias name="defaultCommerceRedirectStrategy" alias="commerceRedirectStrategy"/>-->
+	<!--<bean name="defaultCommerceRedirectStrategy" class="com.zdds.storefront.security.impl.DefaultCommerceRedirectStrategy" parent="redirectStrategy">-->
+		<!--<property name="checkoutFlowFacade" ref="checkoutFlowFacade"/>-->
+		<!--<property name="expressTargetUrl" value="/checkout/multi/express"/>-->
+   <!--</bean>-->
 
 	<bean id="loginAuthenticationFailureHandler" class="com.zdds.storefront.security.LoginAuthenticationFailureHandler" >
         <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
 		<property name="defaultFailureUrl" value="/login?error=true"/>
 	</bean>
 
-	<bean id="loginCheckoutAuthenticationFailureHandler" class="com.zdds.storefront.security.LoginAuthenticationFailureHandler" >
-        <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
-		<property name="defaultFailureUrl" value="/login/checkout?error=true"/>
-	</bean>
+	<!--<bean id="loginCheckoutAuthenticationFailureHandler" class="com.zdds.storefront.security.LoginAuthenticationFailureHandler" >-->
+        <!--<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />-->
+		<!--<property name="defaultFailureUrl" value="/login/checkout?error=true"/>-->
+	<!--</bean>-->
 
 	<!-- Logout Success Handler -->
 
@@ -268,8 +283,7 @@
 	</util:list>
 
 
-	<alias name="defaultLogoutSuccessHandler" alias="logoutSuccessHandler"/>
-	<bean id="defaultLogoutSuccessHandler" class="de.hybris.platform.acceleratorstorefrontcommons.security.StorefrontLogoutSuccessHandler" >
+	<bean id="logoutSuccessHandler" class="de.hybris.platform.acceleratorstorefrontcommons.security.StorefrontLogoutSuccessHandler" >
 		<property name="defaultTargetUrl" value="/?logout=true"/>
 		<property name="guidCookieStrategy" ref="guidCookieStrategy"/>
 		<property name="useReferer" value="true"/>
@@ -327,5 +341,12 @@
 	<bean id="defaultCsrfProtectionMatcher" class="com.zdds.storefront.security.CsrfProtectionMatcher">
 		<property name="csrfAllowedUrlPatterns" ref="csrfAllowedUrlPatternsList"/>
 	</bean>
+
+	<!-- <alias name="defaultBruteForceAttackCounter" alias="bruteForceAttackCounter"/>
+	<bean id="defaultBruteForceAttackCounter" class="de.hybris.platform.acceleratorstorefrontcommons.security.impl.DefaultBruteForceAttackCounter">
+		<constructor-arg name="maxFailedLogins" value="10" />
+		<constructor-arg name="cacheExpiration" value="60" />
+		<constructor-arg name="cacheSizeLimit" value="1000" />
+	</bean> -->
 
 </beans>

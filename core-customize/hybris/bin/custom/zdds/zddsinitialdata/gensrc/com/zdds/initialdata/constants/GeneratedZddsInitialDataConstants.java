@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年1月15日 上午11:35:57                       ---
+ * --- Generated at 2020年2月20日 下午9:34:00                        ---
  * ----------------------------------------------------------------
  */
 package com.zdds.initialdata.constants;

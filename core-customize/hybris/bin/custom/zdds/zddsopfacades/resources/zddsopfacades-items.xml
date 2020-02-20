@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
@@ -9,32 +9,50 @@
 <items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 			xsi:noNamespaceSchemaLocation="items.xsd">
 
+	<relations>
+		<relation localized="false" code="MenuToEmployee">
+			<description></description>
+			<deployment table="MenuToEmployee" typecode="11101" />
+			<sourceElement type="Employee" qualifier="employees" cardinality="many" collectiontype="list">
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement type="OperationMenu" qualifier="menus" cardinality="many">
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+	</relations>
 	<itemtypes>
-<!--
-		<itemtype generate="true"
-		   code="MyProduct"
-		   jaloclass="com.zdds.facades.jalo.MyProduct"
-		   extends="Product"
-		   autocreate="true"
-	   >
-			<attributes>
-				<attribute qualifier="myExampleInitialStringField" type="java.lang.String">
-					<description>My Example Initial String Value</description>
-					<modifiers initial="true"/>
-					<persistence type="property"/>
-				</attribute>
 
-				<attribute qualifier="myExampleBooleanField" type="java.lang.Boolean">
-					<description>Example Initial Boolean Field</description>
-               <persistence type="property"/>
-				</attribute>
+		<typegroup name="Operation">
+			<itemtype code="OperationMenu" extends="UserGroup" autocreate="true" generate="true">
+				<description></description>
+				<deployment table="operationMenu" typecode="11102"/>
+				<attributes>
+					<attribute qualifier="pId"  type="java.lang.String" >
+						<description>pid</description>
+						<modifiers read="true" write="true" search="true" optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="icon" type="java.lang.String">
+						<description>icon</description>
+						<modifiers read="true" write="true" search="true" optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="file" type="java.lang.String">
+						<description>file</description>
+						<modifiers read="true" write="true" search="true" optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
 
-				<attribute qualifier="media" type="Media">
-					<persistence type="property"/>
-				</attribute>
+			<itemtype code="MenuGroup" extends="UserGroup" autocreate="true" generate="true" >
+				<description></description>
+				<deployment table="menuGroup" typecode="11103"/>
+				<attributes>
+				</attributes>
+			</itemtype>
+		</typegroup>
 
-			</attributes>
-		</itemtype>
--->
 	</itemtypes>
 </items>

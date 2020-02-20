@@ -362,4 +362,12 @@
 		<property name="defaultTheme" value="blue"/>
 	</bean>
 
+	<alias name="zddsAbstractAcceleratorAuthenticationProvider" alias="abstractAcceleratorAuthenticationProvider"/>
+	<bean id="zddsAbstractAcceleratorAuthenticationProvider" abstract="true"
+		  class="com.zdds.storefront.security.ZddsAbstractAcceleratorAuthenticationProvider">
+		<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
+		<property name="userService" ref="userService" />
+		<property name="modelService" ref="modelService" />
+		<property name="userDetailsService" ref="originalUidUserDetailsService" />
+	</bean>
 </beans>

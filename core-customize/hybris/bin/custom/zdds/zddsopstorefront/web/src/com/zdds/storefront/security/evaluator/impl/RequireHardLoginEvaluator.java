@@ -23,7 +23,7 @@ public class RequireHardLoginEvaluator implements SecurityTraitEvaluator
 {
 	private static final Logger LOG = Logger.getLogger(RequireHardLoginEvaluator.class);
 
-	public static final String SECURE_GUID_SESSION_KEY = "acceleratorSecureGUID";
+	public static final String SECURE_GUID_SESSION_KEY = "zddsopstorefrontSecureGUID";
 
 	private CookieGenerator cookieGenerator;
 	private UserService userService;

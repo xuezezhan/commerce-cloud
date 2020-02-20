@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
@@ -27,10 +27,49 @@
         </enumtype>
     </enumtypes>
 
+	<relations>
+	  <relation generate="true" autocreate="true" code="Department2Department" localized="false">
+	    <description>部门上级跟下级的关系</description>
+	    <sourceElement type="Department" cardinality="one" qualifier="superDepartment">
+	      <modifiers optional="true" search="true" write="true" read="true"/>
+	    </sourceElement>
+	    <targetElement type="Department" cardinality="many" qualifier="subDepartments"
+	                   ordered="false" collectiontype="list">
+	      <modifiers optional="true" search="true" write="true" read="true"/>
+	    </targetElement>
+	  </relation>
+	</relations>
+    
     <itemtypes>
 
         <!-- Add your item definitions here -->
-
+	    <itemtype code="Department" generate="true" autocreate="true" extends="GenericItem">
+            <description>组织结构</description>
+	      	<deployment table="Department" typecode="11200"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>单位编号</description>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>单位名称</description>
+                </attribute>
+		        <attribute qualifier="isReceipt" type="java.lang.Boolean">
+		            <persistence type="property" />
+		            <modifiers unique="false" search="true" optional="true"/>
+		            <defaultvalue>Boolean.FALSE</defaultvalue>
+		            <description>是否可接单</description>
+		        </attribute>
+                <attribute qualifier="address" type="address">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>地址</description>
+                </attribute>
+            </attributes>
+        </itemtype>
 
         <!-- TypeGroups are for structure of this file only -->
 

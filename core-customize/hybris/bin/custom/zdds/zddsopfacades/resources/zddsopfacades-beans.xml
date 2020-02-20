@@ -59,4 +59,40 @@
 
 	-->
 
+
+	<bean class="com.zddsop.data.PageResultBean">
+		<property name="msg" type="java.lang.String"/>
+		<property name="code" type="java.lang.Integer"/>
+		<property name="count" type="java.lang.Long"/>
+		<property name="data" type="java.util.List"/>
+		<property name="allData" type="java.util.List"/>
+	</bean>
+
+	<bean class="com.zddsop.data.MenuData">
+		<property name="uid" type="String"/>
+		<property name="name" type="String"/>
+		<property name="file" type="String"/>
+		<property name="child" type="java.util.List&lt;com.zddsop.data.MenuData>"/>
+		<property name="checked" type="String"/>
+		<property name="pid" type="String"/>
+	</bean>
+
+	<bean class="com.zddsop.data.MenuGroupData">
+		<property name="uid" type="java.lang.String"/>
+		<property name="name" type="java.lang.String"/>
+		<property name="description" type="java.lang.String"/>
+		<property name="muids" type="java.util.List&lt;java.lang.String&gt;"/>
+		<property name="checked" type="String"/>
+	</bean>
+
+	<bean class="com.zddsop.data.AccountData">
+		<property name="name" type="String"/>
+		<property name="uid" type="String"/>
+		<property name="creationTime" type="String"/>
+		<property name="status" type="String"/>
+		<property name="muids" type="java.util.List&lt;java.lang.String&gt;"/>
+		<property name="groupName" type="String"/>
+		<property name="password" type="String"/>
+		<property name="passwordConfirm" type="String"/>
+	</bean>
 </beans>

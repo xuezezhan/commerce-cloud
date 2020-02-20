@@ -6,6 +6,6 @@
     <extension abstractclassprefix="Generated" classprefix="Zddswebservices" managername="ZddswebservicesManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="zddswebservices" usemaven="false">
         <requires-extension name="webservicescommons"/>
         <coremodule generated="true" manager="com.zdds.webservices.jalo.ZddswebservicesManager" packageroot="com.zdds.webservices"/>
-        <webmodule jspcompile="false" webroot="/zddsws"/>
+        <webmodule jspcompile="false" webroot="/zddswebservices"/>
     </extension>
 </extensioninfo>
