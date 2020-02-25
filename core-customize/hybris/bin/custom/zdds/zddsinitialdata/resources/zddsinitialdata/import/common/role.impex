@@ -1,0 +1,4 @@
+#backoffice角色
+INSERT_UPDATE BackofficeRole; UID[unique = true]          ; groups(uid)[mode = append]; locName     ; name        ; backOfficeLoginDisabled; authorities
+                            ; supperadminrole         ;                           ; 超级管理员	; 超级管理员	  ; FALSE                  ; supperadminrole
+   

@@ -25,6 +25,39 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
+        
+        <enumtype code="Position" generate="true" autocreate="true" dynamic="true">
+            <value code="SUPPORTSTAFF">
+                <description>供电所对接人</description>
+            </value>
+            <value code="ELECTRICIAN">
+                <description>供电所电工</description>
+            </value>
+        </enumtype>
+        
+        <enumtype code="BLType" generate="true" autocreate="true" dynamic="true">
+        	<value code="UNIFY">
+                <description>多证合一营业执照（统一社会信用代码）</description>
+            </value>
+            <value code="NORMAL">
+                <description>普通执照</description>
+            </value>
+            <value code="UNUNIFY">
+                <description>多证合一营业执照（非统一社会信用代码）</description>
+            </value>
+        </enumtype>
+        
+       <!--  <enumtype code="Gender" generate="true" autocreate="true" dynamic="true">
+            <value code="FEMALE">
+                <description>女</description>
+            </value>
+            <value code="MALE">
+                <description>男</description>
+            </value>
+            <value code="OTHER">
+                <description>其他</description>
+            </value>
+        </enumtype> -->
     </enumtypes>
 
 	<relations>
@@ -38,6 +71,28 @@
 	      <modifiers optional="true" search="true" write="true" read="true"/>
 	    </targetElement>
 	  </relation>
+	  
+      <relation code="Employee2Skill" generate="true" localized="false" autocreate="true">
+          <deployment table="Employee2SkillRels" typecode="11202"/>
+          <sourceElement qualifier="employees" type="Employee" cardinality="many">
+              <modifiers read="true" write="true" search="true" optional="true"/>
+          </sourceElement>
+          <targetElement qualifier="skills" type="Skill" cardinality="many" collectiontype="list"
+                         ordered="true">
+              <modifiers read="true" write="true" search="true" optional="true"/>
+          </targetElement>
+      </relation>
+      
+      <relation code="SettleIn2Category" generate="true" localized="false" autocreate="true">
+          <deployment table="SettleIn2CategoryRels" typecode="11205"/>
+          <sourceElement qualifier="settleins" type="SettleIn" cardinality="many">
+              <modifiers read="true" write="true" search="true" optional="true"/>
+          </sourceElement>
+          <targetElement qualifier="categories" type="Category" cardinality="many" collectiontype="list"
+                         ordered="true">
+              <modifiers read="true" write="true" search="true" optional="true"/>
+          </targetElement>
+      </relation>
 	</relations>
     
     <itemtypes>
@@ -63,14 +118,182 @@
 		            <defaultvalue>Boolean.FALSE</defaultvalue>
 		            <description>是否可接单</description>
 		        </attribute>
-                <attribute qualifier="address" type="address">
+                <attribute qualifier="address" type="Address">
                     <persistence type="property"/>
           			<modifiers unique="false" search="true" optional="true"/>
                     <description>地址</description>
                 </attribute>
             </attributes>
         </itemtype>
-
+        
+	    <itemtype code="Skill" generate="true" autocreate="true" extends="GenericItem">
+            <description>擅长业务</description>
+	      	<deployment table="Skill" typecode="11201"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>编号</description>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>技能名称</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+        
+        <itemtype code="Employee" autocreate="false" generate="false">
+        	<description>员工</description>
+            <attributes>
+                <attribute qualifier="telephone" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>手机号码</description>
+                </attribute>
+                <attribute qualifier="department" type="Department">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>单位</description>
+                </attribute>
+                <attribute qualifier="position" type="Position">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>职位</description>
+                </attribute>
+                <attribute qualifier="idNumber" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>身份证号</description>
+                </attribute>
+                <attribute qualifier="gender" type="Gender">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>性别</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+		<itemtype code="Supplier" autocreate="true" generate="true" extends="Employee">
+        	<description>供应商</description>
+		    <deployment table="Supplier" typecode="11203"/>
+		    <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>供应商编号</description>
+                </attribute>
+                <attribute qualifier="contact" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>联系人</description>
+                </attribute>
+                <attribute qualifier="phone" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>座机电话</description>
+                </attribute>
+                <attribute qualifier="QQ" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>QQ</description>
+                </attribute>
+                <attribute qualifier="settleIn" type="SettleIn">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>入驻信息</description>
+                </attribute>
+                <attribute qualifier="address" type="Address">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>地址</description>
+                </attribute>
+                <attribute qualifier="isSupplier" type="java.lang.Boolean">
+                    <description>是否为供应商</description>
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <defaultvalue>Boolean.FALSE</defaultvalue>
+                </attribute>
+			</attributes>
+    	</itemtype>
+	    <itemtype code="SettleIn" generate="true" autocreate="true" extends="GenericItem">
+            <description>入驻信息</description>
+	      	<deployment table="SettleIn" typecode="11204"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>编号</description>
+                </attribute>
+                <attribute qualifier="contactName" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>联系人姓名</description>
+                </attribute>
+                <attribute qualifier="contactPhone" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>联系人手机</description>
+                </attribute>
+                <attribute qualifier="blType" type="BLType">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>营业执照类型</description>
+                </attribute>
+                <attribute qualifier="companyName" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>公司名称</description>
+                </attribute>
+                <attribute qualifier="blNumber" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>营业执照注册号</description>
+                </attribute>
+                <attribute qualifier="legalRepresentative" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>法定代表人姓名</description>
+                </attribute>
+                <attribute qualifier="blLocal" type="Address">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>营业执照所在地</description>
+                </attribute>
+                <attribute qualifier="setupDate" type="java.util.Date">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" optional="true"/>
+                    <description>成立日期</description>
+                </attribute>
+                <attribute qualifier="startDate" type="java.util.Date">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" optional="true"/>
+                    <description>营业期限起始日期</description>
+                </attribute>
+                <attribute qualifier="endDate" type="java.util.Date">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" optional="true"/>
+                    <description>营业期限结束日期</description>
+                </attribute>
+                <attribute qualifier="brands" type="java.lang.String">
+                    <persistence type="property">
+                        <columntype database="oracle">
+                            <value>CLOB</value>
+                        </columntype>
+                        <columntype database="sap">
+                            <value>NCLOB</value>
+                        </columntype>
+                        <columntype database="mysql">
+                            <value>MEDIUMTEXT</value>
+                        </columntype>
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                    <modifiers read="true" write="true" optional="true"/>
+                    <description>经营品牌</description>
+                </attribute>
+            </attributes>
+        </itemtype>
         <!-- TypeGroups are for structure of this file only -->
 
         <typegroup name="Apparel">

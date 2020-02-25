@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年2月20日 下午9:34:00                        ---
+ * --- Generated at 2020年2月25日 下午8:28:52                        ---
  * ----------------------------------------------------------------
  */
 package org.zddsbackoffice.jalo;

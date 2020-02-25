@@ -1,0 +1,17 @@
+INSERT_UPDATE OPERATIONMENU;uid[unique=true];file;pid;locName;employees(uid)[default='zhang.wei@acme.com'];
+;1;;0;商品管理
+;2;;0;订单管理
+;3;;0;结算管理
+
+###商品管理二级菜单
+;31;pages/order/orderManage;1;商品列表
+;32;pages/order/orderManage;1;新增商品
+;33;pages/order/orderManage;1;编辑商品
+###订单管理二级菜单
+;41;pages/order/orderManage;2;发货单列表
+;42;pages/order/orderManage;2;售后单列表
+###结算管理二级菜单
+;51;pages/order/orderManage;3;结算查询
+;52;pages/order/orderManage;3;结算明细查询
+
+

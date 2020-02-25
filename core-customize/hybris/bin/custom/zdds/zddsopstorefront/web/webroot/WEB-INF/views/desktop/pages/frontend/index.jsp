@@ -7,19 +7,31 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>中台系统</title>
+    <title>供应商系统</title>
     <template:layUIHeader/>
     <script src="${commonResourcePath}/js/frontend/index.js"></script>
     <style>
         .layui-tab-content div{
             height:100%
         }
+        .layui-layout-admin .layui-header{
+            background-color: #296465;
+        }
+        .layui-layout-admin .layui-logo {
+            width: 380px;
+            line-height: 60px;
+            text-align: center;
+            color: white;
+            font-weight: bolder;
+            font-style: normal;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">中台系统</div>
+        <div class="layui-logo">国网浙江综合能源电商平台供应商系统</div>
         <ul class="layui-nav layui-layout-right">
             <div class="layui-nav-item">
                 <c:if test="${not empty logo}">
@@ -27,7 +39,8 @@
                 </c:if>
                 ${user.name}
             </div>
-            <li class="layui-nav-item"><a id="logout">退出</a></li>
+            <li class="layui-nav-item"><a style="cursor: pointer;">修改密码</a></li>
+            <li class="layui-nav-item"><a id="logout" style="cursor: pointer;">退出</a></li>
         </ul>
     </div>
 
@@ -48,8 +61,7 @@
     </div>
 
     <div class="layui-footer layui-bg-black" style="text-align: right">
-        <!-- 底部固定区域 -->
-        <span>&copy; 三宁有限公司.</span>
+        <span>&copy; 国网浙江综合能源有限公司</span>
     </div>
 </div>
 </body>

@@ -5,7 +5,10 @@
 <config xmlns="http://www.hybris.com/cockpit/config"
 	xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
     xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch"
-    xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+    xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+    xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+    xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+    xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
 
 	<context merge-by="module" component="editorareaactions" type="Consignment">
 		<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
@@ -25,18 +28,21 @@
 	   </na:notification-area>
 	</context>
 	
-	
+	<!-- Department begin -->
     <context component="create-wizard" type="Department">
         <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="department"
-                 title="create.department.title">
+                 title="create.title(ctx.TYPE_CODE)">
             <wz:prepare id="departmentPrepare">
-                <wz:initialize property="newDepartment" type="Department"/>
+                <wz:initialize property="newDepartment" type="ctx.TYPE_CODE"/>
             </wz:prepare>
-            <wz:step id="step1" label="create.department.label">
+            <wz:step id="step1" label="create.base.information">
                 <wz:content id="step1.content">
                     <wz:property-list root="newDepartment">
                         <wz:property qualifier="code"/>
                         <wz:property qualifier="name"/>
+                        <wz:property qualifier="superDepartment"/>
+                        <wz:property qualifier="isReceipt"/>
+                        <wz:property qualifier="address"/>
                     </wz:property-list>
                 </wz:content>
                 <wz:navigation id="step1.navigation">
@@ -48,7 +54,6 @@
             </wz:step>
         </wz:flow>
     </context>
-    
 	<context merge-by="type" type="Department" component="advanced-search" parent="GenericItem">
         <advanced-search:advanced-search>
             <advanced-search:field-list>
@@ -59,7 +64,6 @@
             <advanced-search:sort-field name="creationTime" asc="false"></advanced-search:sort-field>
         </advanced-search:advanced-search>
     </context>
-    
     <context merge-by="type" parent="GenericItem" type="Department" component="listview">
         <list-view:list-view>
             <list-view:column qualifier="code"/>
@@ -68,5 +72,93 @@
             <list-view:column qualifier="isReceipt"/>
         </list-view:list-view>
     </context>
+    <context merge-by="module" parent="GenericItem" type="Department" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:tab name="backoffice.tab.common">
+            	<editorArea:section name="backoffice.tab.section.base.information">
+                    <editorArea:attribute qualifier="code"/>
+                    <editorArea:attribute qualifier="name"/>
+                    <editorArea:attribute qualifier="superDepartment"/>
+                    <editorArea:attribute qualifier="isReceipt"/>
+                </editorArea:section>
+            </editorArea:tab>
+            <editorArea:tab name="backoffice.tab.address">
+            	<editorArea:section name="backoffice.tab.section.base.information">
+                    <editorArea:attribute qualifier="address"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <context type="Department" component="base" merge-by="type" parent="GenericItem">
+        <y:base>
+            <y:labels>
+                <y:label>(name?:'')+' ['+code+']'</y:label>
+            </y:labels>
+        </y:base>
+    </context>
+    <!-- Department end -->
 
+    <!-- Employee begin -->
+	<context merge-by="type" type="Employee" component="advanced-search" parent="GenericItem" principal="supperadminrole">
+        <advanced-search:advanced-search>
+            <advanced-search:field-list>
+                <advanced-search:field name="uid" selected="true"/>
+                <advanced-search:field name="name" selected="true"/>
+                <advanced-search:field name="groups" selected="false" merge-mode="REMOVE"/>
+            </advanced-search:field-list>
+            <advanced-search:sort-field name="creationTime" asc="false"></advanced-search:sort-field>
+        </advanced-search:advanced-search>
+    </context>
+    <context merge-by="type" parent="GenericItem" type="Employee" component="listview" principal="supperadminrole">
+        <list-view:list-view>
+            <list-view:column qualifier="uid"/>
+            <list-view:column qualifier="name"/>
+            <list-view:column qualifier="telephone"/>
+            <list-view:column qualifier="department"/>
+            <list-view:column qualifier="position"/>
+        </list-view:list-view>
+    </context>
+    <context merge-by="module" parent="GenericItem" type="Employee" component="editor-area" principal="supperadminrole">
+        <editorArea:editorArea>
+            <editorArea:tab name="backoffice.tab.common">
+            	<editorArea:section name="backoffice.tab.section.base.information">
+                    <editorArea:attribute qualifier="uid"/>
+                    <editorArea:attribute qualifier="name"/>
+                    <editorArea:attribute qualifier="telephone"/>
+                    <editorArea:attribute qualifier="gender"/>
+                    <editorArea:attribute qualifier="idNumber"/>
+                    <editorArea:attribute qualifier="department"/>
+                    <editorArea:attribute qualifier="position"/>
+                    <editorArea:attribute qualifier="skills"/>
+                    <editorArea:attribute qualifier="groups"/>
+                </editorArea:section>
+            </editorArea:tab>
+            <editorArea:tab name="hmc.password">
+                <editorArea:section name="hmc.password">
+                    <editorArea:customPanel name="userPasswordPanelRenderer" spring-bean="userPasswordPanelRenderer"/>
+                    <editorArea:panel name="">
+                        <editorArea:attribute qualifier="loginDisabled" label="hmc.text.password.logindisabled"/>
+                    </editorArea:panel>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!-- Employee end -->
+    
+    <!-- 权限组控制 begin -->
+    <context component="explorer-tree" principal="supperadminrole">
+        <explorer-tree:explorer-tree>
+            <explorer-tree:navigation-node id="backoffice.explorer-tree.department">
+                <explorer-tree:type-node code="Department" id="Department"/>
+            </explorer-tree:navigation-node>
+            <explorer-tree:navigation-node id="backoffice.explorer-tree.employee">
+                <explorer-tree:type-node code="Employee" id="Employee"/>
+            </explorer-tree:navigation-node>
+            <explorer-tree:navigation-node id="backoffice.explorer-tree.supplier">
+                <explorer-tree:type-node code="Supplier" id="Supplier"/>
+            </explorer-tree:navigation-node>
+        </explorer-tree:explorer-tree>
+    </context>
+    <!-- 权限组控制 end -->
+    
 </config>
