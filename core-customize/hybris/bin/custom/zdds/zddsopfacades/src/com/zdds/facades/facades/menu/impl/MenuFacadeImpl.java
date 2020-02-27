@@ -1,5 +1,6 @@
 package com.zdds.facades.facades.menu.impl;
 
+import com.zdds.core.model.SupplierModel;
 import com.zdds.facades.facades.menu.MenuFacade;
 import com.zdds.facades.model.OperationMenuModel;
 import com.zdds.facades.service.menugroup.MenuGroupService;
@@ -33,7 +34,7 @@ public class MenuFacadeImpl implements MenuFacade {
 
     @Override
     public List<MenuData> getMenusByUser(UserModel userModel) {
-        EmployeeModel currentUser=(EmployeeModel)userModel;
+        SupplierModel currentUser=(SupplierModel)userModel;
         List<OperationMenuModel> menus=(List<OperationMenuModel>)currentUser.getMenus();
 
         List<MenuData> menuFirsts=new ArrayList<MenuData>();

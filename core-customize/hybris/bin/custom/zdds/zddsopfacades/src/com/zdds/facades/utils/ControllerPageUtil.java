@@ -3,6 +3,8 @@ package com.zdds.facades.utils;
 import com.zddsop.data.PageResultBean;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
+import de.hybris.platform.converters.Converters;
+import de.hybris.platform.servicelayer.dto.converter.Converter;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -112,5 +114,26 @@ public class ControllerPageUtil {
         pageResultBean.setMsg(msg);
         pageResultBean.setCode(statusCode);
         return pageResultBean;
+    }
+
+    /**
+     * model转化data
+     * @param source
+     * @param converter
+     * @param <S>
+     * @param <T>
+     * @return
+     */
+    public static  <S, T> SearchPageData<T> convertPageData(final SearchPageData<S> source, final Converter<S, T> converter)
+    {
+        if(source!=null) {
+            final SearchPageData<T> result = new SearchPageData<T>();
+            result.setPagination(source.getPagination());
+            result.setSorts(source.getSorts());
+            result.setResults(Converters.convertAll(source.getResults(), converter));
+            return result;
+
+        }
+        return null;
     }
 }

@@ -2,14 +2,28 @@
 <!--
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+	<!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+	<!--xmlns:aop="http://www.springframework.org/schema/aop"-->
+	<!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+           <!--http://www.springframework.org/schema/beans/spring-beans.xsd-->
+           <!--http://www.springframework.org/schema/aop-->
+           <!--http://www.springframework.org/schema/aop/spring-aop.xsd">-->
+
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd
-           http://www.springframework.org/schema/aop
-           http://www.springframework.org/schema/aop/spring-aop.xsd">
-	
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.zdds.facades.facades" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver" />
+    <context:component-scan base-package="com.zdds.facades.service" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver" />
+
+
+
     <bean id="zddsopfacadesSystemSetup" class="com.zdds.facades.setup.ZddsopfacadesSystemSetup">
         <!-- constructor arg injection example -->
         <constructor-arg ref="zddsopfacadesService"/>
@@ -76,5 +90,16 @@
         <property name="start" value="000000"/>
         <property name="type" value="numeric"/>
         <property name="template" value="em$"/>
+    </bean>
+
+    <!---consignment-->
+    <bean id="opConsignmentPopulator" class="com.zdds.facades.facades.consignment.populator.OPConsignmentPopulator"/>
+    <bean id="opConsignmentConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.zddsop.data.OPConsignmentData"/>
+        <property name="populators">
+            <list>
+                <ref bean="opConsignmentPopulator"/>
+            </list>
+        </property>
     </bean>
 </beans>

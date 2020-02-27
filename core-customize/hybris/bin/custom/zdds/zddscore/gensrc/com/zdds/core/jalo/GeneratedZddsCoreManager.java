@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年2月25日 下午8:28:52                        ---
+ * --- Generated at 2020年2月27日 下午7:52:57                        ---
  * ----------------------------------------------------------------
  */
 package com.zdds.core.jalo;
@@ -10,6 +10,7 @@ import com.zdds.core.constants.ZddsCoreConstants;
 import com.zdds.core.jalo.ApparelProduct;
 import com.zdds.core.jalo.ApparelSizeVariantProduct;
 import com.zdds.core.jalo.ApparelStyleVariantProduct;
+import com.zdds.core.jalo.Brand;
 import com.zdds.core.jalo.Department;
 import com.zdds.core.jalo.ElectronicsColorVariantProduct;
 import com.zdds.core.jalo.SettleIn;
@@ -25,8 +26,12 @@ import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.enumeration.EnumerationValue;
 import de.hybris.platform.jalo.extension.Extension;
 import de.hybris.platform.jalo.link.Link;
+import de.hybris.platform.jalo.order.AbstractOrder;
+import de.hybris.platform.jalo.order.Order;
+import de.hybris.platform.jalo.product.Product;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.JaloGenericCreationException;
+import de.hybris.platform.jalo.user.Customer;
 import de.hybris.platform.jalo.user.Employee;
 import de.hybris.platform.jalo.user.User;
 import de.hybris.platform.util.Utilities;
@@ -62,7 +67,23 @@ public abstract class GeneratedZddsCoreManager extends Extension
 		tmp.put("position", AttributeMode.INITIAL);
 		tmp.put("idNumber", AttributeMode.INITIAL);
 		tmp.put("gender", AttributeMode.INITIAL);
+		tmp.put("isSupplier", AttributeMode.INITIAL);
 		ttmp.put("de.hybris.platform.jalo.user.Employee", Collections.unmodifiableMap(tmp));
+		tmp = new HashMap<String, AttributeMode>();
+		tmp.put("realName", AttributeMode.INITIAL);
+		tmp.put("phone", AttributeMode.INITIAL);
+		ttmp.put("de.hybris.platform.jalo.user.Customer", Collections.unmodifiableMap(tmp));
+		tmp = new HashMap<String, AttributeMode>();
+		tmp.put("remark", AttributeMode.INITIAL);
+		ttmp.put("de.hybris.platform.jalo.order.Order", Collections.unmodifiableMap(tmp));
+		tmp = new HashMap<String, AttributeMode>();
+		tmp.put("brand", AttributeMode.INITIAL);
+		tmp.put("model", AttributeMode.INITIAL);
+		tmp.put("deliveryCharge", AttributeMode.INITIAL);
+		tmp.put("salesVolume", AttributeMode.INITIAL);
+		tmp.put("taxPoint", AttributeMode.INITIAL);
+		tmp.put("commission", AttributeMode.INITIAL);
+		ttmp.put("de.hybris.platform.jalo.product.Product", Collections.unmodifiableMap(tmp));
 		DEFAULT_INITIAL_ATTRIBUTES = ttmp;
 	}
 	@Override
@@ -75,6 +96,115 @@ public abstract class GeneratedZddsCoreManager extends Extension
 			ret.putAll(attr);
 		}
 		return ret;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.brand</code> attribute.
+	 * @return the brand - 品牌
+	 */
+	public Brand getBrand(final SessionContext ctx, final Product item)
+	{
+		return (Brand)item.getProperty( ctx, ZddsCoreConstants.Attributes.Product.BRAND);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.brand</code> attribute.
+	 * @return the brand - 品牌
+	 */
+	public Brand getBrand(final Product item)
+	{
+		return getBrand( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.brand</code> attribute. 
+	 * @param value the brand - 品牌
+	 */
+	public void setBrand(final SessionContext ctx, final Product item, final Brand value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Product.BRAND,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.brand</code> attribute. 
+	 * @param value the brand - 品牌
+	 */
+	public void setBrand(final Product item, final Brand value)
+	{
+		setBrand( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.commission</code> attribute.
+	 * @return the commission - 回扣
+	 */
+	public Double getCommission(final SessionContext ctx, final Product item)
+	{
+		return (Double)item.getProperty( ctx, ZddsCoreConstants.Attributes.Product.COMMISSION);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.commission</code> attribute.
+	 * @return the commission - 回扣
+	 */
+	public Double getCommission(final Product item)
+	{
+		return getCommission( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.commission</code> attribute. 
+	 * @return the commission - 回扣
+	 */
+	public double getCommissionAsPrimitive(final SessionContext ctx, final Product item)
+	{
+		Double value = getCommission( ctx,item );
+		return value != null ? value.doubleValue() : 0.0d;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.commission</code> attribute. 
+	 * @return the commission - 回扣
+	 */
+	public double getCommissionAsPrimitive(final Product item)
+	{
+		return getCommissionAsPrimitive( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.commission</code> attribute. 
+	 * @param value the commission - 回扣
+	 */
+	public void setCommission(final SessionContext ctx, final Product item, final Double value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Product.COMMISSION,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.commission</code> attribute. 
+	 * @param value the commission - 回扣
+	 */
+	public void setCommission(final Product item, final Double value)
+	{
+		setCommission( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.commission</code> attribute. 
+	 * @param value the commission - 回扣
+	 */
+	public void setCommission(final SessionContext ctx, final Product item, final double value)
+	{
+		setCommission( ctx, item, Double.valueOf( value ) );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.commission</code> attribute. 
+	 * @param value the commission - 回扣
+	 */
+	public void setCommission(final Product item, final double value)
+	{
+		setCommission( getSession().getSessionContext(), item, value );
 	}
 	
 	public ApparelProduct createApparelProduct(final SessionContext ctx, final Map attributeValues)
@@ -153,6 +283,32 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public ApparelStyleVariantProduct createApparelStyleVariantProduct(final Map attributeValues)
 	{
 		return createApparelStyleVariantProduct( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public Brand createBrand(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( ZddsCoreConstants.TC.BRAND );
+			return (Brand)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating Brand : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public Brand createBrand(final Map attributeValues)
+	{
+		return createBrand( getSession().getSessionContext(), attributeValues );
 	}
 	
 	public Department createDepartment(final SessionContext ctx, final Map attributeValues)
@@ -286,6 +442,79 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	}
 	
 	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.deliveryCharge</code> attribute.
+	 * @return the deliveryCharge - 运费
+	 */
+	public Double getDeliveryCharge(final SessionContext ctx, final Product item)
+	{
+		return (Double)item.getProperty( ctx, ZddsCoreConstants.Attributes.Product.DELIVERYCHARGE);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.deliveryCharge</code> attribute.
+	 * @return the deliveryCharge - 运费
+	 */
+	public Double getDeliveryCharge(final Product item)
+	{
+		return getDeliveryCharge( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.deliveryCharge</code> attribute. 
+	 * @return the deliveryCharge - 运费
+	 */
+	public double getDeliveryChargeAsPrimitive(final SessionContext ctx, final Product item)
+	{
+		Double value = getDeliveryCharge( ctx,item );
+		return value != null ? value.doubleValue() : 0.0d;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.deliveryCharge</code> attribute. 
+	 * @return the deliveryCharge - 运费
+	 */
+	public double getDeliveryChargeAsPrimitive(final Product item)
+	{
+		return getDeliveryChargeAsPrimitive( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.deliveryCharge</code> attribute. 
+	 * @param value the deliveryCharge - 运费
+	 */
+	public void setDeliveryCharge(final SessionContext ctx, final Product item, final Double value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Product.DELIVERYCHARGE,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.deliveryCharge</code> attribute. 
+	 * @param value the deliveryCharge - 运费
+	 */
+	public void setDeliveryCharge(final Product item, final Double value)
+	{
+		setDeliveryCharge( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.deliveryCharge</code> attribute. 
+	 * @param value the deliveryCharge - 运费
+	 */
+	public void setDeliveryCharge(final SessionContext ctx, final Product item, final double value)
+	{
+		setDeliveryCharge( ctx, item, Double.valueOf( value ) );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.deliveryCharge</code> attribute. 
+	 * @param value the deliveryCharge - 运费
+	 */
+	public void setDeliveryCharge(final Product item, final double value)
+	{
+		setDeliveryCharge( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
 	 * <i>Generated method</i> - Getter of the <code>Employee.department</code> attribute.
 	 * @return the department - 单位
 	 */
@@ -400,6 +629,151 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	}
 	
 	/**
+	 * <i>Generated method</i> - Getter of the <code>Employee.isSupplier</code> attribute.
+	 * @return the isSupplier - 是否为供应商
+	 */
+	public Boolean isIsSupplier(final SessionContext ctx, final Employee item)
+	{
+		return (Boolean)item.getProperty( ctx, ZddsCoreConstants.Attributes.Employee.ISSUPPLIER);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Employee.isSupplier</code> attribute.
+	 * @return the isSupplier - 是否为供应商
+	 */
+	public Boolean isIsSupplier(final Employee item)
+	{
+		return isIsSupplier( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Employee.isSupplier</code> attribute. 
+	 * @return the isSupplier - 是否为供应商
+	 */
+	public boolean isIsSupplierAsPrimitive(final SessionContext ctx, final Employee item)
+	{
+		Boolean value = isIsSupplier( ctx,item );
+		return value != null ? value.booleanValue() : false;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Employee.isSupplier</code> attribute. 
+	 * @return the isSupplier - 是否为供应商
+	 */
+	public boolean isIsSupplierAsPrimitive(final Employee item)
+	{
+		return isIsSupplierAsPrimitive( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Employee.isSupplier</code> attribute. 
+	 * @param value the isSupplier - 是否为供应商
+	 */
+	public void setIsSupplier(final SessionContext ctx, final Employee item, final Boolean value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Employee.ISSUPPLIER,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Employee.isSupplier</code> attribute. 
+	 * @param value the isSupplier - 是否为供应商
+	 */
+	public void setIsSupplier(final Employee item, final Boolean value)
+	{
+		setIsSupplier( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Employee.isSupplier</code> attribute. 
+	 * @param value the isSupplier - 是否为供应商
+	 */
+	public void setIsSupplier(final SessionContext ctx, final Employee item, final boolean value)
+	{
+		setIsSupplier( ctx, item, Boolean.valueOf( value ) );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Employee.isSupplier</code> attribute. 
+	 * @param value the isSupplier - 是否为供应商
+	 */
+	public void setIsSupplier(final Employee item, final boolean value)
+	{
+		setIsSupplier( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.model</code> attribute.
+	 * @return the model - 商品型号
+	 */
+	public String getModel(final SessionContext ctx, final Product item)
+	{
+		return (String)item.getProperty( ctx, ZddsCoreConstants.Attributes.Product.MODEL);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.model</code> attribute.
+	 * @return the model - 商品型号
+	 */
+	public String getModel(final Product item)
+	{
+		return getModel( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.model</code> attribute. 
+	 * @param value the model - 商品型号
+	 */
+	public void setModel(final SessionContext ctx, final Product item, final String value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Product.MODEL,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.model</code> attribute. 
+	 * @param value the model - 商品型号
+	 */
+	public void setModel(final Product item, final String value)
+	{
+		setModel( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Customer.phone</code> attribute.
+	 * @return the phone - 手机号码
+	 */
+	public String getPhone(final SessionContext ctx, final Customer item)
+	{
+		return (String)item.getProperty( ctx, ZddsCoreConstants.Attributes.Customer.PHONE);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Customer.phone</code> attribute.
+	 * @return the phone - 手机号码
+	 */
+	public String getPhone(final Customer item)
+	{
+		return getPhone( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Customer.phone</code> attribute. 
+	 * @param value the phone - 手机号码
+	 */
+	public void setPhone(final SessionContext ctx, final Customer item, final String value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Customer.PHONE,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Customer.phone</code> attribute. 
+	 * @param value the phone - 手机号码
+	 */
+	public void setPhone(final Customer item, final String value)
+	{
+		setPhone( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
 	 * <i>Generated method</i> - Getter of the <code>Employee.position</code> attribute.
 	 * @return the position - 职位
 	 */
@@ -433,6 +807,151 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public void setPosition(final Employee item, final EnumerationValue value)
 	{
 		setPosition( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Customer.realName</code> attribute.
+	 * @return the realName - 真实名字
+	 */
+	public String getRealName(final SessionContext ctx, final Customer item)
+	{
+		return (String)item.getProperty( ctx, ZddsCoreConstants.Attributes.Customer.REALNAME);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Customer.realName</code> attribute.
+	 * @return the realName - 真实名字
+	 */
+	public String getRealName(final Customer item)
+	{
+		return getRealName( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Customer.realName</code> attribute. 
+	 * @param value the realName - 真实名字
+	 */
+	public void setRealName(final SessionContext ctx, final Customer item, final String value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Customer.REALNAME,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Customer.realName</code> attribute. 
+	 * @param value the realName - 真实名字
+	 */
+	public void setRealName(final Customer item, final String value)
+	{
+		setRealName( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.remark</code> attribute.
+	 * @return the remark - 订单备注
+	 */
+	public String getRemark(final SessionContext ctx, final Order item)
+	{
+		return (String)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.REMARK);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.remark</code> attribute.
+	 * @return the remark - 订单备注
+	 */
+	public String getRemark(final Order item)
+	{
+		return getRemark( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.remark</code> attribute. 
+	 * @param value the remark - 订单备注
+	 */
+	public void setRemark(final SessionContext ctx, final Order item, final String value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.REMARK,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.remark</code> attribute. 
+	 * @param value the remark - 订单备注
+	 */
+	public void setRemark(final Order item, final String value)
+	{
+		setRemark( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.salesVolume</code> attribute.
+	 * @return the salesVolume - 销量
+	 */
+	public Integer getSalesVolume(final SessionContext ctx, final Product item)
+	{
+		return (Integer)item.getProperty( ctx, ZddsCoreConstants.Attributes.Product.SALESVOLUME);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.salesVolume</code> attribute.
+	 * @return the salesVolume - 销量
+	 */
+	public Integer getSalesVolume(final Product item)
+	{
+		return getSalesVolume( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.salesVolume</code> attribute. 
+	 * @return the salesVolume - 销量
+	 */
+	public int getSalesVolumeAsPrimitive(final SessionContext ctx, final Product item)
+	{
+		Integer value = getSalesVolume( ctx,item );
+		return value != null ? value.intValue() : 0;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.salesVolume</code> attribute. 
+	 * @return the salesVolume - 销量
+	 */
+	public int getSalesVolumeAsPrimitive(final Product item)
+	{
+		return getSalesVolumeAsPrimitive( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.salesVolume</code> attribute. 
+	 * @param value the salesVolume - 销量
+	 */
+	public void setSalesVolume(final SessionContext ctx, final Product item, final Integer value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Product.SALESVOLUME,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.salesVolume</code> attribute. 
+	 * @param value the salesVolume - 销量
+	 */
+	public void setSalesVolume(final Product item, final Integer value)
+	{
+		setSalesVolume( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.salesVolume</code> attribute. 
+	 * @param value the salesVolume - 销量
+	 */
+	public void setSalesVolume(final SessionContext ctx, final Product item, final int value)
+	{
+		setSalesVolume( ctx, item, Integer.valueOf( value ) );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.salesVolume</code> attribute. 
+	 * @param value the salesVolume - 销量
+	 */
+	public void setSalesVolume(final Product item, final int value)
+	{
+		setSalesVolume( getSession().getSessionContext(), item, value );
 	}
 	
 	/**
@@ -681,6 +1200,79 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public void removeFromSkills(final Employee item, final Skill value)
 	{
 		removeFromSkills( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.taxPoint</code> attribute.
+	 * @return the taxPoint - 税点
+	 */
+	public Double getTaxPoint(final SessionContext ctx, final Product item)
+	{
+		return (Double)item.getProperty( ctx, ZddsCoreConstants.Attributes.Product.TAXPOINT);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.taxPoint</code> attribute.
+	 * @return the taxPoint - 税点
+	 */
+	public Double getTaxPoint(final Product item)
+	{
+		return getTaxPoint( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.taxPoint</code> attribute. 
+	 * @return the taxPoint - 税点
+	 */
+	public double getTaxPointAsPrimitive(final SessionContext ctx, final Product item)
+	{
+		Double value = getTaxPoint( ctx,item );
+		return value != null ? value.doubleValue() : 0.0d;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.taxPoint</code> attribute. 
+	 * @return the taxPoint - 税点
+	 */
+	public double getTaxPointAsPrimitive(final Product item)
+	{
+		return getTaxPointAsPrimitive( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.taxPoint</code> attribute. 
+	 * @param value the taxPoint - 税点
+	 */
+	public void setTaxPoint(final SessionContext ctx, final Product item, final Double value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Product.TAXPOINT,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.taxPoint</code> attribute. 
+	 * @param value the taxPoint - 税点
+	 */
+	public void setTaxPoint(final Product item, final Double value)
+	{
+		setTaxPoint( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.taxPoint</code> attribute. 
+	 * @param value the taxPoint - 税点
+	 */
+	public void setTaxPoint(final SessionContext ctx, final Product item, final double value)
+	{
+		setTaxPoint( ctx, item, Double.valueOf( value ) );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.taxPoint</code> attribute. 
+	 * @param value the taxPoint - 税点
+	 */
+	public void setTaxPoint(final Product item, final double value)
+	{
+		setTaxPoint( getSession().getSessionContext(), item, value );
 	}
 	
 	/**

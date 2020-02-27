@@ -8,7 +8,8 @@
     xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
     xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
     xmlns:y="http://www.hybris.com/cockpit/config/hybris"
-    xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
+    xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree"
+    xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config">
 
 	<context merge-by="module" component="editorareaactions" type="Consignment">
 		<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
@@ -30,8 +31,7 @@
 	
 	<!-- Department begin -->
     <context component="create-wizard" type="Department">
-        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="department"
-                 title="create.title(ctx.TYPE_CODE)">
+        <wz:flow id="department" title="create.title(ctx.TYPE_CODE)">
             <wz:prepare id="departmentPrepare">
                 <wz:initialize property="newDepartment" type="ctx.TYPE_CODE"/>
             </wz:prepare>
@@ -57,14 +57,14 @@
 	<context merge-by="type" type="Department" component="advanced-search" parent="GenericItem">
         <advanced-search:advanced-search>
             <advanced-search:field-list>
-                <advanced-search:field name="code" selected="true"/>
-                <advanced-search:field name="name" selected="true"/>
+                <advanced-search:field name="code" operator="contains" selected="true"/>
+                <advanced-search:field name="name" operator="contains" selected="true"/>
                 <advanced-search:field name="isReceipt" selected="true"/>
             </advanced-search:field-list>
             <advanced-search:sort-field name="creationTime" asc="false"></advanced-search:sort-field>
         </advanced-search:advanced-search>
     </context>
-    <context merge-by="type" parent="GenericItem" type="Department" component="listview">
+    <context merge-by="type" type="Department" component="listview" parent="GenericItem">
         <list-view:list-view>
             <list-view:column qualifier="code"/>
             <list-view:column qualifier="name"/>
@@ -72,7 +72,7 @@
             <list-view:column qualifier="isReceipt"/>
         </list-view:list-view>
     </context>
-    <context merge-by="module" parent="GenericItem" type="Department" component="editor-area">
+    <context merge-by="module" type="Department" component="editor-area" parent="GenericItem">
         <editorArea:editorArea>
             <editorArea:tab name="backoffice.tab.common">
             	<editorArea:section name="backoffice.tab.section.base.information">
@@ -99,17 +99,42 @@
     <!-- Department end -->
 
     <!-- Employee begin -->
+    <context component="create-wizard" type="Employee" principal="supperadminrole">
+        <wz:flow id="employee" title="create.title(ctx.TYPE_CODE)">
+            <wz:prepare id="employeePrepare">
+                <wz:initialize property="newEmployee" type="ctx.TYPE_CODE"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.base.information">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newEmployee">
+                        <wz:property qualifier="uid"/>
+                        <wz:property qualifier="name"/>
+                        <wz:property qualifier="department"/>
+                        <wz:property qualifier="position"/>
+                        <wz:property qualifier="telephone"/>
+                        <wz:property qualifier="groups"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:done>
+                        <wz:save property="newEmployee"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
 	<context merge-by="type" type="Employee" component="advanced-search" parent="GenericItem" principal="supperadminrole">
         <advanced-search:advanced-search>
             <advanced-search:field-list>
-                <advanced-search:field name="uid" selected="true"/>
-                <advanced-search:field name="name" selected="true"/>
+                <advanced-search:field name="uid" operator="contains" selected="true"/>
+                <advanced-search:field name="name" operator="contains" selected="true"/>
                 <advanced-search:field name="groups" selected="false" merge-mode="REMOVE"/>
             </advanced-search:field-list>
             <advanced-search:sort-field name="creationTime" asc="false"></advanced-search:sort-field>
         </advanced-search:advanced-search>
     </context>
-    <context merge-by="type" parent="GenericItem" type="Employee" component="listview" principal="supperadminrole">
+    <context merge-by="type" type="Employee" component="listview" parent="GenericItem" principal="supperadminrole">
         <list-view:list-view>
             <list-view:column qualifier="uid"/>
             <list-view:column qualifier="name"/>
@@ -118,7 +143,7 @@
             <list-view:column qualifier="position"/>
         </list-view:list-view>
     </context>
-    <context merge-by="module" parent="GenericItem" type="Employee" component="editor-area" principal="supperadminrole">
+    <context merge-by="module" type="Employee" component="editor-area" parent="GenericItem" principal="supperadminrole">
         <editorArea:editorArea>
             <editorArea:tab name="backoffice.tab.common">
             	<editorArea:section name="backoffice.tab.section.base.information">
@@ -145,6 +170,208 @@
     </context>
     <!-- Employee end -->
     
+    <!-- Supplier begin -->
+    <context component="create-wizard" type="Supplier" principal="supperadminrole">
+        <wz:flow id="supplier" title="create.title(ctx.TYPE_CODE)">
+            <wz:prepare id="supplierPrepare">
+                <wz:initialize property="newSupplier" type="ctx.TYPE_CODE"/>
+                <wz:assign property="newSupplier.isSupplier" value="true"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.base.information">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newSupplier">
+                        <wz:property qualifier="code"/>
+                        <wz:property qualifier="uid"/>
+                        <wz:property qualifier="name"/>
+                        <wz:property qualifier="telephone"/>
+                        <wz:property qualifier="contact"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:done>
+                        <wz:save property="newSupplier"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+	<context merge-by="type" type="Supplier" component="advanced-search" parent="GenericItem" principal="supperadminrole">
+        <advanced-search:advanced-search>
+            <advanced-search:field-list>
+                <advanced-search:field name="uid" operator="contains" selected="true"/>
+                <advanced-search:field name="telephone" operator="contains" selected="true"/>
+                <advanced-search:field name="name" operator="contains" selected="true"/>
+                <advanced-search:field name="groups" selected="false" merge-mode="REMOVE"/>
+            </advanced-search:field-list>
+            <advanced-search:sort-field name="creationTime" asc="false"></advanced-search:sort-field>
+        </advanced-search:advanced-search>
+    </context>
+    <context merge-by="type" type="Supplier" component="listview" parent="GenericItem" principal="supperadminrole">
+        <list-view:list-view>
+            <list-view:column qualifier="code"/>
+            <list-view:column qualifier="uid"/>
+            <list-view:column qualifier="name"/>
+            <list-view:column qualifier="telephone"/>
+            <list-view:column qualifier="contact"/>
+        </list-view:list-view>
+    </context>
+    <context merge-by="module" type="Supplier" component="editor-area" parent="GenericItem" principal="supperadminrole">
+        <editorArea:editorArea>
+            <editorArea:tab name="backoffice.tab.common">
+            	<editorArea:section name="backoffice.tab.section.base.information">
+                    <editorArea:attribute qualifier="code"/>
+                    <editorArea:attribute qualifier="uid"/>
+                    <editorArea:attribute qualifier="name"/>
+                    <editorArea:attribute qualifier="telephone"/>
+                    <editorArea:attribute qualifier="contact"/>
+                    <editorArea:attribute qualifier="phone"/>
+                    <editorArea:attribute qualifier="QQ"/>
+                </editorArea:section>
+            </editorArea:tab>
+            <editorArea:tab name="hmc.password">
+                <editorArea:section name="hmc.password">
+                    <editorArea:customPanel name="userPasswordPanelRenderer" spring-bean="userPasswordPanelRenderer"/>
+                    <editorArea:panel name="">
+                        <editorArea:attribute qualifier="loginDisabled" label="hmc.text.password.logindisabled"/>
+                    </editorArea:panel>
+                </editorArea:section>
+            </editorArea:tab>
+            <editorArea:tab name="backoffice.tab.address">
+            	<editorArea:section name="backoffice.tab.section.base.information">
+                    <editorArea:attribute qualifier="address"/>
+                </editorArea:section>
+            </editorArea:tab>
+            <editorArea:tab name="backoffice.tab.settleIn">
+            	<editorArea:section name="backoffice.tab.section.base.information">
+                    <editorArea:attribute qualifier="settleIn"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!-- Supplier end -->
+    <!-- Category begin -->
+    <context component="create-wizard" type="Category" principal="supperadminrole">
+        <wz:flow id="category" title="create.title(ctx.TYPE_CODE)">
+            <wz:prepare id="categoryPrepare">
+                <wz:initialize property="newCategory" type="ctx.TYPE_CODE"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.base.information">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newCategory">
+                        <wz:property qualifier="code"/>
+                        <wz:property qualifier="name"/>
+                        <wz:property qualifier="catalogVersion"/>
+                        <wz:property qualifier="supercategories"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:done>
+                        <wz:save property="newCategory"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+	<context merge-by="type" type="Category" component="advanced-search" parent="GenericItem" principal="supperadminrole">
+        <advanced-search:advanced-search>
+            <advanced-search:field-list>
+                <advanced-search:field name="code" operator="contains" selected="true"/>
+                <advanced-search:field name="name" operator="contains" selected="true"/>
+            </advanced-search:field-list>
+            <advanced-search:sort-field name="creationTime" asc="false"></advanced-search:sort-field>
+        </advanced-search:advanced-search>
+    </context>
+    <context merge-by="type" type="Category" component="listview" parent="GenericItem" principal="supperadminrole">
+        <list-view:list-view>
+            <list-view:column qualifier="code"/>
+            <list-view:column qualifier="name"/>
+            <list-view:column qualifier="catalogVersion"/>
+        </list-view:list-view>
+    </context>
+    <context merge-by="module" type="Category" component="editor-area" parent="GenericItem" principal="supperadminrole">
+        <editorArea:editorArea>
+            <editorArea:tab name="backoffice.tab.common">
+            	<editorArea:section name="backoffice.tab.section.base.information">
+                    <editorArea:attribute qualifier="code"/>
+                    <editorArea:attribute qualifier="name"/>
+                    <editorArea:attribute qualifier="catalogVersion"/>
+                </editorArea:section>
+            </editorArea:tab>
+            <editorArea:tab name="hmc.tab.structure">
+                <editorArea:section name="hmc.section.supercategories">
+                    <editorArea:attribute qualifier="supercategories"/>
+                </editorArea:section>
+                <editorArea:section name="hmc.section.subcategoriesandproducts">
+                    <editorArea:attribute qualifier="categories"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!-- Category end -->
+    <!-- Product begin -->
+    <context merge-by="module" type="Product" component="editor-area" parent="GenericItem" principal="supperadminrole">
+        <editorArea:editorArea>
+            <editorArea:tab name="backoffice.tab.common">
+            	<editorArea:section name="backoffice.tab.section.base.information">
+                    <editorArea:attribute qualifier="code"/>
+                    <editorArea:attribute qualifier="name"/>
+                    <editorArea:attribute qualifier="catalogVersion"/>
+                    <editorArea:attribute qualifier="approvalStatus"/>
+                    <editorArea:attribute qualifier="onlineDate"/>
+                    <editorArea:attribute qualifier="offlineDate"/>
+                    <editorArea:attribute qualifier="brand"/>
+                    <editorArea:attribute qualifier="unit"/>
+                    <editorArea:attribute qualifier="model"/>
+					<editorArea:attribute qualifier="minOrderQuantity" />
+					<editorArea:attribute qualifier="deliveryCharge" />
+					<editorArea:attribute qualifier="salesVolume" />
+					<editorArea:attribute qualifier="taxPoint" />
+					<editorArea:attribute qualifier="commission" />
+                </editorArea:section>
+            </editorArea:tab>
+            <editorArea:tab name="hmc.tab.product.categorysystem">
+                <editorArea:section name="hmc.section.product.productincategory">
+                    <editorArea:attribute qualifier="supercategories"/>
+                    <editorArea:attribute qualifier="classificationClasses"/>
+                </editorArea:section>
+            </editorArea:tab>
+            <editorArea:tab name="hmc.tab.product.prices">
+                <editorArea:section name="hmc.section.product.pricesdiscounts">
+                    <editorArea:panel colspan="2" name="panel.europe1Prices" rowspan="2">
+                        <editorArea:attribute qualifier="europe1Prices" description="hmc.text.product.pg"
+                                              editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor">
+                            <editorArea:editor-parameter>
+                                <editorArea:name>listConfigContext</editorArea:name>
+                                <editorArea:value>europe1PricesListView</editorArea:value>
+                            </editorArea:editor-parameter>
+                            <editorArea:editor-parameter>
+                                <editorArea:name>disableRemoveReference</editorArea:name>
+                                <editorArea:value>product == null</editorArea:value>
+                            </editorArea:editor-parameter>
+                            <editorArea:editor-parameter>
+                                <editorArea:name>configurableFlowConfigCtx</editorArea:name>
+                                <editorArea:value>create-wizard-no-save</editorArea:value>
+                            </editorArea:editor-parameter>
+                        </editorArea:attribute>
+                    </editorArea:panel>
+                </editorArea:section>
+            </editorArea:tab>
+			<editorArea:tab name="hmc.tab.product.stock">
+                <editorArea:section name="hmc.tab.product.stockfinder"/>
+					<editorArea:section name="hmc.section.warehouse.stocklevels">
+						<editorArea:attribute editor="de.hybris.platform.commerceservices.backoffice.editor.stocklevelfindereditor" qualifier="stockLevels" label="hmc.text.product.usesearchtogetstocklevels">
+							<editorArea:editor-parameter>
+								<editorArea:name>stockLevelSearchField</editorArea:name>
+								<editorArea:value>product</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+					</editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <!-- Product end -->
     <!-- 权限组控制 begin -->
     <context component="explorer-tree" principal="supperadminrole">
         <explorer-tree:explorer-tree>
@@ -156,6 +383,10 @@
             </explorer-tree:navigation-node>
             <explorer-tree:navigation-node id="backoffice.explorer-tree.supplier">
                 <explorer-tree:type-node code="Supplier" id="Supplier"/>
+            </explorer-tree:navigation-node>
+            <explorer-tree:navigation-node id="backoffice.explorer-tree.product">
+                <explorer-tree:type-node code="Category" id="Category"/>
+                <explorer-tree:type-node code="Product" id="Product"/>
             </explorer-tree:navigation-node>
         </explorer-tree:explorer-tree>
     </context>

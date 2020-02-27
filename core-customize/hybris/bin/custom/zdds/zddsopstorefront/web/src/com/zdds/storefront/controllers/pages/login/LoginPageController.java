@@ -2,6 +2,7 @@ package com.zdds.storefront.controllers.pages.login;
 
 
 import com.alibaba.fastjson.JSON;
+import com.zdds.core.common.enumeration.services.ZddsEnumerationService;
 import com.zdds.facades.facades.menu.MenuFacade;
 import com.zddsop.data.MenuData;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
@@ -10,6 +11,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.LoginForm;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import de.hybris.platform.basecommerce.enums.ConsignmentStatus;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
@@ -27,6 +29,7 @@ import com.zdds.storefront.controllers.pages.AbstractPageController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 
@@ -50,6 +53,9 @@ public class LoginPageController extends AbstractPageController
 
 	@Resource(name = "passwordEncoderService")
 	private PasswordEncoderService passwordEncoderService;
+
+	@Resource(name = "zddsEnumerationService")
+	ZddsEnumerationService zddsEnumerationService;
 
 	/**
 	 * 登录运营子系统
@@ -117,6 +123,11 @@ public class LoginPageController extends AbstractPageController
 			List<MenuData> buttons = menuFacade.getMenusByPID(pid);
 			String buttonJSON = JSON.toJSONString(buttons);
 			model.addAttribute("buttonJSON", buttonJSON);
+		}
+
+		//发货单列表页面
+		if(request.getParameter("pageTarget").equalsIgnoreCase("pages/consignment/consignmentManage")){
+			model.addAttribute("statuses",zddsEnumerationService.getEnumerationDataByType(ConsignmentStatus._TYPECODE, Locale.CHINESE));
 		}
 		return request.getParameter("pageTarget");
 	}

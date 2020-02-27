@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年2月25日 下午8:28:52                        ---
+ * --- Generated at 2020年2月27日 下午7:52:57                        ---
  * ----------------------------------------------------------------
  */
 package com.zdds.core.constants;
@@ -20,6 +20,7 @@ public class GeneratedZddsCoreConstants
 		public static final String APPARELSIZEVARIANTPRODUCT = "ApparelSizeVariantProduct".intern();
 		public static final String APPARELSTYLEVARIANTPRODUCT = "ApparelStyleVariantProduct".intern();
 		public static final String BLTYPE = "BLType".intern();
+		public static final String BRAND = "Brand".intern();
 		public static final String DEPARTMENT = "Department".intern();
 		public static final String ELECTRONICSCOLORVARIANTPRODUCT = "ElectronicsColorVariantProduct".intern();
 		public static final String POSITION = "Position".intern();
@@ -34,21 +35,42 @@ public class GeneratedZddsCoreConstants
 		{
 			public static final String SETTLEINS = "settleins".intern();
 		}
+		public static class Customer
+		{
+			public static final String PHONE = "phone".intern();
+			public static final String REALNAME = "realName".intern();
+		}
 		public static class Employee
 		{
 			public static final String DEPARTMENT = "department".intern();
 			public static final String GENDER = "gender".intern();
 			public static final String IDNUMBER = "idNumber".intern();
+			public static final String ISSUPPLIER = "isSupplier".intern();
 			public static final String POSITION = "position".intern();
 			public static final String SKILLS = "skills".intern();
 			public static final String TELEPHONE = "telephone".intern();
+		}
+		public static class Order
+		{
+			public static final String REMARK = "remark".intern();
+		}
+		public static class Product
+		{
+			public static final String BRAND = "brand".intern();
+			public static final String COMMISSION = "commission".intern();
+			public static final String DELIVERYCHARGE = "deliveryCharge".intern();
+			public static final String MODEL = "model".intern();
+			public static final String SALESVOLUME = "salesVolume".intern();
+			public static final String TAXPOINT = "taxPoint".intern();
 		}
 	}
 	public static class Enumerations
 	{
 		public static class BLType
 		{
-			// no values defined
+			public static final String UNIFY = "UNIFY".intern();
+			public static final String NORMAL = "NORMAL".intern();
+			public static final String UNUNIFY = "UNUNIFY".intern();
 		}
 		public static class Position
 		{

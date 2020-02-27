@@ -1,0 +1,14 @@
+######角色权限######
+$START_USERRIGHTS; ; ; ; ; ; ; ; ;
+Type      ; UID                      ; MemberOfGroups ; Password ; Target              ; read ; change ; create ; remove ; change_perm
+UserGroup ; supperadminrole          ;                ;          ;                     ;      ;        ;        ;        ;
+          ;                          ;                ;          ; Department          ; +    ; +      ; +      ; +      ; -
+          ;                          ;                ;          ; Address             ; +    ; +      ; +      ; +      ; -
+          ;                          ;                ;          ; Skill               ; +    ; +      ; +      ; +      ; -
+          ;                          ;                ;          ; Employee            ; +    ; +      ; +      ; +      ; -
+          ;                          ;                ;          ; Supplier            ; +    ; +      ; +      ; +      ; -
+          ;                          ;                ;          ; SettleIn            ; +    ; +      ; +      ; +      ; -
+          ;                          ;                ;          ; Category            ; +    ; +      ; +      ; +      ; -
+$END_USERRIGHTS; ; ; ; ;
+
+

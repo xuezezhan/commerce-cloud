@@ -1,6 +1,7 @@
 package com.zdds.facades.facades.menugroup.impl;
 
 
+import com.zdds.core.model.SupplierModel;
 import com.zdds.facades.facades.menugroup.MenuGroupFacade;
 import com.zdds.facades.model.MenuGroupModel;
 import com.zdds.facades.model.OperationMenuModel;
@@ -233,7 +234,7 @@ public class MenuGroupFacadeImpl implements MenuGroupFacade {
             LOG.info("=========members.size()========="+members.size());
             if(!addMenu.isEmpty()){
                 for(PrincipalModel principalModel:members){
-                    EmployeeModel employeeModel=(EmployeeModel)principalModel;
+                    SupplierModel employeeModel=(SupplierModel)principalModel;
                     Collection<OperationMenuModel> allMenus=employeeModel.getMenus();
                     for(OperationMenuModel m:allMenus){
                         addMenu.add(m);
@@ -244,7 +245,7 @@ public class MenuGroupFacadeImpl implements MenuGroupFacade {
             }
             if(!deleteMenu.isEmpty()){
                 for(PrincipalModel principalModel:members){
-                    EmployeeModel employeeModel=(EmployeeModel)principalModel;
+                    SupplierModel employeeModel=(SupplierModel)principalModel;
                     Collection<OperationMenuModel> allMenus=employeeModel.getMenus();
                     Collection<OperationMenuModel> resultMenu=new HashSet<OperationMenuModel>();
                     for(OperationMenuModel m:allMenus){

@@ -12,7 +12,7 @@
     <script src="${commonResourcePath}/layui/formSelects-v4.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${commonResourcePath}/layui/css/formSelects-v4.css" media="all" />
     <script src="${commonResourcePath}/js/select.js" charset="utf-8"></script>
-    <script src="${commonResourcePath}/js/order/orderManager.js" charset="utf-8"></script>
+    <script src="${commonResourcePath}/js/consignment/consignmentManager.js" charset="utf-8"></script>
 </head>
 <body>
     <form class="layui-form" action="" style="margin-top: 15px;">
@@ -32,9 +32,12 @@
             <div class="layui-inline">
                 <label class="layui-form-label">发货状态</label>
                 <div class="layui-input-inline">
-                    <select id="status" name="status" lay-verify="required" lay-search="">
+                    <input id="status" name="status" type="hidden"/>
+                    <select lay-verify="required" lay-search="">
                         <option value="">全部</option>
-                        <option value="1">1</option>
+                        <c:forEach items="${statuses}" var="status">
+                            <option value="${status.code}">${status.name}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>
@@ -51,11 +54,11 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">下单时间</label>
                     <div class="layui-input-inline">
-                        <input readonly="readonly" type="text" class="layui-input" id="creationTime" placeholder="请选择下单时间范围">
+                        <input readonly="readonly" type="text" class="layui-input" data-start-time="" data-end-time="" id="creationTime" placeholder="请选择下单时间范围">
                     </div>
                 </div>
                 <div class="layui-inline" style="margin-left: 40px;">
-                    <button type="button" class="layui-btn" onclick="orderManage.queryData()">搜索</button>
+                    <button type="button" class="layui-btn" onclick="consignmentManage.queryData()">搜索</button>
                 </div>
                 <div class="layui-inline">
                     <button type="reset" class="layui-btn layui-btn-normal">重置</button>
@@ -63,5 +66,6 @@
             </div>
         </div>
     </form>
+    <table id="table_data" class="layui-table" style="width:100%;height: 100%" lay-size="sm" lay-filter="table_ope"></table>
 </body>
 </html>

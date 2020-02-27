@@ -10,10 +10,10 @@
 			xsi:noNamespaceSchemaLocation="items.xsd">
 
 	<relations>
-		<relation localized="false" code="MenuToEmployee">
+		<relation localized="false" code="MenuToSupplier">
 			<description></description>
-			<deployment table="MenuToEmployee" typecode="11101" />
-			<sourceElement type="Employee" qualifier="employees" cardinality="many" collectiontype="list">
+			<deployment table="MenuToSupplierRel" typecode="11104" />
+			<sourceElement type="Supplier" qualifier="suppliers" cardinality="many" collectiontype="list">
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</sourceElement>
 			<targetElement type="OperationMenu" qualifier="menus" cardinality="many">

@@ -1,4 +1,12 @@
-#backoffice角色
-INSERT_UPDATE BackofficeRole; UID[unique = true]          ; groups(uid)[mode = append]; locName     ; name        ; backOfficeLoginDisabled; authorities
-                            ; supperadminrole         ;                           ; 超级管理员	; 超级管理员	  ; FALSE                  ; supperadminrole
+######backoffice角色######
+INSERT_UPDATE BackofficeRole; UID[unique = true]      ; groups(uid)[mode = append]; locName     ; name        ; backOfficeLoginDisabled; authorities
+                            ; supperadminrole         ;employeegroup              ; 超级管理员	; 超级管理员	  ; FALSE                  ; supperadminrole
    
+######用户组-角色######
+INSERT_UPDATE Usergroup;uid[unique=true];groups(uid)[mode=append]
+;supperadmingroup;supperadminrole,admingroup
+
+
+######个性化设置######
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];restrictedType(code);principal(uid);active[default=true];generate[default=true];autocreate[default=true];query
+;employee_isSupplier;"针对员工运营人员过滤供应商数据";Employee;supperadmingroup;;;;"{item:isSupplier} =0"

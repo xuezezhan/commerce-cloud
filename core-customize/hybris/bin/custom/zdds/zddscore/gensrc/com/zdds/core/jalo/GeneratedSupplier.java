@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年2月25日 下午8:28:52                        ---
+ * --- Generated at 2020年2月27日 下午7:52:57                        ---
  * ----------------------------------------------------------------
  */
 package com.zdds.core.jalo;
@@ -34,8 +34,6 @@ public abstract class GeneratedSupplier extends Employee
 	public static final String SETTLEIN = "settleIn";
 	/** Qualifier of the <code>Supplier.address</code> attribute **/
 	public static final String ADDRESS = "address";
-	/** Qualifier of the <code>Supplier.isSupplier</code> attribute **/
-	public static final String ISSUPPLIER = "isSupplier";
 	protected static final Map<String, AttributeMode> DEFAULT_INITIAL_ATTRIBUTES;
 	static
 	{
@@ -46,7 +44,6 @@ public abstract class GeneratedSupplier extends Employee
 		tmp.put(QQ, AttributeMode.INITIAL);
 		tmp.put(SETTLEIN, AttributeMode.INITIAL);
 		tmp.put(ADDRESS, AttributeMode.INITIAL);
-		tmp.put(ISSUPPLIER, AttributeMode.INITIAL);
 		DEFAULT_INITIAL_ATTRIBUTES = Collections.unmodifiableMap(tmp);
 	}
 	@Override
@@ -161,79 +158,6 @@ public abstract class GeneratedSupplier extends Employee
 	public void setContact(final String value)
 	{
 		setContact( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>Supplier.isSupplier</code> attribute.
-	 * @return the isSupplier - 是否为供应商
-	 */
-	public Boolean isIsSupplier(final SessionContext ctx)
-	{
-		return (Boolean)getProperty( ctx, ISSUPPLIER);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>Supplier.isSupplier</code> attribute.
-	 * @return the isSupplier - 是否为供应商
-	 */
-	public Boolean isIsSupplier()
-	{
-		return isIsSupplier( getSession().getSessionContext() );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>Supplier.isSupplier</code> attribute. 
-	 * @return the isSupplier - 是否为供应商
-	 */
-	public boolean isIsSupplierAsPrimitive(final SessionContext ctx)
-	{
-		Boolean value = isIsSupplier( ctx );
-		return value != null ? value.booleanValue() : false;
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>Supplier.isSupplier</code> attribute. 
-	 * @return the isSupplier - 是否为供应商
-	 */
-	public boolean isIsSupplierAsPrimitive()
-	{
-		return isIsSupplierAsPrimitive( getSession().getSessionContext() );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>Supplier.isSupplier</code> attribute. 
-	 * @param value the isSupplier - 是否为供应商
-	 */
-	public void setIsSupplier(final SessionContext ctx, final Boolean value)
-	{
-		setProperty(ctx, ISSUPPLIER,value);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>Supplier.isSupplier</code> attribute. 
-	 * @param value the isSupplier - 是否为供应商
-	 */
-	public void setIsSupplier(final Boolean value)
-	{
-		setIsSupplier( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>Supplier.isSupplier</code> attribute. 
-	 * @param value the isSupplier - 是否为供应商
-	 */
-	public void setIsSupplier(final SessionContext ctx, final boolean value)
-	{
-		setIsSupplier( ctx,Boolean.valueOf( value ) );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>Supplier.isSupplier</code> attribute. 
-	 * @param value the isSupplier - 是否为供应商
-	 */
-	public void setIsSupplier(final boolean value)
-	{
-		setIsSupplier( getSession().getSessionContext(), value );
 	}
 	
 	/**

@@ -171,8 +171,53 @@
           			<modifiers unique="false" search="true" optional="true"/>
                     <description>性别</description>
                 </attribute>
+                <attribute qualifier="isSupplier" type="java.lang.Boolean">
+                    <description>是否为供应商</description>
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <defaultvalue>Boolean.FALSE</defaultvalue>
+                </attribute>
             </attributes>
         </itemtype>
+
+        <itemtype code="Customer" autocreate="false" generate="false">
+            <description>会员表</description>
+            <attributes>
+                <attribute qualifier="realName" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>真实名字</description>
+                </attribute>
+                <attribute qualifier="phone" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>手机号码</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Order" autocreate="false" generate="false">
+            <description>订单表</description>
+            <attributes>
+                <attribute qualifier="remark" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>订单备注</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Consignment" autocreate="false" generate="false">
+            <description>发货单表</description>
+            <attributes>
+                <attribute qualifier="supplier" type="Supplier">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>发货供应商</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+
 		<itemtype code="Supplier" autocreate="true" generate="true" extends="Employee">
         	<description>供应商</description>
 		    <deployment table="Supplier" typecode="11203"/>
@@ -206,12 +251,6 @@
                     <persistence type="property"/>
           			<modifiers unique="false" search="true" optional="true"/>
                     <description>地址</description>
-                </attribute>
-                <attribute qualifier="isSupplier" type="java.lang.Boolean">
-                    <description>是否为供应商</description>
-                    <persistence type="property"/>
-          			<modifiers unique="false" search="true" optional="true"/>
-                    <defaultvalue>Boolean.FALSE</defaultvalue>
                 </attribute>
 			</attributes>
     	</itemtype>
@@ -291,6 +330,61 @@
                     </persistence>
                     <modifiers read="true" write="true" optional="true"/>
                     <description>经营品牌</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+	    <itemtype code="Brand" generate="true" autocreate="true" extends="GenericItem">
+            <description>品牌</description>
+	      	<deployment table="Brand" typecode="11206"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>编号</description>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>名称</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+        <itemtype code="Product" autocreate="false" generate="false">
+        	<description>商品</description>
+            <attributes>
+                <attribute qualifier="brand" type="Brand">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>品牌</description>
+                </attribute>
+                <attribute qualifier="model" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>商品型号</description>
+                </attribute>
+                <attribute qualifier="deliveryCharge" type="java.lang.Double">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>运费</description>
+                    <defaultvalue>Double.valueOf(0)</defaultvalue>
+                </attribute>
+                <attribute qualifier="salesVolume" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>销量</description>
+                    <defaultvalue>0</defaultvalue>
+                </attribute>
+                <attribute qualifier="taxPoint" type="java.lang.Double">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>税点</description>
+                    <defaultvalue>Double.valueOf(0)</defaultvalue>
+                </attribute>
+                <attribute qualifier="commission" type="java.lang.Double">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>回扣</description>
+                    <defaultvalue>Double.valueOf(0)</defaultvalue>
                 </attribute>
             </attributes>
         </itemtype>

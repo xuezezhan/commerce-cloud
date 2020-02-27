@@ -1,6 +1,7 @@
 package com.zdds.facades.facades.account.impl;
 
 
+import com.zdds.core.model.SupplierModel;
 import com.zdds.facades.facades.account.AccountFacade;
 import com.zdds.facades.model.MenuGroupModel;
 import com.zdds.facades.model.OperationMenuModel;
@@ -160,7 +161,7 @@ public class AccountFacadeImpl implements AccountFacade {
     public List<MenuData> authorityTree(String uid) {
         List<OperationMenuModel> allMenu=menuGroupService.getAllMenu();
         LOG.info("----allMenu----"+allMenu.size());
-        EmployeeModel currentUser=(EmployeeModel)userService.getUserForUID(uid);
+        SupplierModel currentUser=(SupplierModel)userService.getUserForUID(uid);
         List<OperationMenuModel> currentMenus=(List<OperationMenuModel>)currentUser.getMenus();
         LOG.info("----currentMenus----"+currentMenus.size());
         List<MenuData> allMenuData=new ArrayList<MenuData>();
@@ -265,7 +266,7 @@ public class AccountFacadeImpl implements AccountFacade {
                 }
             }
             LOG.info("+++++curentMenu.size()+++++"+curentMenu.size());
-            EmployeeModel employeeModel =(EmployeeModel)userService.getUserForUID(uid);
+            SupplierModel employeeModel =(SupplierModel)userService.getUserForUID(uid);
             employeeModel.setMenus(curentMenu);
             modelService.save(employeeModel);
 
@@ -375,7 +376,7 @@ public class AccountFacadeImpl implements AccountFacade {
             }
             LOG.info("+++++curentMenuGroup.size()+++++"+curentMenuGroup.size());
 
-            EmployeeModel employee = (EmployeeModel)userService.getUserForUID(uid);
+            SupplierModel employee = (SupplierModel)userService.getUserForUID(uid);
             Set<PrincipalGroupModel> employeeGroups=employee.getGroups();
             for(PrincipalGroupModel principalGroupModel:employeeGroups){
                 if(principalGroupModel instanceof  MenuGroupModel){

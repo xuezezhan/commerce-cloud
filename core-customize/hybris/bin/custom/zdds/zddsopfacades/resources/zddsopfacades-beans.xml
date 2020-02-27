@@ -95,4 +95,21 @@
 		<property name="password" type="String"/>
 		<property name="passwordConfirm" type="String"/>
 	</bean>
+
+	<bean class="com.zddsop.data.OrderData">
+		<property name="code" type="java.lang.String"/>
+		<property name="pk" type="java.lang.String"/>
+	</bean>
+
+	<bean class="com.zddsop.data.OPConsignmentData">
+		<property name="pk" type="java.lang.String"/>
+		<property name="code" type="java.lang.String"/>
+		<property name="orderCode" type="java.lang.String"/>
+		<property name="statusName" type="java.lang.String"/>
+		<property name="creationTime" type="java.lang.String"/>
+		<property name="name" type="java.lang.String"/>
+		<property name="realName" type="java.lang.String"/>
+		<property name="phone" type="java.lang.String"/>
+		<property name="remark" type="java.lang.String"/>
+	</bean>
 </beans>
