@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年3月4日 上午9:02:14                         ---
+ * --- Generated at 2020年3月6日 下午2:06:55                         ---
  * ----------------------------------------------------------------
  */
 package com.zdds.core.jalo;
@@ -30,6 +30,7 @@ import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.enumeration.EnumerationValue;
 import de.hybris.platform.jalo.extension.Extension;
 import de.hybris.platform.jalo.link.Link;
+import de.hybris.platform.jalo.media.Media;
 import de.hybris.platform.jalo.order.AbstractOrder;
 import de.hybris.platform.jalo.order.Order;
 import de.hybris.platform.jalo.product.Product;
@@ -118,11 +119,13 @@ public abstract class GeneratedZddsCoreManager extends Extension
 		tmp.put("department", AttributeMode.INITIAL);
 		tmp.put("isPresent", AttributeMode.INITIAL);
 		tmp.put("illustration", AttributeMode.INITIAL);
+		tmp.put("maintainPics", AttributeMode.INITIAL);
 		ttmp.put("de.hybris.platform.jalo.order.Order", Collections.unmodifiableMap(tmp));
 		tmp = new HashMap<String, AttributeMode>();
 		tmp.put("supplier", AttributeMode.INITIAL);
 		ttmp.put("de.hybris.platform.ordersplitting.jalo.Consignment", Collections.unmodifiableMap(tmp));
 		tmp = new HashMap<String, AttributeMode>();
+		tmp.put("supplier", AttributeMode.INITIAL);
 		tmp.put("brand", AttributeMode.INITIAL);
 		tmp.put("model", AttributeMode.INITIAL);
 		tmp.put("deliveryCharge", AttributeMode.INITIAL);
@@ -1429,6 +1432,43 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	}
 	
 	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.maintainPics</code> attribute.
+	 * @return the maintainPics - 维修图片
+	 */
+	public List<Media> getMaintainPics(final SessionContext ctx, final Order item)
+	{
+		List<Media> coll = (List<Media>)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.MAINTAINPICS);
+		return coll != null ? coll : Collections.EMPTY_LIST;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.maintainPics</code> attribute.
+	 * @return the maintainPics - 维修图片
+	 */
+	public List<Media> getMaintainPics(final Order item)
+	{
+		return getMaintainPics( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.maintainPics</code> attribute. 
+	 * @param value the maintainPics - 维修图片
+	 */
+	public void setMaintainPics(final SessionContext ctx, final Order item, final List<Media> value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.MAINTAINPICS,value == null || !value.isEmpty() ? value : null );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.maintainPics</code> attribute. 
+	 * @param value the maintainPics - 维修图片
+	 */
+	public void setMaintainPics(final Order item, final List<Media> value)
+	{
+		setMaintainPics( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
 	 * <i>Generated method</i> - Getter of the <code>Product.model</code> attribute.
 	 * @return the model - 商品型号
 	 */
@@ -2141,6 +2181,42 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	 * @param value the supplier - 发货供应商
 	 */
 	public void setSupplier(final Consignment item, final Supplier value)
+	{
+		setSupplier( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.supplier</code> attribute.
+	 * @return the supplier - 发货供应商
+	 */
+	public Supplier getSupplier(final SessionContext ctx, final Product item)
+	{
+		return (Supplier)item.getProperty( ctx, ZddsCoreConstants.Attributes.Product.SUPPLIER);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.supplier</code> attribute.
+	 * @return the supplier - 发货供应商
+	 */
+	public Supplier getSupplier(final Product item)
+	{
+		return getSupplier( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.supplier</code> attribute. 
+	 * @param value the supplier - 发货供应商
+	 */
+	public void setSupplier(final SessionContext ctx, final Product item, final Supplier value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Product.SUPPLIER,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.supplier</code> attribute. 
+	 * @param value the supplier - 发货供应商
+	 */
+	public void setSupplier(final Product item, final Supplier value)
 	{
 		setSupplier( getSession().getSessionContext(), item, value );
 	}

@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年3月4日 上午9:02:14                         ---
+ * --- Generated at 2020年3月6日 下午2:06:55                         ---
  * ----------------------------------------------------------------
  */
 package com.zdds.core.constants;
@@ -73,6 +73,7 @@ public class GeneratedZddsCoreConstants
 			public static final String ILLUSTRATION = "illustration".intern();
 			public static final String INVOICE = "invoice".intern();
 			public static final String ISPRESENT = "isPresent".intern();
+			public static final String MAINTAINPICS = "maintainPics".intern();
 			public static final String ORDERTYPE = "orderType".intern();
 			public static final String RECOMMENDER = "recommender".intern();
 			public static final String REMARK = "remark".intern();
@@ -87,6 +88,7 @@ public class GeneratedZddsCoreConstants
 			public static final String DELIVERYCHARGE = "deliveryCharge".intern();
 			public static final String MODEL = "model".intern();
 			public static final String SALESVOLUME = "salesVolume".intern();
+			public static final String SUPPLIER = "supplier".intern();
 			public static final String TAXPOINT = "taxPoint".intern();
 		}
 	}

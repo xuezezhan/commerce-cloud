@@ -154,7 +154,7 @@
                 <div>型号：${entry.product.model}</div>
             </td>
             <td>${entry.quantity}</td>
-            <td>${entry.stockLevel}</td>
+            <td>${entry.product.stockLevel}</td>
             <td>${entry.subSalesPrice.formattedValue}</td>
         </tr>
     </c:forEach>

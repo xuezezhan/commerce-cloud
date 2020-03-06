@@ -9,6 +9,7 @@
         <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true" generate="true"
                         type="set"/>
         <collectiontype code="ProductList" elementtype="Product" autocreate="true" generate="true" type="list"/>
+        <collectiontype code="MediaList" elementtype="Media" autocreate="true" generate="true" type="list"/>
     </collectiontypes>
 
     <enumtypes>
@@ -325,6 +326,11 @@
                     <modifiers unique="false" search="true" optional="true"/>
                     <description>维修说明</description>
                 </attribute>
+                <attribute qualifier="maintainPics" type="MediaList">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>维修图片</description>
+                </attribute>
             </attributes>
         </itemtype>
 
@@ -517,6 +523,11 @@
         <itemtype code="Product" autocreate="false" generate="false">
         	<description>商品</description>
             <attributes>
+                <attribute qualifier="supplier" type="Supplier">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>发货供应商</description>
+                </attribute>
                 <attribute qualifier="brand" type="Brand">
                     <persistence type="property"/>
           			<modifiers unique="false" search="true" optional="true"/>

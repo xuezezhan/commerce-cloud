@@ -35,8 +35,7 @@ public class OPOrderEntryPopulator implements Populator<OrderEntryModel, OPOrder
     private CommonI18NService commonI18NService;
     @Resource
     private PriceDataFactory priceDataFactory;
-    @Resource
-    private OPStockLevelService opStockLevelService;
+
 
     @Override
     public void populate(OrderEntryModel source, OPOrderEntryData target) throws ConversionException {
@@ -56,7 +55,6 @@ public class OPOrderEntryPopulator implements Populator<OrderEntryModel, OPOrder
             }
         }
         target.setQuantity(source.getQuantity() == null ? "" : String.valueOf(source.getQuantity()));
-        target.setStockLevel(String.valueOf(opStockLevelService.getAvailableQuantity(source.getProduct().getCode())));
 
         target.setSubSalesPrice(createPriceData(salesPrice*source.getQuantity()));
     }

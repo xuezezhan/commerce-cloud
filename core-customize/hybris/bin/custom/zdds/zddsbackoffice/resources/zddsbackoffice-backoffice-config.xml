@@ -318,14 +318,24 @@
                     <editorArea:attribute qualifier="name"/>
                     <editorArea:attribute qualifier="catalogVersion"/>
                     <editorArea:attribute qualifier="brand"/>
-                    <editorArea:attribute qualifier="unit"/>
+                    <editorArea:attribute qualifier="supplier"/>
                     <editorArea:attribute qualifier="model"/>
+                    <editorArea:attribute qualifier="unit"/>
+                    <editorArea:attribute qualifier="stockLevels"/>
+                    <editorArea:attribute qualifier="normal"/>
+                    <editorArea:attribute qualifier="detail"/>
+                    <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
+                                          qualifier="description"/>
+                    <editorArea:attribute qualifier="others"/>
+                    <editorArea:attribute qualifier="supercategories"/>
+                    <editorArea:attribute qualifier="classificationClasses"/>
+                    <editorArea:attribute qualifier="checkStatus"/>
+                    <editorArea:attribute qualifier="creationtime"/>
 					<editorArea:attribute qualifier="minOrderQuantity" />
 					<editorArea:attribute qualifier="deliveryCharge" />
 					<editorArea:attribute qualifier="salesVolume" />
 					<editorArea:attribute qualifier="taxPoint" />
 					<editorArea:attribute qualifier="commission" />
-                    <editorArea:attribute qualifier="checkStatus"/>
                     <editorArea:attribute qualifier="approvalStatus"/>
                     <editorArea:attribute qualifier="onlineDate"/>
                     <editorArea:attribute qualifier="offlineDate"/>
@@ -414,6 +424,7 @@
                     <editorArea:attribute qualifier="employees"/>
                     <editorArea:attribute qualifier="serviceRecords"/>
                     <editorArea:attribute qualifier="isPresent"/>
+                    <editorArea:attribute qualifier="maintainPics"/>
                     <editorArea:attribute qualifier="illustration"/>
                 </editorArea:section>
             </editorArea:tab>

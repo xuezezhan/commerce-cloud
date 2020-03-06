@@ -88,10 +88,10 @@
                 </div>
             </div>
             <div class="layui-inline" style="margin-left: 40px;">
-                <button type="button" class="layui-btn" onclick="consignmentManage.queryData()">搜索</button>
+                <button type="button" class="layui-btn" onclick="productManage.queryData()">搜索</button>
             </div>
             <div class="layui-inline">
-                <button type="reset" class="layui-btn layui-btn-normal" onclick="consignmentManage.resetData()">重置</button>
+                <button type="reset" class="layui-btn layui-btn-normal" onclick="productManage.resetData()">重置</button>
             </div>
             <%--<div class="layui-inline">--%>
                 <%--<button type="button" class="layui-btn">--%>
@@ -103,8 +103,8 @@
     <table id="table_data" class="layui-table" style="width:100%;height: 100%" lay-size="sm" lay-filter="table_ope"></table>
 
     <script type="text/html" id="operationBar">
-        <a class="layui-btn layui-btn-xs" lay-event="edit" onclick="consignmentManage.toDetail()">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="approvel" onclick="consignmentManage.toDetail()">上下架</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit" onclick="productManage.toDetail()">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="approvel" onclick="productManage.toDetail()">上下架</a>
     </script>
 </body>
 </html>
