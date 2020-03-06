@@ -1,11 +1,12 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年2月27日 下午7:52:57                        ---
+ * --- Generated at 2020年3月4日 上午9:02:14                         ---
  * ----------------------------------------------------------------
  */
 package com.zdds.facades.jalo;
 
+import com.zdds.core.jalo.Supplier;
 import com.zdds.facades.constants.ZddsopfacadesConstants;
 import de.hybris.platform.directpersistence.annotation.SLDSafe;
 import de.hybris.platform.jalo.Item;
@@ -13,7 +14,6 @@ import de.hybris.platform.jalo.Item.AttributeMode;
 import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.TypeManager;
-import de.hybris.platform.jalo.user.Employee;
 import de.hybris.platform.jalo.user.UserGroup;
 import de.hybris.platform.util.Utilities;
 import java.util.Collections;
@@ -34,13 +34,13 @@ public class OperationMenu extends UserGroup
 	public static final String ICON = "icon";
 	/** Qualifier of the <code>OperationMenu.file</code> attribute **/
 	public static final String FILE = "file";
-	/** Qualifier of the <code>OperationMenu.employees</code> attribute **/
-	public static final String EMPLOYEES = "employees";
-	/** Relation ordering override parameter constants for MenuToEmployee from ((zddsopfacades))*/
-	protected static String MENUTOEMPLOYEE_SRC_ORDERED = "relation.MenuToEmployee.source.ordered";
-	protected static String MENUTOEMPLOYEE_TGT_ORDERED = "relation.MenuToEmployee.target.ordered";
-	/** Relation disable markmodifed parameter constants for MenuToEmployee from ((zddsopfacades))*/
-	protected static String MENUTOEMPLOYEE_MARKMODIFIED = "relation.MenuToEmployee.markmodified";
+	/** Qualifier of the <code>OperationMenu.suppliers</code> attribute **/
+	public static final String SUPPLIERS = "suppliers";
+	/** Relation ordering override parameter constants for MenuToSupplier from ((zddsopfacades))*/
+	protected static String MENUTOSUPPLIER_SRC_ORDERED = "relation.MenuToSupplier.source.ordered";
+	protected static String MENUTOSUPPLIER_TGT_ORDERED = "relation.MenuToSupplier.target.ordered";
+	/** Relation disable markmodifed parameter constants for MenuToSupplier from ((zddsopfacades))*/
+	protected static String MENUTOSUPPLIER_MARKMODIFIED = "relation.MenuToSupplier.markmodified";
 	protected static final Map<String, AttributeMode> DEFAULT_INITIAL_ATTRIBUTES;
 	static
 	{
@@ -54,130 +54,6 @@ public class OperationMenu extends UserGroup
 	protected Map<String, AttributeMode> getDefaultAttributeModes()
 	{
 		return DEFAULT_INITIAL_ATTRIBUTES;
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>OperationMenu.employees</code> attribute.
-	 * @return the employees
-	 */
-	public List<Employee> getEmployees(final SessionContext ctx)
-	{
-		final List<Employee> items = getLinkedItems( 
-			ctx,
-			false,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
-			"Employee",
-			null,
-			false,
-			Utilities.getRelationOrderingOverride(MENUTOEMPLOYEE_TGT_ORDERED, true)
-		);
-		return items;
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>OperationMenu.employees</code> attribute.
-	 * @return the employees
-	 */
-	public List<Employee> getEmployees()
-	{
-		return getEmployees( getSession().getSessionContext() );
-	}
-	
-	public long getEmployeesCount(final SessionContext ctx)
-	{
-		return getLinkedItemsCount(
-			ctx,
-			false,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
-			"Employee",
-			null
-		);
-	}
-	
-	public long getEmployeesCount()
-	{
-		return getEmployeesCount( getSession().getSessionContext() );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>OperationMenu.employees</code> attribute. 
-	 * @param value the employees
-	 */
-	public void setEmployees(final SessionContext ctx, final List<Employee> value)
-	{
-		setLinkedItems( 
-			ctx,
-			false,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
-			null,
-			value,
-			false,
-			Utilities.getRelationOrderingOverride(MENUTOEMPLOYEE_TGT_ORDERED, true),
-			Utilities.getMarkModifiedOverride(MENUTOEMPLOYEE_MARKMODIFIED)
-		);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>OperationMenu.employees</code> attribute. 
-	 * @param value the employees
-	 */
-	public void setEmployees(final List<Employee> value)
-	{
-		setEmployees( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Adds <code>value</code> to employees. 
-	 * @param value the item to add to employees
-	 */
-	public void addToEmployees(final SessionContext ctx, final Employee value)
-	{
-		addLinkedItems( 
-			ctx,
-			false,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
-			null,
-			Collections.singletonList(value),
-			false,
-			Utilities.getRelationOrderingOverride(MENUTOEMPLOYEE_TGT_ORDERED, true),
-			Utilities.getMarkModifiedOverride(MENUTOEMPLOYEE_MARKMODIFIED)
-		);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Adds <code>value</code> to employees. 
-	 * @param value the item to add to employees
-	 */
-	public void addToEmployees(final Employee value)
-	{
-		addToEmployees( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Removes <code>value</code> from employees. 
-	 * @param value the item to remove from employees
-	 */
-	public void removeFromEmployees(final SessionContext ctx, final Employee value)
-	{
-		removeLinkedItems( 
-			ctx,
-			false,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
-			null,
-			Collections.singletonList(value),
-			false,
-			Utilities.getRelationOrderingOverride(MENUTOEMPLOYEE_TGT_ORDERED, true),
-			Utilities.getMarkModifiedOverride(MENUTOEMPLOYEE_MARKMODIFIED)
-		);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Removes <code>value</code> from employees. 
-	 * @param value the item to remove from employees
-	 */
-	public void removeFromEmployees(final Employee value)
-	{
-		removeFromEmployees( getSession().getSessionContext(), value );
 	}
 	
 	/**
@@ -255,10 +131,10 @@ public class OperationMenu extends UserGroup
 	@Override
 	public boolean isMarkModifiedDisabled(final Item referencedItem)
 	{
-		ComposedType relationSecondEnd0 = TypeManager.getInstance().getComposedType("Employee");
+		ComposedType relationSecondEnd0 = TypeManager.getInstance().getComposedType("Supplier");
 		if(relationSecondEnd0.isAssignableFrom(referencedItem.getComposedType()))
 		{
-			return Utilities.getMarkModifiedOverride(MENUTOEMPLOYEE_MARKMODIFIED);
+			return Utilities.getMarkModifiedOverride(MENUTOSUPPLIER_MARKMODIFIED);
 		}
 		return true;
 	}
@@ -297,6 +173,130 @@ public class OperationMenu extends UserGroup
 	public void setPId(final String value)
 	{
 		setPId( getSession().getSessionContext(), value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>OperationMenu.suppliers</code> attribute.
+	 * @return the suppliers
+	 */
+	public List<Supplier> getSuppliers(final SessionContext ctx)
+	{
+		final List<Supplier> items = getLinkedItems( 
+			ctx,
+			false,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
+			"Supplier",
+			null,
+			false,
+			Utilities.getRelationOrderingOverride(MENUTOSUPPLIER_TGT_ORDERED, true)
+		);
+		return items;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>OperationMenu.suppliers</code> attribute.
+	 * @return the suppliers
+	 */
+	public List<Supplier> getSuppliers()
+	{
+		return getSuppliers( getSession().getSessionContext() );
+	}
+	
+	public long getSuppliersCount(final SessionContext ctx)
+	{
+		return getLinkedItemsCount(
+			ctx,
+			false,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
+			"Supplier",
+			null
+		);
+	}
+	
+	public long getSuppliersCount()
+	{
+		return getSuppliersCount( getSession().getSessionContext() );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>OperationMenu.suppliers</code> attribute. 
+	 * @param value the suppliers
+	 */
+	public void setSuppliers(final SessionContext ctx, final List<Supplier> value)
+	{
+		setLinkedItems( 
+			ctx,
+			false,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
+			null,
+			value,
+			false,
+			Utilities.getRelationOrderingOverride(MENUTOSUPPLIER_TGT_ORDERED, true),
+			Utilities.getMarkModifiedOverride(MENUTOSUPPLIER_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>OperationMenu.suppliers</code> attribute. 
+	 * @param value the suppliers
+	 */
+	public void setSuppliers(final List<Supplier> value)
+	{
+		setSuppliers( getSession().getSessionContext(), value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to suppliers. 
+	 * @param value the item to add to suppliers
+	 */
+	public void addToSuppliers(final SessionContext ctx, final Supplier value)
+	{
+		addLinkedItems( 
+			ctx,
+			false,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
+			null,
+			Collections.singletonList(value),
+			false,
+			Utilities.getRelationOrderingOverride(MENUTOSUPPLIER_TGT_ORDERED, true),
+			Utilities.getMarkModifiedOverride(MENUTOSUPPLIER_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to suppliers. 
+	 * @param value the item to add to suppliers
+	 */
+	public void addToSuppliers(final Supplier value)
+	{
+		addToSuppliers( getSession().getSessionContext(), value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from suppliers. 
+	 * @param value the item to remove from suppliers
+	 */
+	public void removeFromSuppliers(final SessionContext ctx, final Supplier value)
+	{
+		removeLinkedItems( 
+			ctx,
+			false,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
+			null,
+			Collections.singletonList(value),
+			false,
+			Utilities.getRelationOrderingOverride(MENUTOSUPPLIER_TGT_ORDERED, true),
+			Utilities.getMarkModifiedOverride(MENUTOSUPPLIER_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from suppliers. 
+	 * @param value the item to remove from suppliers
+	 */
+	public void removeFromSuppliers(final Supplier value)
+	{
+		removeFromSuppliers( getSession().getSessionContext(), value );
 	}
 	
 }

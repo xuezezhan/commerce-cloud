@@ -109,6 +109,7 @@
 	<extension name='zddsb2cstorefront' />
 	<extension name='zddsopstorefront' />
     <extension name='zddswebservices' />
+    <extension name="chineseaddressfacades"/>
 
   </extensions>
 </hybrisconfig>

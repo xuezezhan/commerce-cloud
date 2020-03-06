@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年2月27日 下午7:52:57                        ---
+ * --- Generated at 2020年3月4日 上午9:02:14                         ---
  * ----------------------------------------------------------------
  */
 package com.zdds.core.jalo;
@@ -11,8 +11,12 @@ import com.zdds.core.jalo.ApparelProduct;
 import com.zdds.core.jalo.ApparelSizeVariantProduct;
 import com.zdds.core.jalo.ApparelStyleVariantProduct;
 import com.zdds.core.jalo.Brand;
+import com.zdds.core.jalo.Carrier;
+import com.zdds.core.jalo.DeliveryInfo;
 import com.zdds.core.jalo.Department;
 import com.zdds.core.jalo.ElectronicsColorVariantProduct;
+import com.zdds.core.jalo.Invoice;
+import com.zdds.core.jalo.ServiceRecord;
 import com.zdds.core.jalo.SettleIn;
 import com.zdds.core.jalo.Skill;
 import com.zdds.core.jalo.Supplier;
@@ -29,11 +33,14 @@ import de.hybris.platform.jalo.link.Link;
 import de.hybris.platform.jalo.order.AbstractOrder;
 import de.hybris.platform.jalo.order.Order;
 import de.hybris.platform.jalo.product.Product;
+import de.hybris.platform.jalo.type.CollectionType;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.JaloGenericCreationException;
 import de.hybris.platform.jalo.user.Customer;
 import de.hybris.platform.jalo.user.Employee;
 import de.hybris.platform.jalo.user.User;
+import de.hybris.platform.ordersplitting.jalo.Consignment;
+import de.hybris.platform.util.OneToManyHandler;
 import de.hybris.platform.util.Utilities;
 import java.util.Collection;
 import java.util.Collections;
@@ -52,6 +59,35 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	protected static String EMPLOYEE2SKILL_TGT_ORDERED = "relation.Employee2Skill.target.ordered";
 	/** Relation disable markmodifed parameter constants for Employee2Skill from ((zddscore))*/
 	protected static String EMPLOYEE2SKILL_MARKMODIFIED = "relation.Employee2Skill.markmodified";
+	/** Relation ordering override parameter constants for Order2Employee from ((zddscore))*/
+	protected static String ORDER2EMPLOYEE_SRC_ORDERED = "relation.Order2Employee.source.ordered";
+	protected static String ORDER2EMPLOYEE_TGT_ORDERED = "relation.Order2Employee.target.ordered";
+	/** Relation disable markmodifed parameter constants for Order2Employee from ((zddscore))*/
+	protected static String ORDER2EMPLOYEE_MARKMODIFIED = "relation.Order2Employee.markmodified";
+	/**
+	* {@link OneToManyHandler} for handling 1:n SERVICERECORDS's relation attributes from 'many' side.
+	**/
+	protected static final OneToManyHandler<ServiceRecord> ORDER2SERVICERECORDSERVICERECORDSHANDLER = new OneToManyHandler<ServiceRecord>(
+	ZddsCoreConstants.TC.SERVICERECORD,
+	false,
+	"order",
+	null,
+	false,
+	true,
+	CollectionType.LIST
+	).withRelationQualifier("serviceRecords");
+	/**
+	* {@link OneToManyHandler} for handling 1:n DELIVERYINFOES's relation attributes from 'many' side.
+	**/
+	protected static final OneToManyHandler<DeliveryInfo> CONSIGNMENT2DELIVERYINFODELIVERYINFOESHANDLER = new OneToManyHandler<DeliveryInfo>(
+	ZddsCoreConstants.TC.DELIVERYINFO,
+	false,
+	"consignment",
+	null,
+	false,
+	true,
+	CollectionType.LIST
+	).withRelationQualifier("deliveryInfoes");
 	/** Relation ordering override parameter constants for SettleIn2Category from ((zddscore))*/
 	protected static String SETTLEIN2CATEGORY_SRC_ORDERED = "relation.SettleIn2Category.source.ordered";
 	protected static String SETTLEIN2CATEGORY_TGT_ORDERED = "relation.SettleIn2Category.target.ordered";
@@ -75,7 +111,17 @@ public abstract class GeneratedZddsCoreManager extends Extension
 		ttmp.put("de.hybris.platform.jalo.user.Customer", Collections.unmodifiableMap(tmp));
 		tmp = new HashMap<String, AttributeMode>();
 		tmp.put("remark", AttributeMode.INITIAL);
+		tmp.put("orderType", AttributeMode.INITIAL);
+		tmp.put("serviceStatus", AttributeMode.INITIAL);
+		tmp.put("recommender", AttributeMode.INITIAL);
+		tmp.put("invoice", AttributeMode.INITIAL);
+		tmp.put("department", AttributeMode.INITIAL);
+		tmp.put("isPresent", AttributeMode.INITIAL);
+		tmp.put("illustration", AttributeMode.INITIAL);
 		ttmp.put("de.hybris.platform.jalo.order.Order", Collections.unmodifiableMap(tmp));
+		tmp = new HashMap<String, AttributeMode>();
+		tmp.put("supplier", AttributeMode.INITIAL);
+		ttmp.put("de.hybris.platform.ordersplitting.jalo.Consignment", Collections.unmodifiableMap(tmp));
 		tmp = new HashMap<String, AttributeMode>();
 		tmp.put("brand", AttributeMode.INITIAL);
 		tmp.put("model", AttributeMode.INITIAL);
@@ -83,7 +129,11 @@ public abstract class GeneratedZddsCoreManager extends Extension
 		tmp.put("salesVolume", AttributeMode.INITIAL);
 		tmp.put("taxPoint", AttributeMode.INITIAL);
 		tmp.put("commission", AttributeMode.INITIAL);
+		tmp.put("checkStatus", AttributeMode.INITIAL);
 		ttmp.put("de.hybris.platform.jalo.product.Product", Collections.unmodifiableMap(tmp));
+		tmp = new HashMap<String, AttributeMode>();
+		tmp.put("level", AttributeMode.INITIAL);
+		ttmp.put("de.hybris.platform.category.jalo.Category", Collections.unmodifiableMap(tmp));
 		DEFAULT_INITIAL_ATTRIBUTES = ttmp;
 	}
 	@Override
@@ -132,6 +182,42 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public void setBrand(final Product item, final Brand value)
 	{
 		setBrand( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.checkStatus</code> attribute.
+	 * @return the checkStatus - 商品审核状态
+	 */
+	public EnumerationValue getCheckStatus(final SessionContext ctx, final Product item)
+	{
+		return (EnumerationValue)item.getProperty( ctx, ZddsCoreConstants.Attributes.Product.CHECKSTATUS);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.checkStatus</code> attribute.
+	 * @return the checkStatus - 商品审核状态
+	 */
+	public EnumerationValue getCheckStatus(final Product item)
+	{
+		return getCheckStatus( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.checkStatus</code> attribute. 
+	 * @param value the checkStatus - 商品审核状态
+	 */
+	public void setCheckStatus(final SessionContext ctx, final Product item, final EnumerationValue value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Product.CHECKSTATUS,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.checkStatus</code> attribute. 
+	 * @param value the checkStatus - 商品审核状态
+	 */
+	public void setCheckStatus(final Product item, final EnumerationValue value)
+	{
+		setCheckStatus( getSession().getSessionContext(), item, value );
 	}
 	
 	/**
@@ -311,6 +397,58 @@ public abstract class GeneratedZddsCoreManager extends Extension
 		return createBrand( getSession().getSessionContext(), attributeValues );
 	}
 	
+	public Carrier createCarrier(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( ZddsCoreConstants.TC.CARRIER );
+			return (Carrier)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating Carrier : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public Carrier createCarrier(final Map attributeValues)
+	{
+		return createCarrier( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public DeliveryInfo createDeliveryInfo(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( ZddsCoreConstants.TC.DELIVERYINFO );
+			return (DeliveryInfo)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating DeliveryInfo : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public DeliveryInfo createDeliveryInfo(final Map attributeValues)
+	{
+		return createDeliveryInfo( getSession().getSessionContext(), attributeValues );
+	}
+	
 	public Department createDepartment(final SessionContext ctx, final Map attributeValues)
 	{
 		try
@@ -361,6 +499,58 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public ElectronicsColorVariantProduct createElectronicsColorVariantProduct(final Map attributeValues)
 	{
 		return createElectronicsColorVariantProduct( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public Invoice createInvoice(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( ZddsCoreConstants.TC.INVOICE );
+			return (Invoice)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating Invoice : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public Invoice createInvoice(final Map attributeValues)
+	{
+		return createInvoice( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public ServiceRecord createServiceRecord(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( ZddsCoreConstants.TC.SERVICERECORD );
+			return (ServiceRecord)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating ServiceRecord : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public ServiceRecord createServiceRecord(final Map attributeValues)
+	{
+		return createServiceRecord( getSession().getSessionContext(), attributeValues );
 	}
 	
 	public SettleIn createSettleIn(final SessionContext ctx, final Map attributeValues)
@@ -515,6 +705,78 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	}
 	
 	/**
+	 * <i>Generated method</i> - Getter of the <code>Consignment.deliveryInfoes</code> attribute.
+	 * @return the deliveryInfoes
+	 */
+	public List<DeliveryInfo> getDeliveryInfoes(final SessionContext ctx, final Consignment item)
+	{
+		return (List<DeliveryInfo>)CONSIGNMENT2DELIVERYINFODELIVERYINFOESHANDLER.getValues( ctx, item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Consignment.deliveryInfoes</code> attribute.
+	 * @return the deliveryInfoes
+	 */
+	public List<DeliveryInfo> getDeliveryInfoes(final Consignment item)
+	{
+		return getDeliveryInfoes( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Consignment.deliveryInfoes</code> attribute. 
+	 * @param value the deliveryInfoes
+	 */
+	public void setDeliveryInfoes(final SessionContext ctx, final Consignment item, final List<DeliveryInfo> value)
+	{
+		CONSIGNMENT2DELIVERYINFODELIVERYINFOESHANDLER.setValues( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Consignment.deliveryInfoes</code> attribute. 
+	 * @param value the deliveryInfoes
+	 */
+	public void setDeliveryInfoes(final Consignment item, final List<DeliveryInfo> value)
+	{
+		setDeliveryInfoes( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to deliveryInfoes. 
+	 * @param value the item to add to deliveryInfoes
+	 */
+	public void addToDeliveryInfoes(final SessionContext ctx, final Consignment item, final DeliveryInfo value)
+	{
+		CONSIGNMENT2DELIVERYINFODELIVERYINFOESHANDLER.addValue( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to deliveryInfoes. 
+	 * @param value the item to add to deliveryInfoes
+	 */
+	public void addToDeliveryInfoes(final Consignment item, final DeliveryInfo value)
+	{
+		addToDeliveryInfoes( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from deliveryInfoes. 
+	 * @param value the item to remove from deliveryInfoes
+	 */
+	public void removeFromDeliveryInfoes(final SessionContext ctx, final Consignment item, final DeliveryInfo value)
+	{
+		CONSIGNMENT2DELIVERYINFODELIVERYINFOESHANDLER.removeValue( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from deliveryInfoes. 
+	 * @param value the item to remove from deliveryInfoes
+	 */
+	public void removeFromDeliveryInfoes(final Consignment item, final DeliveryInfo value)
+	{
+		removeFromDeliveryInfoes( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
 	 * <i>Generated method</i> - Getter of the <code>Employee.department</code> attribute.
 	 * @return the department - 单位
 	 */
@@ -548,6 +810,290 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public void setDepartment(final Employee item, final Department value)
 	{
 		setDepartment( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.department</code> attribute.
+	 * @return the department - 派单供电所
+	 */
+	public Department getDepartment(final SessionContext ctx, final Order item)
+	{
+		return (Department)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.DEPARTMENT);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.department</code> attribute.
+	 * @return the department - 派单供电所
+	 */
+	public Department getDepartment(final Order item)
+	{
+		return getDepartment( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.department</code> attribute. 
+	 * @param value the department - 派单供电所
+	 */
+	public void setDepartment(final SessionContext ctx, final Order item, final Department value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.DEPARTMENT,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.department</code> attribute. 
+	 * @param value the department - 派单供电所
+	 */
+	public void setDepartment(final Order item, final Department value)
+	{
+		setDepartment( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.employees</code> attribute.
+	 * @return the employees
+	 */
+	public List<Employee> getEmployees(final SessionContext ctx, final Order item)
+	{
+		final List<Employee> items = item.getLinkedItems( 
+			ctx,
+			true,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			"Employee",
+			null,
+			Utilities.getRelationOrderingOverride(ORDER2EMPLOYEE_SRC_ORDERED, true),
+			false
+		);
+		return items;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.employees</code> attribute.
+	 * @return the employees
+	 */
+	public List<Employee> getEmployees(final Order item)
+	{
+		return getEmployees( getSession().getSessionContext(), item );
+	}
+	
+	public long getEmployeesCount(final SessionContext ctx, final Order item)
+	{
+		return item.getLinkedItemsCount(
+			ctx,
+			true,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			"Employee",
+			null
+		);
+	}
+	
+	public long getEmployeesCount(final Order item)
+	{
+		return getEmployeesCount( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.employees</code> attribute. 
+	 * @param value the employees
+	 */
+	public void setEmployees(final SessionContext ctx, final Order item, final List<Employee> value)
+	{
+		item.setLinkedItems( 
+			ctx,
+			true,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			null,
+			value,
+			Utilities.getRelationOrderingOverride(ORDER2EMPLOYEE_SRC_ORDERED, true),
+			false,
+			Utilities.getMarkModifiedOverride(ORDER2EMPLOYEE_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.employees</code> attribute. 
+	 * @param value the employees
+	 */
+	public void setEmployees(final Order item, final List<Employee> value)
+	{
+		setEmployees( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to employees. 
+	 * @param value the item to add to employees
+	 */
+	public void addToEmployees(final SessionContext ctx, final Order item, final Employee value)
+	{
+		item.addLinkedItems( 
+			ctx,
+			true,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			null,
+			Collections.singletonList(value),
+			Utilities.getRelationOrderingOverride(ORDER2EMPLOYEE_SRC_ORDERED, true),
+			false,
+			Utilities.getMarkModifiedOverride(ORDER2EMPLOYEE_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to employees. 
+	 * @param value the item to add to employees
+	 */
+	public void addToEmployees(final Order item, final Employee value)
+	{
+		addToEmployees( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from employees. 
+	 * @param value the item to remove from employees
+	 */
+	public void removeFromEmployees(final SessionContext ctx, final Order item, final Employee value)
+	{
+		item.removeLinkedItems( 
+			ctx,
+			true,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			null,
+			Collections.singletonList(value),
+			Utilities.getRelationOrderingOverride(ORDER2EMPLOYEE_SRC_ORDERED, true),
+			false,
+			Utilities.getMarkModifiedOverride(ORDER2EMPLOYEE_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from employees. 
+	 * @param value the item to remove from employees
+	 */
+	public void removeFromEmployees(final Order item, final Employee value)
+	{
+		removeFromEmployees( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Employee.empOrders</code> attribute.
+	 * @return the empOrders
+	 */
+	public Collection<Order> getEmpOrders(final SessionContext ctx, final Employee item)
+	{
+		final List<Order> items = item.getLinkedItems( 
+			ctx,
+			false,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			"Order",
+			null,
+			Utilities.getRelationOrderingOverride(ORDER2EMPLOYEE_SRC_ORDERED, true),
+			false
+		);
+		return items;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Employee.empOrders</code> attribute.
+	 * @return the empOrders
+	 */
+	public Collection<Order> getEmpOrders(final Employee item)
+	{
+		return getEmpOrders( getSession().getSessionContext(), item );
+	}
+	
+	public long getEmpOrdersCount(final SessionContext ctx, final Employee item)
+	{
+		return item.getLinkedItemsCount(
+			ctx,
+			false,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			"Order",
+			null
+		);
+	}
+	
+	public long getEmpOrdersCount(final Employee item)
+	{
+		return getEmpOrdersCount( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Employee.empOrders</code> attribute. 
+	 * @param value the empOrders
+	 */
+	public void setEmpOrders(final SessionContext ctx, final Employee item, final Collection<Order> value)
+	{
+		item.setLinkedItems( 
+			ctx,
+			false,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			null,
+			value,
+			Utilities.getRelationOrderingOverride(ORDER2EMPLOYEE_SRC_ORDERED, true),
+			false,
+			Utilities.getMarkModifiedOverride(ORDER2EMPLOYEE_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Employee.empOrders</code> attribute. 
+	 * @param value the empOrders
+	 */
+	public void setEmpOrders(final Employee item, final Collection<Order> value)
+	{
+		setEmpOrders( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to empOrders. 
+	 * @param value the item to add to empOrders
+	 */
+	public void addToEmpOrders(final SessionContext ctx, final Employee item, final Order value)
+	{
+		item.addLinkedItems( 
+			ctx,
+			false,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			null,
+			Collections.singletonList(value),
+			Utilities.getRelationOrderingOverride(ORDER2EMPLOYEE_SRC_ORDERED, true),
+			false,
+			Utilities.getMarkModifiedOverride(ORDER2EMPLOYEE_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to empOrders. 
+	 * @param value the item to add to empOrders
+	 */
+	public void addToEmpOrders(final Employee item, final Order value)
+	{
+		addToEmpOrders( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from empOrders. 
+	 * @param value the item to remove from empOrders
+	 */
+	public void removeFromEmpOrders(final SessionContext ctx, final Employee item, final Order value)
+	{
+		item.removeLinkedItems( 
+			ctx,
+			false,
+			ZddsCoreConstants.Relations.ORDER2EMPLOYEE,
+			null,
+			Collections.singletonList(value),
+			Utilities.getRelationOrderingOverride(ORDER2EMPLOYEE_SRC_ORDERED, true),
+			false,
+			Utilities.getMarkModifiedOverride(ORDER2EMPLOYEE_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from empOrders. 
+	 * @param value the item to remove from empOrders
+	 */
+	public void removeFromEmpOrders(final Employee item, final Order value)
+	{
+		removeFromEmpOrders( getSession().getSessionContext(), item, value );
 	}
 	
 	/**
@@ -629,6 +1175,151 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	}
 	
 	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.illustration</code> attribute.
+	 * @return the illustration - 维修说明
+	 */
+	public String getIllustration(final SessionContext ctx, final Order item)
+	{
+		return (String)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.ILLUSTRATION);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.illustration</code> attribute.
+	 * @return the illustration - 维修说明
+	 */
+	public String getIllustration(final Order item)
+	{
+		return getIllustration( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.illustration</code> attribute. 
+	 * @param value the illustration - 维修说明
+	 */
+	public void setIllustration(final SessionContext ctx, final Order item, final String value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.ILLUSTRATION,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.illustration</code> attribute. 
+	 * @param value the illustration - 维修说明
+	 */
+	public void setIllustration(final Order item, final String value)
+	{
+		setIllustration( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.invoice</code> attribute.
+	 * @return the invoice - 发票信息
+	 */
+	public Invoice getInvoice(final SessionContext ctx, final Order item)
+	{
+		return (Invoice)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.INVOICE);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.invoice</code> attribute.
+	 * @return the invoice - 发票信息
+	 */
+	public Invoice getInvoice(final Order item)
+	{
+		return getInvoice( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.invoice</code> attribute. 
+	 * @param value the invoice - 发票信息
+	 */
+	public void setInvoice(final SessionContext ctx, final Order item, final Invoice value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.INVOICE,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.invoice</code> attribute. 
+	 * @param value the invoice - 发票信息
+	 */
+	public void setInvoice(final Order item, final Invoice value)
+	{
+		setInvoice( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.isPresent</code> attribute.
+	 * @return the isPresent - 维修员是否在现场
+	 */
+	public Boolean isIsPresent(final SessionContext ctx, final Order item)
+	{
+		return (Boolean)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.ISPRESENT);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.isPresent</code> attribute.
+	 * @return the isPresent - 维修员是否在现场
+	 */
+	public Boolean isIsPresent(final Order item)
+	{
+		return isIsPresent( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.isPresent</code> attribute. 
+	 * @return the isPresent - 维修员是否在现场
+	 */
+	public boolean isIsPresentAsPrimitive(final SessionContext ctx, final Order item)
+	{
+		Boolean value = isIsPresent( ctx,item );
+		return value != null ? value.booleanValue() : false;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.isPresent</code> attribute. 
+	 * @return the isPresent - 维修员是否在现场
+	 */
+	public boolean isIsPresentAsPrimitive(final Order item)
+	{
+		return isIsPresentAsPrimitive( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.isPresent</code> attribute. 
+	 * @param value the isPresent - 维修员是否在现场
+	 */
+	public void setIsPresent(final SessionContext ctx, final Order item, final Boolean value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.ISPRESENT,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.isPresent</code> attribute. 
+	 * @param value the isPresent - 维修员是否在现场
+	 */
+	public void setIsPresent(final Order item, final Boolean value)
+	{
+		setIsPresent( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.isPresent</code> attribute. 
+	 * @param value the isPresent - 维修员是否在现场
+	 */
+	public void setIsPresent(final SessionContext ctx, final Order item, final boolean value)
+	{
+		setIsPresent( ctx, item, Boolean.valueOf( value ) );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.isPresent</code> attribute. 
+	 * @param value the isPresent - 维修员是否在现场
+	 */
+	public void setIsPresent(final Order item, final boolean value)
+	{
+		setIsPresent( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
 	 * <i>Generated method</i> - Getter of the <code>Employee.isSupplier</code> attribute.
 	 * @return the isSupplier - 是否为供应商
 	 */
@@ -702,6 +1393,42 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	}
 	
 	/**
+	 * <i>Generated method</i> - Getter of the <code>Category.level</code> attribute.
+	 * @return the level - 类别级别
+	 */
+	public EnumerationValue getLevel(final SessionContext ctx, final Category item)
+	{
+		return (EnumerationValue)item.getProperty( ctx, ZddsCoreConstants.Attributes.Category.LEVEL);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Category.level</code> attribute.
+	 * @return the level - 类别级别
+	 */
+	public EnumerationValue getLevel(final Category item)
+	{
+		return getLevel( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Category.level</code> attribute. 
+	 * @param value the level - 类别级别
+	 */
+	public void setLevel(final SessionContext ctx, final Category item, final EnumerationValue value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Category.LEVEL,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Category.level</code> attribute. 
+	 * @param value the level - 类别级别
+	 */
+	public void setLevel(final Category item, final EnumerationValue value)
+	{
+		setLevel( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
 	 * <i>Generated method</i> - Getter of the <code>Product.model</code> attribute.
 	 * @return the model - 商品型号
 	 */
@@ -735,6 +1462,42 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public void setModel(final Product item, final String value)
 	{
 		setModel( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.orderType</code> attribute.
+	 * @return the orderType - 订单类型
+	 */
+	public EnumerationValue getOrderType(final SessionContext ctx, final Order item)
+	{
+		return (EnumerationValue)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.ORDERTYPE);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.orderType</code> attribute.
+	 * @return the orderType - 订单类型
+	 */
+	public EnumerationValue getOrderType(final Order item)
+	{
+		return getOrderType( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.orderType</code> attribute. 
+	 * @param value the orderType - 订单类型
+	 */
+	public void setOrderType(final SessionContext ctx, final Order item, final EnumerationValue value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.ORDERTYPE,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.orderType</code> attribute. 
+	 * @param value the orderType - 订单类型
+	 */
+	public void setOrderType(final Order item, final EnumerationValue value)
+	{
+		setOrderType( getSession().getSessionContext(), item, value );
 	}
 	
 	/**
@@ -846,6 +1609,42 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	}
 	
 	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.recommender</code> attribute.
+	 * @return the recommender - 推荐人
+	 */
+	public Employee getRecommender(final SessionContext ctx, final Order item)
+	{
+		return (Employee)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.RECOMMENDER);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.recommender</code> attribute.
+	 * @return the recommender - 推荐人
+	 */
+	public Employee getRecommender(final Order item)
+	{
+		return getRecommender( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.recommender</code> attribute. 
+	 * @param value the recommender - 推荐人
+	 */
+	public void setRecommender(final SessionContext ctx, final Order item, final Employee value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.RECOMMENDER,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.recommender</code> attribute. 
+	 * @param value the recommender - 推荐人
+	 */
+	public void setRecommender(final Order item, final Employee value)
+	{
+		setRecommender( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
 	 * <i>Generated method</i> - Getter of the <code>Order.remark</code> attribute.
 	 * @return the remark - 订单备注
 	 */
@@ -952,6 +1751,114 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public void setSalesVolume(final Product item, final int value)
 	{
 		setSalesVolume( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.serviceRecords</code> attribute.
+	 * @return the serviceRecords
+	 */
+	public List<ServiceRecord> getServiceRecords(final SessionContext ctx, final Order item)
+	{
+		return (List<ServiceRecord>)ORDER2SERVICERECORDSERVICERECORDSHANDLER.getValues( ctx, item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.serviceRecords</code> attribute.
+	 * @return the serviceRecords
+	 */
+	public List<ServiceRecord> getServiceRecords(final Order item)
+	{
+		return getServiceRecords( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.serviceRecords</code> attribute. 
+	 * @param value the serviceRecords
+	 */
+	public void setServiceRecords(final SessionContext ctx, final Order item, final List<ServiceRecord> value)
+	{
+		ORDER2SERVICERECORDSERVICERECORDSHANDLER.setValues( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.serviceRecords</code> attribute. 
+	 * @param value the serviceRecords
+	 */
+	public void setServiceRecords(final Order item, final List<ServiceRecord> value)
+	{
+		setServiceRecords( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to serviceRecords. 
+	 * @param value the item to add to serviceRecords
+	 */
+	public void addToServiceRecords(final SessionContext ctx, final Order item, final ServiceRecord value)
+	{
+		ORDER2SERVICERECORDSERVICERECORDSHANDLER.addValue( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to serviceRecords. 
+	 * @param value the item to add to serviceRecords
+	 */
+	public void addToServiceRecords(final Order item, final ServiceRecord value)
+	{
+		addToServiceRecords( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from serviceRecords. 
+	 * @param value the item to remove from serviceRecords
+	 */
+	public void removeFromServiceRecords(final SessionContext ctx, final Order item, final ServiceRecord value)
+	{
+		ORDER2SERVICERECORDSERVICERECORDSHANDLER.removeValue( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from serviceRecords. 
+	 * @param value the item to remove from serviceRecords
+	 */
+	public void removeFromServiceRecords(final Order item, final ServiceRecord value)
+	{
+		removeFromServiceRecords( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.serviceStatus</code> attribute.
+	 * @return the serviceStatus - 服务订单状态
+	 */
+	public EnumerationValue getServiceStatus(final SessionContext ctx, final Order item)
+	{
+		return (EnumerationValue)item.getProperty( ctx, ZddsCoreConstants.Attributes.Order.SERVICESTATUS);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Order.serviceStatus</code> attribute.
+	 * @return the serviceStatus - 服务订单状态
+	 */
+	public EnumerationValue getServiceStatus(final Order item)
+	{
+		return getServiceStatus( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.serviceStatus</code> attribute. 
+	 * @param value the serviceStatus - 服务订单状态
+	 */
+	public void setServiceStatus(final SessionContext ctx, final Order item, final EnumerationValue value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Order.SERVICESTATUS,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Order.serviceStatus</code> attribute. 
+	 * @param value the serviceStatus - 服务订单状态
+	 */
+	public void setServiceStatus(final Order item, final EnumerationValue value)
+	{
+		setServiceStatus( getSession().getSessionContext(), item, value );
 	}
 	
 	/**
@@ -1200,6 +2107,42 @@ public abstract class GeneratedZddsCoreManager extends Extension
 	public void removeFromSkills(final Employee item, final Skill value)
 	{
 		removeFromSkills( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Consignment.supplier</code> attribute.
+	 * @return the supplier - 发货供应商
+	 */
+	public Supplier getSupplier(final SessionContext ctx, final Consignment item)
+	{
+		return (Supplier)item.getProperty( ctx, ZddsCoreConstants.Attributes.Consignment.SUPPLIER);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Consignment.supplier</code> attribute.
+	 * @return the supplier - 发货供应商
+	 */
+	public Supplier getSupplier(final Consignment item)
+	{
+		return getSupplier( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Consignment.supplier</code> attribute. 
+	 * @param value the supplier - 发货供应商
+	 */
+	public void setSupplier(final SessionContext ctx, final Consignment item, final Supplier value)
+	{
+		item.setProperty(ctx, ZddsCoreConstants.Attributes.Consignment.SUPPLIER,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Consignment.supplier</code> attribute. 
+	 * @param value the supplier - 发货供应商
+	 */
+	public void setSupplier(final Consignment item, final Supplier value)
+	{
+		setSupplier( getSession().getSessionContext(), item, value );
 	}
 	
 	/**

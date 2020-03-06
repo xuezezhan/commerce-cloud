@@ -1,6 +1,7 @@
 package com.zdds.facades.facades.consignment;
 
 
+import com.zddsop.data.OPConsignmentData;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 
@@ -23,5 +24,12 @@ public interface OPConsignmentFacade {
      * @return
      */
     SearchPageData searchConsignment(Map<String, Object> params, PageableData pageableData);
+
+    /**
+     * 发货单详情
+     * @param pk
+     * @return
+     */
+    OPConsignmentData searchConsignmentInfoForPk(String pk);
 
 }

@@ -50,21 +50,86 @@ var consignmentManage = {
             ,limit: 10 //每页默认显示的数量
             ,where:{name:name,orderCode:orderCode,status:status,realName:realName,startTime:startTime,endTime:endTime}
             ,cols: [[
+                {field: 'pk', title: 'pk',hide:true},
                 {align:'left',title: '序号',type:'numbers',width:100,minWidth:10}
-                ,{field:'orderCode', title: '订单编号'}
+                ,{field:'code', title: '订单编号',templet: function(d){
+                    if($.isEmptyObject(d.orderData)||$.isEmptyObject(d.orderData.code)) {
+                        return " ";
+                    }else {
+                        return d.orderData.code;
+                    }
+                }}
                 ,{field:'code', title: '发货单编号'}
                 ,{field:'statusName', title: '发货状态'}
-                ,{field:'creationTime', title: '下单时间'}
-                ,{field:'name', title: '客户账号'}
-                ,{field:'realName', title: '收货人名称'}
-                ,{field:'phone', title: '收货人手机'}
-                ,{field:'remark', title: '买家备注'}
-                ,{align:'left',fixed: 'right',title: '操作'}
+                ,{field:'creationTime', title: '下单时间',templet: function(d){
+                    if($.isEmptyObject(d.orderData)||$.isEmptyObject(d.orderData.creationTime)) {
+                        return " ";
+                    }else {
+                        return d.orderData.creationTime;
+                    }
+                }}
+                ,{field:'name', title: '客户账号',templet: function(d){
+                    if($.isEmptyObject(d.orderData)||$.isEmptyObject(d.orderData.name)) {
+                        return " ";
+                    }else {
+                        return d.orderData.name;
+                    }
+                }}
+                ,{field:'realName', title: '收货人名称',templet: function(d){
+                    if($.isEmptyObject(d.orderData)||$.isEmptyObject(d.orderData.realName)) {
+                        return " ";
+                    }else {
+                        return d.orderData.realName;
+                    }
+                }}
+                ,{field:'phone', title: '收货人手机',templet: function(d){
+                    if($.isEmptyObject(d.orderData)||$.isEmptyObject(d.orderData.phone)) {
+                        return " ";
+                    }else {
+                        return d.orderData.phone;
+                    }
+                }}
+                ,{field:'remark', title: '买家备注',templet: function(d){
+                    if($.isEmptyObject(d.orderData)||$.isEmptyObject(d.orderData.remark)) {
+                        return " ";
+                    }else {
+                        return d.orderData.remark;
+                    }
+                }}
+                ,{align:'left',fixed: 'right',title: '操作',toolbar: '#operationBar'}
             ]]
         });
     },
+    toDetail:function(){
+        //监听工具条
+        table.on('tool(table_ope)', function(obj){
+            var pk = obj.data.pk;
+            var layEvent = obj.event;
+
+            if(layEvent === 'detail'){
+                layer.open({
+                    title:"发货单详情",
+                    type: 2,
+                    content: "?pageTarget=pages/consignment/consignmentDetail&pk="+pk,
+                    area:["100%","100%"],
+                    resize:false,
+                    cancel:function(index, layero){
+                    },
+                    success: function(layero, index){
+                    }
+                });
+            }
+        });
+
+
+    },
     queryData:function () {
         consignmentManage.tableRender();
+    },
+    resetData:function () {
+        $('#creationTime').data('startTime','');
+        $('#creationTime').data('endTime','');
+        $("#status").val("");
     }
 }
 

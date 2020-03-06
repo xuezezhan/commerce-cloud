@@ -1,16 +1,24 @@
 package com.zdds.facades.facades.consignment.populator;
 
 
+import com.zdds.core.model.DeliveryInfoModel;
 import com.zdds.core.util.DateTransferUtil;
 import com.zddsop.data.OPConsignmentData;
+import com.zddsop.data.OPDeliveryInfoData;
+import com.zddsop.data.OPOrderData;
+import de.hybris.platform.commercefacades.user.data.AddressData;
 import de.hybris.platform.converters.Populator;
 import de.hybris.platform.core.model.order.OrderModel;
+import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.enumeration.EnumerationService;
 import de.hybris.platform.ordersplitting.model.ConsignmentModel;
+import de.hybris.platform.servicelayer.dto.converter.Converter;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -28,6 +36,12 @@ public class OPConsignmentPopulator implements Populator<ConsignmentModel, OPCon
     @Autowired
     private EnumerationService enumerationService;
 
+    @Resource(name = "opDeliveryInfoConverter")
+    private Converter<DeliveryInfoModel, OPDeliveryInfoData> opDeliveryInfoConverter;
+
+    @Resource(name = "opOrderConverter")
+    private Converter<OrderModel, OPOrderData> opOrderConverter;
+
     private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Override
@@ -35,18 +49,14 @@ public class OPConsignmentPopulator implements Populator<ConsignmentModel, OPCon
     {
         target.setPk(source.getPk().getLongValueAsString());
         target.setCode(source.getCode());
-        target.setOrderCode(source.getOrder()==null?"":source.getOrder().getCode());
         target.setStatusName(enumerationService.getEnumerationName(source.getStatus(), Locale.CHINESE));
-        target.setCreationTime(source.getOrder()==null?"": DateTransferUtil.datetime2String(source.getOrder().getCreationtime()));
-        target.setName(source.getOrder()==null?"":source.getOrder().getUser()==null?"":source.getOrder().getUser().getDisplayName(Locale.CHINESE));
-        if(source.getOrder() !=null && source.getOrder().getUser() !=null && source.getOrder().getUser() instanceof CustomerModel){
-            CustomerModel customerModel = (CustomerModel) source.getOrder().getUser();
-            target.setRealName(customerModel.getRealName());
-            target.setPhone(customerModel.getPhone());
+        if(CollectionUtils.isNotEmpty(source.getDeliveryInfoes())){
+            target.setDeliveryInfoes(opDeliveryInfoConverter.convertAll(source.getDeliveryInfoes()));
         }
+
         if(source.getOrder()!=null && source.getOrder() instanceof OrderModel){
             OrderModel orderModel = (OrderModel)source.getOrder();
-            target.setRemark(orderModel.getRemark());
+            target.setOrderData(opOrderConverter.convert(orderModel));
         }
     }
 }

@@ -164,6 +164,10 @@ public interface ControllerConstants
 
 		interface Fragments
 		{
+			interface Consignment
+			{
+				String CONSIGNMENT_DATA="pages/consignment/consignmentData";
+			}
 			interface Cart // NOSONAR
 			{
 				String AddToCartPopup = "fragments/cart/addToCartPopup"; // NOSONAR

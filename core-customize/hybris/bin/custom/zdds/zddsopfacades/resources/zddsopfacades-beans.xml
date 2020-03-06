@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
@@ -104,12 +104,47 @@
 	<bean class="com.zddsop.data.OPConsignmentData">
 		<property name="pk" type="java.lang.String"/>
 		<property name="code" type="java.lang.String"/>
-		<property name="orderCode" type="java.lang.String"/>
 		<property name="statusName" type="java.lang.String"/>
+		<property name="orderData" type="com.zddsop.data.OPOrderData"/>
+		<property name="deliveryInfoes" type="java.util.List&lt;com.zddsop.data.OPDeliveryInfoData&gt;"/>
+	</bean>
+
+	<bean class="com.zddsop.data.OPDeliveryInfoData">
+		<property name="pk" type="java.lang.String"/>
+		<property name="carrierCode" type="java.lang.String"/>
+		<property name="carrierName" type="java.lang.String"/>
+		<property name="logisticsNumber" type="java.lang.String"/>
+		<property name="products" type="java.util.List&lt;com.zddsop.data.OPProductData&gt;"/>
+		<property name="number" type="java.lang.Integer"/>
+	</bean>
+
+    <bean class="com.zddsop.data.OPOrderData">
+        <property name="pk" type="java.lang.String"/>
+        <property name="code" type="java.lang.String"/>
 		<property name="creationTime" type="java.lang.String"/>
 		<property name="name" type="java.lang.String"/>
 		<property name="realName" type="java.lang.String"/>
 		<property name="phone" type="java.lang.String"/>
 		<property name="remark" type="java.lang.String"/>
-	</bean>
+		<property name="address" type="de.hybris.platform.commercefacades.user.data.AddressData"/>
+        <property name="entries" type="java.util.List&lt;com.zddsop.data.OPOrderEntryData>"/>
+		<property name="totalSalesPrice" type="de.hybris.platform.commercefacades.product.data.PriceData"/>
+    </bean>
+
+    <bean class="com.zddsop.data.OPOrderEntryData">
+        <property name="pk" type="java.lang.String"/>
+        <property name="quantity" type="java.lang.String"/>
+        <property name="stockLevel" type="java.lang.String"/>
+        <property name="product" type="com.zddsop.data.OPProductData"/>
+        <property name="subSalesPrice" type="de.hybris.platform.commercefacades.product.data.PriceData"/>
+    </bean>
+
+    <bean class="com.zddsop.data.OPProductData">
+        <property name="code" type="java.lang.String"/>
+        <property name="name" type="java.lang.String"/>
+        <property name="normalMedia" type="java.lang.String"/><!--商品主图-->
+        <property name="model" type="java.lang.String"/><!--商品型号-->
+		<property name="salesPrice" type="de.hybris.platform.commercefacades.product.data.PriceData"/><!--销售价格-->
+    </bean>
+
 </beans>

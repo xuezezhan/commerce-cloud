@@ -12,4 +12,7 @@
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+	<bean class="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property name="streetName" type="String" />
+	</bean>
 </beans>

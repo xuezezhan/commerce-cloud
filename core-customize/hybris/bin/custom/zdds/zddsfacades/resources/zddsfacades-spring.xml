@@ -182,4 +182,11 @@
 	</bean>
 
 	<bean id="genderData" class="com.zdds.facades.product.data.GenderData" scope="prototype"/>
+
+
+	<bean id="zddsAddressPopulator" class="com.zdds.facades.populators.ZddsAddressPopulator"/>
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="addressConverter"/>
+		<property name="add" ref="zddsAddressPopulator"/>
+	</bean>
 </beans>

@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年2月27日 下午7:52:57                        ---
+ * --- Generated at 2020年3月4日 上午9:02:14                         ---
  * ----------------------------------------------------------------
  */
 package com.zdds.fulfilmentprocess.jalo;

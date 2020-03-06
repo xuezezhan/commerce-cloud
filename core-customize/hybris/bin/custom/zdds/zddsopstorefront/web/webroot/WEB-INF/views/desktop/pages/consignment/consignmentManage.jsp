@@ -49,23 +49,26 @@
             </div>
         </div>
 
-        <div class="layui-form">
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">下单时间</label>
-                    <div class="layui-input-inline">
-                        <input readonly="readonly" type="text" class="layui-input" data-start-time="" data-end-time="" id="creationTime" placeholder="请选择下单时间范围">
-                    </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">下单时间</label>
+                <div class="layui-input-inline">
+                    <input readonly="readonly" type="text" class="layui-input" data-start-time="" data-end-time="" id="creationTime" placeholder="请选择下单时间范围">
                 </div>
-                <div class="layui-inline" style="margin-left: 40px;">
-                    <button type="button" class="layui-btn" onclick="consignmentManage.queryData()">搜索</button>
-                </div>
-                <div class="layui-inline">
-                    <button type="reset" class="layui-btn layui-btn-normal">重置</button>
-                </div>
+            </div>
+            <div class="layui-inline" style="margin-left: 40px;">
+                <button type="button" class="layui-btn" onclick="consignmentManage.queryData()">搜索</button>
+            </div>
+            <div class="layui-inline">
+                <button type="reset" class="layui-btn layui-btn-normal" onclick="consignmentManage.resetData()">重置</button>
             </div>
         </div>
     </form>
     <table id="table_data" class="layui-table" style="width:100%;height: 100%" lay-size="sm" lay-filter="table_ope"></table>
+
+    <script type="text/html" id="operationBar">
+        <a class="layui-btn layui-btn-xs" lay-event="detail" onclick="consignmentManage.toDetail()">详情</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delivery" onclick="consignmentManage.toDetail()">发货</a>
+    </script>
 </body>
 </html>

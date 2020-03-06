@@ -8,6 +8,7 @@
         <collectiontype code="GenderList" elementtype="Gender" autocreate="true" generate="true" type="list"/>
         <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true" generate="true"
                         type="set"/>
+        <collectiontype code="ProductList" elementtype="Product" autocreate="true" generate="true" type="list"/>
     </collectiontypes>
 
     <enumtypes>
@@ -47,17 +48,68 @@
             </value>
         </enumtype>
         
-       <!--  <enumtype code="Gender" generate="true" autocreate="true" dynamic="true">
-            <value code="FEMALE">
-                <description>女</description>
+        <enumtype code="CheckStatus" generate="true" autocreate="true" dynamic="true">
+            <value code="PENDINGREVIEW">
+                <description>待审核</description>
             </value>
-            <value code="MALE">
-                <description>男</description>
+            <value code="APPROVED">
+                <description>审核已通过</description>
             </value>
-            <value code="OTHER">
-                <description>其他</description>
+            <value code="UNAPPROVED">
+                <description>审核未通过</description>
             </value>
-        </enumtype> -->
+        </enumtype>
+        
+        <enumtype code="Level" generate="true" autocreate="true" dynamic="true">
+            <value code="ONE">
+                <description>一级类别</description>
+            </value>
+            <value code="TWO">
+                <description>二级类别</description>
+            </value>
+            <value code="THREE">
+                <description>三级类别</description>
+            </value>
+        </enumtype>
+        <enumtype code="OrderType" generate="true" autocreate="true" dynamic="true">
+            <value code="APPLIANCE">
+                <description>家电订单</description>
+            </value>
+            <value code="SERVICE">
+                <description>服务订单</description>
+            </value>
+        </enumtype>
+        <enumtype code="ServiceStatus" generate="true" autocreate="true" dynamic="true">
+            <value code="CREATED">
+                <description>已创建</description>
+            </value>
+            <value code="DISTRIBUTED">
+                <description>已派单</description>
+            </value>
+            <value code="DEPARTING">
+                <description>待上门</description>
+            </value>
+            <value code="MAINTAINING">
+                <description>维修中</description>
+            </value>
+            <value code="CONFIRMING">
+                <description>待确认</description>
+            </value>
+            <value code="PAYING">
+                <description>待支付</description>
+            </value>
+            <value code="EVALUATING">
+                <description>待评价</description>
+            </value>
+            <value code="COMPLETED">
+                <description>已完成</description>
+            </value>
+        </enumtype>
+        <enumtype code="InvoiceType" generate="true" autocreate="true" dynamic="true">
+            <value code="GENERAL">
+                <description>电子普通发票</description>
+            </value>
+        </enumtype>
     </enumtypes>
 
 	<relations>
@@ -93,6 +145,39 @@
               <modifiers read="true" write="true" search="true" optional="true"/>
           </targetElement>
       </relation>
+
+      <relation generate="true" autocreate="true" code="Consignment2DeliveryInfo" localized="false">
+          <description>发货单和发货信息的关系</description>
+          <sourceElement type="Consignment" cardinality="one" qualifier="consignment">
+              <modifiers optional="true" search="true" write="true" read="true"/>
+          </sourceElement>
+          <targetElement type="DeliveryInfo" cardinality="many" qualifier="deliveryInfoes"
+                         ordered="false" collectiontype="list">
+              <modifiers optional="true" search="true" write="true" read="true"/>
+          </targetElement>
+      </relation>
+        
+      <relation code="Order2Employee" generate="true" localized="false" autocreate="true">
+          <deployment table="Order2EmployeeRels" typecode="11208"/>
+          <sourceElement qualifier="empOrders" type="Order" cardinality="many">
+              <modifiers read="true" write="true" search="true" optional="true"/>
+          </sourceElement>
+          <targetElement qualifier="employees" type="Employee" cardinality="many" collectiontype="list"
+                         ordered="true">
+              <modifiers read="true" write="true" search="true" optional="true"/>
+          </targetElement>
+      </relation>
+      
+	  <relation generate="true" autocreate="true" code="Order2ServiceRecord" localized="false">
+	    <description>订单和服务记录的关系</description>
+	    <sourceElement type="Order" cardinality="one" qualifier="order">
+	      <modifiers optional="true" search="true" write="true" read="true"/>
+	    </sourceElement>
+	    <targetElement type="ServiceRecord" cardinality="many" qualifier="serviceRecords"
+	                   ordered="false" collectiontype="list">
+	      <modifiers optional="true" search="true" write="true" read="true"/>
+	    </targetElement>
+	  </relation>
 	</relations>
     
     <itemtypes>
@@ -204,6 +289,42 @@
                     <modifiers unique="false" search="true" optional="true"/>
                     <description>订单备注</description>
                 </attribute>
+                <attribute qualifier="orderType" type="OrderType">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>订单类型</description>
+                </attribute>
+                <attribute qualifier="serviceStatus" type="ServiceStatus">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>服务订单状态</description>
+                </attribute>
+                <attribute qualifier="recommender" type="Employee">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>推荐人</description>
+                </attribute>
+                <attribute qualifier="invoice" type="Invoice">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>发票信息</description>
+                </attribute>
+                <attribute qualifier="department" type="Department">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>派单供电所</description>
+                </attribute>
+		        <attribute qualifier="isPresent" type="java.lang.Boolean">
+		            <persistence type="property" />
+		            <modifiers unique="false" search="true" optional="true"/>
+		            <defaultvalue>Boolean.FALSE</defaultvalue>
+		            <description>维修员是否在现场</description>
+		        </attribute>
+                <attribute qualifier="illustration" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>维修说明</description>
+                </attribute>
             </attributes>
         </itemtype>
 
@@ -214,6 +335,50 @@
                     <persistence type="property"/>
                     <modifiers unique="false" search="true" optional="true"/>
                     <description>发货供应商</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Carrier" autocreate="true" generate="true" extends="GenericItem">
+            <description>承运商表</description>
+            <deployment table="Carrier" typecode="11106"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" search="true" optional="false" unique="true"/>
+                    <description>代码</description>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>名称</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="DeliveryInfo" autocreate="true" generate="true" extends="GenericItem">
+            <description>发货信息表</description>
+            <deployment table="DeliveryInfo" typecode="11105"/>
+            <attributes>
+                <attribute qualifier="carrier" type="Carrier">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>配送公司</description>
+                </attribute>
+                <attribute qualifier="logisticsNumber" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>物流单号</description>
+                </attribute>
+                <attribute qualifier="products" type="ProductList">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>发货产品</description>
+                </attribute>
+                <attribute qualifier="number" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" optional="true"/>
+                    <description>件数合计</description>
                 </attribute>
             </attributes>
         </itemtype>
@@ -385,6 +550,89 @@
                     <modifiers unique="false" search="true" optional="true"/>
                     <description>回扣</description>
                     <defaultvalue>Double.valueOf(0)</defaultvalue>
+                </attribute>
+                <attribute qualifier="checkStatus" type="CheckStatus">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>商品审核状态</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+        <itemtype code="Category" autocreate="false" generate="false">
+        	<description>类别</description>
+            <attributes>
+                <attribute qualifier="level" type="Level">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>类别级别</description>
+                </attribute>
+            </attributes>
+         </itemtype>
+	    <itemtype code="Invoice" generate="true" autocreate="true" extends="GenericItem">
+            <description>发票信息</description>
+	      	<deployment table="Invoice" typecode="11207"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>编号</description>
+                </attribute>
+                <attribute qualifier="type" type="InvoiceType">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>发票类型</description>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>发票抬头</description>
+                </attribute>
+                <attribute qualifier="number" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>税号</description>
+                </attribute>
+                <attribute qualifier="bank" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>开户银行</description>
+                </attribute>
+                <attribute qualifier="address" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>单位地址</description>
+                </attribute>
+                <attribute qualifier="phone" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>电话号码</description>
+                </attribute>
+                <attribute qualifier="account" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>银行账户</description>
+                </attribute>
+            </attributes>
+        </itemtype>
+                
+	    <itemtype code="ServiceRecord" generate="true" autocreate="true" extends="GenericItem">
+            <description>服务记录</description>
+	      	<deployment table="ServiceRecord" typecode="11209"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>编号</description>
+                </attribute>
+                <attribute qualifier="startTime" type="java.util.Date">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>上门开始时间</description>
+                </attribute>
+                <attribute qualifier="endTime" type="java.util.Date">
+                    <persistence type="property"/>
+          			<modifiers unique="false" search="true" optional="true"/>
+                    <description>上门结束时间</description>
                 </attribute>
             </attributes>
         </itemtype>

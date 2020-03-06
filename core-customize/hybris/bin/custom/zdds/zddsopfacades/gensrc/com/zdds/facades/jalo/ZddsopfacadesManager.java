@@ -1,11 +1,12 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 2020年2月27日 下午7:52:57                        ---
+ * --- Generated at 2020年3月4日 上午9:02:14                         ---
  * ----------------------------------------------------------------
  */
 package com.zdds.facades.jalo;
 
+import com.zdds.core.jalo.Supplier;
 import com.zdds.facades.constants.ZddsopfacadesConstants;
 import com.zdds.facades.jalo.MenuGroup;
 import com.zdds.facades.jalo.OperationMenu;
@@ -22,7 +23,6 @@ import de.hybris.platform.jalo.link.Link;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.JaloGenericCreationException;
 import de.hybris.platform.jalo.user.Employee;
-import de.hybris.platform.jalo.user.User;
 import de.hybris.platform.util.Utilities;
 import java.util.Collection;
 import java.util.Collections;
@@ -37,11 +37,11 @@ import java.util.Map;
 @SLDSafe
 public class ZddsopfacadesManager extends Extension
 {
-	/** Relation ordering override parameter constants for MenuToEmployee from ((zddsopfacades))*/
-	protected static String MENUTOEMPLOYEE_SRC_ORDERED = "relation.MenuToEmployee.source.ordered";
-	protected static String MENUTOEMPLOYEE_TGT_ORDERED = "relation.MenuToEmployee.target.ordered";
-	/** Relation disable markmodifed parameter constants for MenuToEmployee from ((zddsopfacades))*/
-	protected static String MENUTOEMPLOYEE_MARKMODIFIED = "relation.MenuToEmployee.markmodified";
+	/** Relation ordering override parameter constants for MenuToSupplier from ((zddsopfacades))*/
+	protected static String MENUTOSUPPLIER_SRC_ORDERED = "relation.MenuToSupplier.source.ordered";
+	protected static String MENUTOSUPPLIER_TGT_ORDERED = "relation.MenuToSupplier.target.ordered";
+	/** Relation disable markmodifed parameter constants for MenuToSupplier from ((zddsopfacades))*/
+	protected static String MENUTOSUPPLIER_MARKMODIFIED = "relation.MenuToSupplier.markmodified";
 	protected static final Map<String, Map<String, AttributeMode>> DEFAULT_INITIAL_ATTRIBUTES;
 	static
 	{
@@ -125,7 +125,7 @@ public class ZddsopfacadesManager extends Extension
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>Employee.menus</code> attribute.
+	 * <i>Generated method</i> - Getter of the <code>Supplier.menus</code> attribute.
 	 * @return the menus
 	 */
 	public Collection<OperationMenu> getMenus(final SessionContext ctx, final Employee item)
@@ -133,42 +133,42 @@ public class ZddsopfacadesManager extends Extension
 		final List<OperationMenu> items = item.getLinkedItems( 
 			ctx,
 			true,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
 			"OperationMenu",
 			null,
 			false,
-			Utilities.getRelationOrderingOverride(MENUTOEMPLOYEE_TGT_ORDERED, true)
+			Utilities.getRelationOrderingOverride(MENUTOSUPPLIER_TGT_ORDERED, true)
 		);
 		return items;
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>Employee.menus</code> attribute.
+	 * <i>Generated method</i> - Getter of the <code>Supplier.menus</code> attribute.
 	 * @return the menus
 	 */
-	public Collection<OperationMenu> getMenus(final Employee item)
+	public Collection<OperationMenu> getMenus(final Supplier item)
 	{
 		return getMenus( getSession().getSessionContext(), item );
 	}
 	
-	public long getMenusCount(final SessionContext ctx, final Employee item)
+	public long getMenusCount(final SessionContext ctx, final Supplier item)
 	{
 		return item.getLinkedItemsCount(
 			ctx,
 			true,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
 			"OperationMenu",
 			null
 		);
 	}
 	
-	public long getMenusCount(final Employee item)
+	public long getMenusCount(final Supplier item)
 	{
 		return getMenusCount( getSession().getSessionContext(), item );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>Employee.menus</code> attribute. 
+	 * <i>Generated method</i> - Setter of the <code>Supplier.menus</code> attribute. 
 	 * @param value the menus
 	 */
 	public void setMenus(final SessionContext ctx, final Employee item, final Collection<OperationMenu> value)
@@ -176,20 +176,20 @@ public class ZddsopfacadesManager extends Extension
 		item.setLinkedItems( 
 			ctx,
 			true,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
 			null,
 			value,
 			false,
-			Utilities.getRelationOrderingOverride(MENUTOEMPLOYEE_TGT_ORDERED, true),
-			Utilities.getMarkModifiedOverride(MENUTOEMPLOYEE_MARKMODIFIED)
+			Utilities.getRelationOrderingOverride(MENUTOSUPPLIER_TGT_ORDERED, true),
+			Utilities.getMarkModifiedOverride(MENUTOSUPPLIER_MARKMODIFIED)
 		);
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>Employee.menus</code> attribute. 
+	 * <i>Generated method</i> - Setter of the <code>Supplier.menus</code> attribute. 
 	 * @param value the menus
 	 */
-	public void setMenus(final Employee item, final Collection<OperationMenu> value)
+	public void setMenus(final Supplier item, final Collection<OperationMenu> value)
 	{
 		setMenus( getSession().getSessionContext(), item, value );
 	}
@@ -203,12 +203,12 @@ public class ZddsopfacadesManager extends Extension
 		item.addLinkedItems( 
 			ctx,
 			true,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
 			null,
 			Collections.singletonList(value),
 			false,
-			Utilities.getRelationOrderingOverride(MENUTOEMPLOYEE_TGT_ORDERED, true),
-			Utilities.getMarkModifiedOverride(MENUTOEMPLOYEE_MARKMODIFIED)
+			Utilities.getRelationOrderingOverride(MENUTOSUPPLIER_TGT_ORDERED, true),
+			Utilities.getMarkModifiedOverride(MENUTOSUPPLIER_MARKMODIFIED)
 		);
 	}
 	
@@ -216,7 +216,7 @@ public class ZddsopfacadesManager extends Extension
 	 * <i>Generated method</i> - Adds <code>value</code> to menus. 
 	 * @param value the item to add to menus
 	 */
-	public void addToMenus(final Employee item, final OperationMenu value)
+	public void addToMenus(final Supplier item, final OperationMenu value)
 	{
 		addToMenus( getSession().getSessionContext(), item, value );
 	}
@@ -230,12 +230,12 @@ public class ZddsopfacadesManager extends Extension
 		item.removeLinkedItems( 
 			ctx,
 			true,
-			ZddsopfacadesConstants.Relations.MENUTOEMPLOYEE,
+			ZddsopfacadesConstants.Relations.MENUTOSUPPLIER,
 			null,
 			Collections.singletonList(value),
 			false,
-			Utilities.getRelationOrderingOverride(MENUTOEMPLOYEE_TGT_ORDERED, true),
-			Utilities.getMarkModifiedOverride(MENUTOEMPLOYEE_MARKMODIFIED)
+			Utilities.getRelationOrderingOverride(MENUTOSUPPLIER_TGT_ORDERED, true),
+			Utilities.getMarkModifiedOverride(MENUTOSUPPLIER_MARKMODIFIED)
 		);
 	}
 	
@@ -243,7 +243,7 @@ public class ZddsopfacadesManager extends Extension
 	 * <i>Generated method</i> - Removes <code>value</code> from menus. 
 	 * @param value the item to remove from menus
 	 */
-	public void removeFromMenus(final Employee item, final OperationMenu value)
+	public void removeFromMenus(final Supplier item, final OperationMenu value)
 	{
 		removeFromMenus( getSession().getSessionContext(), item, value );
 	}

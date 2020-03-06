@@ -102,4 +102,48 @@
             </list>
         </property>
     </bean>
+
+    <!---deliveryInfo-->
+    <bean id="opDeliveryInfoPopulator" class="com.zdds.facades.facades.deliveryInfo.populator.OPDeliveryInfoPopulator"/>
+    <bean id="opDeliveryInfoConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.zddsop.data.OPDeliveryInfoData"/>
+        <property name="populators">
+            <list>
+                <ref bean="opDeliveryInfoPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <!---order-->
+    <bean id="opOrderPopulator" class="com.zdds.facades.facades.order.populator.OPOrderPopulator"/>
+    <bean id="opOrderConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.zddsop.data.OPOrderData"/>
+        <property name="populators">
+            <list>
+                <ref bean="opOrderPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="opOrderEntryPopulator" class="com.zdds.facades.facades.order.populator.OPOrderEntryPopulator"/>
+    <bean id="opOrderEntryConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.zddsop.data.OPOrderEntryData"/>
+        <property name="populators">
+            <list>
+                <ref bean="opOrderEntryPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <!---product-->
+    <bean id="opProductPopulator" class="com.zdds.facades.facades.product.populator.OPProductPopulator"/>
+    <bean id="opProductConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="com.zddsop.data.OPProductData"/>
+        <property name="populators">
+            <list>
+                <ref bean="opProductPopulator"/>
+            </list>
+        </property>
+    </bean>
+
 </beans>

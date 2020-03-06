@@ -3,6 +3,7 @@ package com.zdds.storefront.controllers.pages.login;
 
 import com.alibaba.fastjson.JSON;
 import com.zdds.core.common.enumeration.services.ZddsEnumerationService;
+import com.zdds.facades.facades.category.OPCategoryFacade;
 import com.zdds.facades.facades.menu.MenuFacade;
 import com.zddsop.data.MenuData;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
@@ -55,8 +56,10 @@ public class LoginPageController extends AbstractPageController
 	private PasswordEncoderService passwordEncoderService;
 
 	@Resource(name = "zddsEnumerationService")
-	ZddsEnumerationService zddsEnumerationService;
+	private ZddsEnumerationService zddsEnumerationService;
 
+	@Resource(name = "opCategoryFacade")
+	private OPCategoryFacade opCategoryFacade;
 	/**
 	 * 登录运营子系统
 	 *
@@ -128,6 +131,15 @@ public class LoginPageController extends AbstractPageController
 		//发货单列表页面
 		if(request.getParameter("pageTarget").equalsIgnoreCase("pages/consignment/consignmentManage")){
 			model.addAttribute("statuses",zddsEnumerationService.getEnumerationDataByType(ConsignmentStatus._TYPECODE, Locale.CHINESE));
+		}
+		//新增商品页面,商品列表页面
+		else if(request.getParameter("pageTarget").equalsIgnoreCase("pages/product/addProduct") || request.getParameter("pageTarget").equalsIgnoreCase("pages/product/productManage")){
+			//获取一级类别
+			model.addAttribute("oneLevels",opCategoryFacade.getCategoryLevel("ONE"));
+			//获取二级类别
+			model.addAttribute("twoLevels",opCategoryFacade.getCategoryLevel("TWO"));
+			//获取三级类别
+			model.addAttribute("threeLevels",opCategoryFacade.getCategoryLevel("THREE"));
 		}
 		return request.getParameter("pageTarget");
 	}
